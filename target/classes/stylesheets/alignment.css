@@ -1,0 +1,40 @@
+/*----------Top Alignment-------------------*/
+.alignment-top-left {
+	-fx-alignment: top-left;
+}
+
+.alignment-top-center {
+	-fx-alignment: top-center;
+}
+
+.alignment-top-right {
+	-fx-alignment: top-right;
+}
+
+/*----------Center Alignment--------------- */
+
+.alignment-center-left {
+	-fx-alignment: center-left;
+}
+
+.alignment-center-center {
+	-fx-alignment: center;
+}
+
+.alignment-center-right {
+	-fx-alignment: center-right;
+}
+
+/*----------Bottom Alignment--------------- */
+
+.alignment-bottom-left {
+	-fx-alignment: bottom-left;
+}
+
+.alignment-bottom-center{
+	-fx-alignment: bottom-center;
+}
+
+.alignment-bottom-right{
+	-fx-alignment: bottom-right;
+}

@@ -1,0 +1,23 @@
+* {
+<<<<<<< HEAD
+	-fx-primary: "#2D6AC4";
+	-fx-primary-dark: "#2D6AC4";
+	
+}
+=======
+	-fx-primary: #206AC4;
+ 	-fx-primary-dark: #084997; 
+/*	-fx-primary-dark: #19507d;*/
+	-fx-primary-light: #588DCC;
+	-fx-secondary: #A1B6CE;
+	-fx-secondary-dark: #6280A3;
+/*  -fx-secondary-light: #ABB4C0;*/
+	-fx-secondary-light: #CFD1D2;
+	-fx-bg-light: #eee;
+	-fx-text-correct: #F38F25;
+	-fx-info: #888;
+	-fx-wrong-text: #8E2616;
+	-fx-text-dark: #555;
+	-fx-text-light: whitesmoke;
+}
+>>>>>>> branch 'iss-david-libreria-jfoenix-161020' of https://github.com/luis-ayestaran/ClinicaVC.git

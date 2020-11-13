@@ -1,0 +1,18 @@
+.button {
+	-fx-text-fill: white;
+	-fx-border-radius: 3px;
+	-fx-background-radius:3px;
+	-fx-font-size:14px;
+	-fx-font-family: "Roboto Medium";
+	-fx-background-color: -fx-primary-light ;
+	
+}
+
+.button-primary {
+	-fx-background-color: -fx-primary-dark ;
+}
+
+.button-secondary {
+	-fx-background-color: -fx-primary-light;
+}
+

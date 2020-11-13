@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.contacts.controllers.EditContactController">
+   <children>
+      <BorderPane>
+         <center>
+            <StackPane styleClass="stackpane" BorderPane.alignment="CENTER">
+               <children>
+                  <BorderPane>
+                     <bottom>
+                        <StackPane BorderPane.alignment="CENTER">
+                           <children>
+                              <VBox>
+                                 <children>
+                                    <Label fx:id="warning" />
+                                    <HBox>
+                                       <children>
+                                          <Button fx:id="btnConfirmar" focusTraversable="false" mnemonicParsing="false" onAction="#saveData" text="Confirmar" />
+                                          <Button focusTraversable="false" mnemonicParsing="false" onAction="#cancelEditContact" text="Cancelar" />
+                                       </children>
+                                       <styleClass>
+                                          <String fx:value="hbox" />
+                                          <String fx:value="alignment-center-center" />
+                                       </styleClass>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </StackPane>
+                     </bottom>
+                     <center>
+                        <GridPane styleClass="gridpane" BorderPane.alignment="CENTER">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox styleClass="hbox" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <children>
+                                    <TextField fx:id="txtName" styleClass="textfield" />
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="hbox" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                 <children>
+                                    <TextField fx:id="txtSurname" styleClass="textfield" />
+                                 </children>
+                              </HBox>
+                              <HBox GridPane.columnIndex="5" GridPane.rowIndex="1">
+                                 <children>
+                                    <TextField fx:id="txtRFC" styleClass="textfield" />
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="hbox" />
+                                    <String fx:value="padding-r-4" />
+                                 </styleClass>
+                              </HBox>
+                              <HBox styleClass="hbox" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <children>
+                                    <TextField fx:id="txtEmail" styleClass="textfield" />
+                                 </children>
+                              </HBox>
+                              <HBox GridPane.rowIndex="1">
+                                 <children>
+                                    <Label focusTraversable="false" text="Nombre" />
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="hbox" />
+                                    <String fx:value="alignment-center-right" />
+                                 </styleClass>
+                              </HBox>
+                              <HBox GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <children>
+                                    <Label focusTraversable="false" text="Apellido" />
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="hbox" />
+                                    <String fx:value="alignment-center-right" />
+                                 </styleClass>
+                              </HBox>
+                              <HBox styleClass="alignment-center-right" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                 <children>
+                                    <Label focusTraversable="false" text="RFC" />
+                                 </children>
+                              </HBox>
+                              <HBox GridPane.rowIndex="2">
+                                 <children>
+                                    <Label focusTraversable="false" text="Email" />
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="hbox" />
+                                    <String fx:value="alignment-center-right" />
+                                 </styleClass>
+                              </HBox>
+                              <Label styleClass="padding-l-1" text="Datos Generales" />
+                              <Label styleClass="padding-l-1" text="Dirección" GridPane.rowIndex="3">
+                                 <effect>
+                                    <Lighting>
+                                       <bumpInput>
+                                          <Shadow />
+                                       </bumpInput>
+                                       <light>
+                                          <Light.Distant />
+                                       </light>
+                                    </Lighting>
+                                 </effect>
+                              </Label>
+                              <HBox GridPane.rowIndex="4">
+                                 <children>
+                                    <Label text="País" />
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="hbox" />
+                                    <String fx:value="alignment-center-right" />
+                                 </styleClass>
+                              </HBox>
+                              <HBox styleClass="hbox" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <children>
+                                    <TextField fx:id="txtCountry" styleClass="textfield" />
+                                 </children>
+                              </HBox>
+                              <HBox GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                 <children>
+                                    <Label text="Estado" />
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="hbox" />
+                                    <String fx:value="alignment-center-right" />
+                                 </styleClass>
+                              </HBox>
+                              <HBox styleClass="hbox" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                                 <children>
+                                    <TextField fx:id="txtState" styleClass="textfield" />
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="alignment-center-right" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                                 <children>
+                                    <Label text="Municipio" />
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="hbox" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                 <children>
+                                    <TextField fx:id="txtLocality" styleClass="textfield" />
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="alignment-center-right" GridPane.rowIndex="5">
+                                 <children>
+                                    <Label text="Localidad" />
+                                 </children>
+                              </HBox>
+                              <HBox GridPane.columnIndex="5" GridPane.rowIndex="4">
+                                 <children>
+                                    <TextField fx:id="txtMunicipality" styleClass="textfield" />
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="hbox" />
+                                    <String fx:value="padding-r-4" />
+                                 </styleClass>
+                              </HBox>
+                              <HBox styleClass="alignment-center-right" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                 <children>
+                                    <Label text="CP" />
+                                 </children>
+                              </HBox>
+                              <HBox GridPane.columnIndex="2" GridPane.rowIndex="6">
+                                 <children>
+                                    <Label text="No. Ext" />
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="hbox" />
+                                    <String fx:value="alignment-center-right" />
+                                 </styleClass>
+                              </HBox>
+                              <HBox styleClass="hbox" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                                 <children>
+                                    <TextField fx:id="txtZipCode" styleClass="textfield" />
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="hbox" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                                 <children>
+                                    <TextField fx:id="txtExteriorNumber" styleClass="textfield" />
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="hbox" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                 <children>
+                                    <TextField fx:id="txtStreet" styleClass="textfield" />
+                                 </children>
+                              </HBox>
+                              <HBox GridPane.rowIndex="6">
+                                 <children>
+                                    <Label text="Calle" />
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="hbox" />
+                                    <String fx:value="alignment-center-right" />
+                                 </styleClass>
+                              </HBox>
+                              <HBox GridPane.columnIndex="4" GridPane.rowIndex="6">
+                                 <children>
+                                    <Label text="No. Int" />
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="hbox" />
+                                    <String fx:value="alignment-center-right" />
+                                 </styleClass>
+                              </HBox>
+                              <HBox styleClass="hbox" GridPane.columnIndex="5" GridPane.rowIndex="6">
+                                 <children>
+                                    <TextField fx:id="txtInteriorNumber" styleClass="textfield" />
+                                 </children>
+                              </HBox>
+                              <HBox GridPane.rowIndex="7">
+                                 <styleClass>
+                                    <String fx:value="hbox" />
+                                    <String fx:value="alignment-center-right" />
+                                 </styleClass>
+                                 <children>
+                                    <Label text="Colonia" />
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="hbox" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                 <children>
+                                    <TextField fx:id="txtNeighborhood" styleClass="textfield" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </GridPane>
+                     </center>
+                     <styleClass>
+                        <String fx:value="borderpane" />
+                        <String fx:value="form" />
+                        <String fx:value="padding-y-1" />
+                     </styleClass>
+                  </BorderPane>
+               </children>
+            </StackPane>
+         </center>
+         <left>
+            <StackPane BorderPane.alignment="CENTER" />
+         </left>
+         <top>
+            <HBox minWidth="100.0" styleClass="padding-y-1" BorderPane.alignment="CENTER">
+               <children>
+                  <Label id="title" focusTraversable="false" text="Agregar Cliente" />
+               </children>
+            </HBox>
+         </top>
+         <styleClass>
+            <String fx:value="borderpane" />
+            <String fx:value="padding-2" />
+         </styleClass>
+      </BorderPane>
+   </children>
+   <stylesheets>
+      <URL value="@../stylesheets/addClient.css" />
+      <URL value="@../stylesheets/alignment.css" />
+      <URL value="@../stylesheets/padding.css" />
+   </stylesheets>
+</StackPane>

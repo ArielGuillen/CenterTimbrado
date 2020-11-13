@@ -1,0 +1,11 @@
+.text-field {
+	-fx-font-family: "Roboto Medium";
+	-fx-font-size: 13px;
+	-fx-text-fill: -fx-text-dark;
+	-fx-prompt-text-fill: -fx-info;
+}
+
+.jfx-text-field {
+	-jfx-focus-color: -fx-primary;
+	-jfx-unfocus-color: -fx-info;
+}

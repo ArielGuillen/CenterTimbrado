@@ -1,0 +1,66 @@
+/*CONTENEDORES ------------------------------- */
+
+.hbox{
+	-fx-alignment: center-left;
+	-fx-spacing: .5em;
+}
+
+.borderpane{	
+	-fx-background-color: #028bac;
+	-fx-spacing: 1.25em;
+}
+
+
+.borderpane.form{	
+	-fx-background-color: white;
+	-fx-background-radius: 0.5em;
+	-fx-border-radius: 0.5em;
+	-fx-effect: dropshadow( gaussian, #00000033, 12,0, 0, 5);
+}
+
+.gridpane{
+	-fx-vgap: 0.5em;
+	-fx-hgap: 1em;
+}
+
+
+/*CONTROLES-------------------- */
+
+.label{
+	-fx-text-fill: #025164;
+}
+.button{
+	-fx-alignment: center;
+	-fx-background-color: #034f8a;
+	-fx-background-radius: 0.4em;		
+	-fx-border-radius: 0.4em;
+	-fx-text-fill: white;
+	-fx-effect: dropshadow( gaussian, #ffffff33, 12,0, 0, 5);
+}
+.button:hover{
+	-fx-background-color: #328fd7;
+	-fx-text-fill: white;
+	-fx-effect: dropshadow( gaussian, #00000033, 12,0, 0, 5);
+}
+.button:pressed{
+	-fx-background-color: white;
+	-fx-text-fill: #034f8a;
+	-fx-effect: dropshadow( gaussian, #00000033, 12,0, 0, 5);
+}
+.textfield{
+	-fx-effect: dropshadow( gaussian, #00000033, 12,0, 0, 5);
+}
+
+/* IDs------------------------------- */
+#title{
+	-fx-font-family: "Helvetica";
+	-fx-font-size:2.2em;
+	-fx-font-weight: bold;
+	-fx-text-fill: white;
+	
+}
+#warning{
+	-fx-font-family: "Helvetica";
+	-fx-font-style: italic;
+	-fx-text-fill: #03687f;
+}
