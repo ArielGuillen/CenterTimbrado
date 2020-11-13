@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.contacts.controllers.EditContactController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.timbrado.center_timbrado.controllers.EditClientController">
    <children>
       <BorderPane>
          <center>
@@ -32,7 +32,7 @@
                                     <HBox>
                                        <children>
                                           <Button fx:id="btnConfirmar" focusTraversable="false" mnemonicParsing="false" onAction="#saveData" text="Confirmar" />
-                                          <Button focusTraversable="false" mnemonicParsing="false" onAction="#cancelEditContact" text="Cancelar" />
+                                          <Button focusTraversable="false" mnemonicParsing="false" onAction="#cancelViewClient" text="Cancelar" />
                                        </children>
                                        <styleClass>
                                           <String fx:value="hbox" />
@@ -70,21 +70,12 @@
                                     <TextField fx:id="txtName" styleClass="textfield" />
                                  </children>
                               </HBox>
-                              <HBox styleClass="hbox" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                                 <children>
-                                    <TextField fx:id="txtSurname" styleClass="textfield" />
-                                 </children>
-                              </HBox>
-                              <HBox GridPane.columnIndex="5" GridPane.rowIndex="1">
+                              <HBox styleClass="hbox" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <children>
                                     <TextField fx:id="txtRFC" styleClass="textfield" />
                                  </children>
-                                 <styleClass>
-                                    <String fx:value="hbox" />
-                                    <String fx:value="padding-r-4" />
-                                 </styleClass>
                               </HBox>
-                              <HBox styleClass="hbox" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                              <HBox styleClass="hbox" GridPane.columnIndex="3" GridPane.rowIndex="2">
                                  <children>
                                     <TextField fx:id="txtEmail" styleClass="textfield" />
                                  </children>
@@ -98,21 +89,12 @@
                                     <String fx:value="alignment-center-right" />
                                  </styleClass>
                               </HBox>
-                              <HBox GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                 <children>
-                                    <Label focusTraversable="false" text="Apellido" />
-                                 </children>
-                                 <styleClass>
-                                    <String fx:value="hbox" />
-                                    <String fx:value="alignment-center-right" />
-                                 </styleClass>
-                              </HBox>
-                              <HBox styleClass="alignment-center-right" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                              <HBox styleClass="alignment-center-right" GridPane.rowIndex="2">
                                  <children>
                                     <Label focusTraversable="false" text="RFC" />
                                  </children>
                               </HBox>
-                              <HBox GridPane.rowIndex="2">
+                              <HBox GridPane.columnIndex="2" GridPane.rowIndex="2">
                                  <children>
                                     <Label focusTraversable="false" text="Email" />
                                  </children>
@@ -122,7 +104,7 @@
                                  </styleClass>
                               </HBox>
                               <Label styleClass="padding-l-1" text="Datos Generales" />
-                              <Label styleClass="padding-l-1" text="Dirección" GridPane.rowIndex="3">
+                              <Label styleClass="padding-l-1" text="Datos Opcionales" GridPane.rowIndex="3">
                                  <effect>
                                     <Lighting>
                                        <bumpInput>
