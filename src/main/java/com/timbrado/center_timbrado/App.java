@@ -50,30 +50,6 @@ public class App {
    		System.out.println( "Cliente Creado") ;
     }
     
-    public static void crearCliente(String country) throws IOException, FacturamaException, Exception {
-    	
-    	System.out.println( "Creando Cliente") ;
-    	Client cliente = new Client();    
-        
-        Address clientAddress = new Address();
-        clientAddress.setCountry( country );
-        clientAddress.setExteriorNumber("1230");
-        clientAddress.setInteriorNumber("B");
-        clientAddress.setLocality("Puebla");                  
-        clientAddress.setMunicipality("Puebla");         
-        clientAddress.setNeighborhood("Lomas 4ta");
-        clientAddress.setState("Puebla");
-        clientAddress.setStreet("Art. 31");
-        clientAddress.setZipCode("72499");
-             
-        cliente.setAddress(clientAddress);         
-        cliente.setCfdiUse("P01");
-        cliente.setRfc("ESO1202108R2");
-        cliente.setEmail("ariel@gmail.com");
-        cliente.setName("Ariel Guillen");
-             
-       cliente = facturama.Clients().Create(cliente);
-   		System.out.println( "Cliente Creado") ;
-    }
+  
 }
 
