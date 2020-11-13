@@ -51,11 +51,10 @@ public class CreateInvoiceController{
 		colTotal.setCellValueFactory(new PropertyValueFactory<Product, Float>("total"));
 	}
 	
-	public void showClients() {
+	public void showClients() throws IOException, FacturamaException, Exception {
 		cbxShowClients.getItems().clear();
 		getAllClients();
-		System.out.println("ASasdsa");
-		
+		System.out.println("ASasdsa");	
 	}
 	
 	public void getAllClients() throws IOException, FacturamaException, Exception {
