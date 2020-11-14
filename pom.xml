@@ -19,6 +19,13 @@
   </properties>
 
   <dependencies>
+<!--   IconsFontawesome -->
+  	<dependency>
+	    <groupId>de.jensd</groupId>
+	    <artifactId>fontawesomefx</artifactId>
+	    <version>8.9</version>
+	</dependency>
+  		
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>

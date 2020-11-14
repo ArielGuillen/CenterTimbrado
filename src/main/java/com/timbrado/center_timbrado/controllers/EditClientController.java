@@ -71,6 +71,8 @@ public class EditClientController{
 	
 	protected void loadData() {
 		
+		btnConfirmar.setText("Actualizar");
+		
 		//General Data
 		txtName.setText( this.client.getName() );
 		txtRFC.setText( this.client.getRfc() );

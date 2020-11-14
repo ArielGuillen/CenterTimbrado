@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -41,37 +43,34 @@
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <Label text="Cliente:" />
-                              <ComboBox fx:id="cbxShowClients" onAction="#showClients" onMouseClicked="#showClients" prefWidth="150.0" />
+                              <ComboBox fx:id="cbxShowClients" onMouseClicked="#showClients" prefWidth="150.0" />
+                              <FontAwesomeIconView glyphName="CAR" onMouseClicked="#newClient" />
+                              <FontAwesomeIconView onMouseClicked="#editClient" />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                            <children>
                               <Label text="Forma de pago:" />
-                              <ComboBox prefWidth="150.0" />
+                              <ComboBox fx:id="cbxShowPaymentsForms" prefWidth="150.0" />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
                            <children>
                               <Label text="Método de pago:" />
-                              <ComboBox prefWidth="150.0" />
+                              <ComboBox fx:id="cbxShowPaymentsMethods" prefWidth="150.0" />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                            <children>
                               <Label text="Moneda:" />
-                              <ComboBox prefWidth="150.0" />
+                              <ComboBox fx:id="cbxShowCurrencies" prefWidth="150.0" />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
                               <Label text="Fecha de Emisión:" />
                               <ComboBox prefWidth="150.0" />
-                           </children>
-                        </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                           <children>
-                              <Label text="Label" />
-                              <ComboBox prefWidth="150.0" />
+                              <DatePicker />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
@@ -79,7 +78,7 @@
                               <Label text="Producto:" />
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <ComboBox prefWidth="150.0" />
+                                    <ComboBox fx:id="cbxShowProducts" onMouseClicked="#showProducts" prefWidth="150.0" />
                                  </children>
                               </HBox>
                            </children>
