@@ -50,7 +50,13 @@
 .textfield{
 	-fx-effect: dropshadow( gaussian, #00000033, 12,0, 0, 5);
 }
-
+.combobox{ 
+	-fx-background-color: white;		
+	-fx-border-color: #cccccc;
+	-fx-background-radius: 0.3em;		
+	-fx-border-radius: 0.3em;
+	-fx-effect: dropshadow( gaussian, #00000033, 12,0, 0, 5);
+}
 /* IDs------------------------------- */
 #title{
 	-fx-font-family: "Helvetica";

@@ -2,6 +2,8 @@ package com.timbrado.center_timbrado.controllers;
 
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import com.Facturama.sdk_java.Container.FacturamaApi;
 import com.Facturama.sdk_java.Models.Address;
@@ -11,12 +13,14 @@ import com.timbrado.center_timbrado.exceptions.EmptyFieldException;
 import com.timbrado.center_timbrado.exceptions.NotFormatRFCException;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class EditClientController{
+public class EditClientController implements Initializable {
 	
 	private FacturamaApi facturama;
 	
@@ -52,6 +56,9 @@ public class EditClientController{
 	public Label warning;
 	@FXML 
 	public Button btnConfirmar;
+	
+	@FXML
+	public ComboBox<String> cbxUInvoice;
 	
 	//Object client for update data
 	public Client client;
@@ -129,7 +136,6 @@ public class EditClientController{
 	public void saveData() throws IOException, FacturamaException, Exception {
 		
         facturama = new FacturamaApi("ricardomangore", "1nt3rm3zz0", true );
-
 		if( client == null ) {
 			
 			client = new Client();
@@ -237,6 +243,13 @@ public class EditClientController{
 		if ( rfc.length() < 12 ) 
 			throw new NotFormatRFCException( "El campo RFC debe tener al menos 12 caracteres");
 			
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		
+		//this.cbxUInvoice.getItems().add( "" );
+		
 	}
 	
 
