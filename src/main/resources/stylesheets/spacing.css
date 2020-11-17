@@ -1,0 +1,15 @@
+.spacing-1 {
+	-fx-spacing: 12px;
+}
+
+.spacing-2 {
+	-fx-spacing: 24px;
+}
+
+.spacing-3 {
+	-fx-spacing: 36px;
+}
+
+.spacing-4 {
+	-fx-spacing: 48px;
+}

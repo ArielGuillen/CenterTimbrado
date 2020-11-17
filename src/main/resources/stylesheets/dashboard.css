@@ -1,0 +1,45 @@
+.dashboard-options {
+	-fx-background-color: -fx-primary-dark;
+}
+
+.dashboard-Background {
+	-fx-background-color: -fx-primary-dark;
+}
+
+.dashboard-options .label {
+	-fx-font-family: "Roboto Medium";
+	-fx-font-size: 14px;
+	-fx-text-fill: -fx-text-light;	
+}
+
+.dashboard-options .label > .icon{
+	-fx-fill: -fx-text-light;
+	-fx-font-size: 14px;
+}
+
+
+.dashboard-options:hover {
+	-fx-background-color: -fx-primary-light;
+}
+
+.dashboard-options:hover .label{
+	-fx-text-fill: black;
+}
+
+.dashboard-options:hover .label > .icon{
+	-fx-fill: -fx-iconsDashboard;
+}
+
+
+.dashboard-options:pressed {
+	-fx-background-color:  -fx-primary-light;
+}
+
+.dashboard-options:pressed .label{
+	-fx-text-fill: white;
+
+}
+
+.dashboard-options:pressed .label > .icon{
+	-fx-fill: white;
+}
