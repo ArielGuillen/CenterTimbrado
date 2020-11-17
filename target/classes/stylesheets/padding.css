@@ -122,3 +122,19 @@
 .padding-y-4 {
 	-fx-padding: 48px 0;
 }
+
+/* --------------------Corner Padding ----------------*/
+
+.padding-t-r-4{
+	-fx-padding: 48px 12px 0 0;
+}
+
+
+
+
+
+
+
+
+
+
