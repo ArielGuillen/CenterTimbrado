@@ -1,6 +1,7 @@
 package com.timbrado.center_timbrado.controllers;
 
 
+import java.awt.List;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -9,6 +10,7 @@ import com.Facturama.sdk_java.Container.FacturamaApi;
 import com.Facturama.sdk_java.Models.Address;
 import com.Facturama.sdk_java.Models.Client;
 import com.Facturama.sdk_java.Models.Exception.FacturamaException;
+import com.Facturama.sdk_java.Models.Response.Catalogs.Cfdi.PostalCode;
 import com.timbrado.center_timbrado.exceptions.EmptyFieldException;
 import com.timbrado.center_timbrado.exceptions.NotFormatRFCException;
 
@@ -77,6 +79,8 @@ public class EditClientController implements Initializable {
 	//---------Show contact information-------//
 	
 	protected void loadData() {
+		
+		btnConfirmar.setText("Actualizar");
 		
 		//General Data
 		txtName.setText( this.client.getName() );
@@ -215,27 +219,7 @@ public class EditClientController implements Initializable {
 		if( this.txtRFC.getText().trim().isEmpty() )
 			throw new EmptyFieldException( "El campo RFC no puede estar vacío" );
 		if( this.txtEmail.getText().trim().isEmpty() )
-			throw new EmptyFieldException( "El campo Correo Electrónico no puede estar vacío" );
-		
-		/*if( this.txtCountry.getText().trim().isEmpty() )
-			throw new EmptyFieldException( "El campo País no puede estar vacío" );
-		if( this.txtState.getText().trim().isEmpty() )
-			throw new EmptyFieldException( "El campo Estado no puede estar vacío" );
-		if( this.txtMunicipality.getText().trim().isEmpty() )
-			throw new EmptyFieldException( "El campo Municipio no puede estar vacío" );
-		if( this.txtLocality.getText().trim().isEmpty() )
-			throw new EmptyFieldException( "El campo Localidad no puede estar vacío" );
-		if( this.txtZipCode.getText().trim().isEmpty() )
-			throw new EmptyFieldException( "El campo Código Postal no puede estar vacío" );
-		if( this.txtStreet.getText().trim().isEmpty() )
-			throw new EmptyFieldException( "El campo Calle no puede estar vacío" );
-		if( this.txtExteriorNumber.getText().trim().isEmpty() )
-			throw new EmptyFieldException( "El campo Número Exterior no puede estar vacío" );
-		if( this.txtInteriorNumber.getText().trim().isEmpty() )
-			throw new EmptyFieldException( "El campo Número Interior no puede estar vacío" );
-		if( this.txtNeighborhood.getText().trim().isEmpty() )
-			throw new EmptyFieldException( "El campo Colonia no puede estar vacío" );*/
-		
+			throw new EmptyFieldException( "El campo Correo Electrónico no puede estar vacío" );		
 	}
 	private void checkIfRFCFormatisValid() throws NotFormatRFCException {
 		
@@ -247,9 +231,7 @@ public class EditClientController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
-		//this.cbxUInvoice.getItems().add( "" );
-		
+		facturama = new FacturamaApi("ricardomangore", "1nt3rm3zz0", true );
 	}
 	
 
