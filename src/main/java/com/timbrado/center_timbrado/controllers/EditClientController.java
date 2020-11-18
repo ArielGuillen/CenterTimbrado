@@ -1,25 +1,25 @@
 package com.timbrado.center_timbrado.controllers;
 
+
 import java.io.IOException;
 
 import com.Facturama.sdk_java.Container.FacturamaApi;
 import com.Facturama.sdk_java.Models.Address;
 import com.Facturama.sdk_java.Models.Client;
 import com.Facturama.sdk_java.Models.Exception.FacturamaException;
-import com.Facturama.sdk_java.Models.Response.Catalogs.Cfdi.PostalCode;
 import com.timbrado.center_timbrado.exceptions.EmptyFieldException;
 import com.timbrado.center_timbrado.exceptions.NotFormatRFCException;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class EditClientController{
-
+	
+	private FacturamaApi facturama;
+	
 	//---General Data---
 	@FXML
 	public TextField txtName;	
@@ -56,8 +56,6 @@ public class EditClientController{
 	//Object client for update data
 	public Client client;
 	public Address clientAddress;
-	
-    FacturamaApi facturama = new FacturamaApi("ricardomangore", "1nt3rm3zz0", true );
 		
 	//--------Setter & getter methods for contact to modify-----//
 		
@@ -129,6 +127,8 @@ public class EditClientController{
 	//-------Save client information----//
 	@FXML		
 	public void saveData() throws IOException, FacturamaException, Exception {
+		
+        facturama = new FacturamaApi("ricardomangore", "1nt3rm3zz0", true );
 
 		if( client == null ) {
 			
@@ -156,7 +156,7 @@ public class EditClientController{
 			
 			this.client.setName(txtName.getText().trim() );
 			this.client.setRfc(txtRFC.getText().trim().toUpperCase() );
-			this.client.setEmail(txtEmail.getText().trim());
+			this.client.setEmail("ariel@gmail.com");
 			this.client.setCfdiUse("P01");
 			
 			//add optional data
