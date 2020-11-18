@@ -2,12 +2,15 @@
 
 .hbox{
 	-fx-alignment: center-left;
-	-fx-spacing: .5em;
+	-fx-spacing: .7em;
 }
 
+.hbox-v{
+	-fx-alignment: center-left;
+	-fx-spacing: .5em;
+}
 .borderpane{	
-	-fx-background-color: #028bac;
-	-fx-spacing: 1.25em;
+	-fx-background-color: -fx-primary-dark;
 }
 
 
@@ -50,6 +53,59 @@
 .textfield{
 	-fx-effect: dropshadow( gaussian, #00000033, 12,0, 0, 5);
 }
+.textfield-search{
+	-fx-background-color: white;
+	-fx-border-color: white;
+	-fx-background-radius: 0.4em;		
+	-fx-border-radius: 0.4em;
+}
+.hbox-search{
+	-fx-background-color: white;
+	-fx-background-radius: 0.4em;		
+	-fx-border-radius: 0.4em;
+	-fx-effect: dropshadow( gaussian, #00000033, 12,0, 0, 5);
+}
+
+
+.border-radius-1 {
+	-fx-background-radius: 0.4em;		
+	-fx-border-radius: 0.4em;
+}
+/* -----Hbox button ------*/
+
+.hbox-button {
+	-fx-background-color: -fx-primary-dark;
+	-fx-background-radius: 0.4em;		
+	-fx-border-radius: 0.4em;
+	-fx-effect: dropshadow( gaussian, #00000033, 12,0, 0, 5);
+}
+
+.hbox-button .label{	
+	-fx-text-fill: white;
+}
+.hbox-button  > .icon{	
+	-fx-fill: white;
+}
+.hbox-button:hover {
+	-fx-background-color: -fx-primary-light;
+}
+.hbox-button:hover .label{	
+	-fx-text-fill: -fx-primary-dark;
+}
+.hbox-button:hover  > .icon{	
+	-fx-fill: -fx-primary-dark;
+}
+.hbox-button:pressed {
+	-fx-background-color: -fx-primary-light;
+}
+.hbox-button:pressed .label{
+	-fx-text-fill: white;
+}
+.hbox-button:pressed > .icon {
+	-fx-fill: white;
+}
+
+/*--------------- */
 .combobox{ 
 	-fx-background-color: white;		
 	-fx-border-color: #cccccc;
@@ -58,14 +114,20 @@
 	-fx-effect: dropshadow( gaussian, #00000033, 12,0, 0, 5);
 }
 /* IDs------------------------------- */
-#title{
+.icon-dark{
+	-fx-fill: -fx-primary-dark;
+}
+.icon-dark:hover{
+	-fx-font-size:14px;
+}
+.title{
 	-fx-font-family: "Helvetica";
 	-fx-font-size:2.2em;
 	-fx-font-weight: bold;
 	-fx-text-fill: white;
 	
 }
-#warning{
+.warning{
 	-fx-font-family: "Helvetica";
 	-fx-font-style: italic;
 	-fx-text-fill: #03687f;

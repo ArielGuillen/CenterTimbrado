@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
@@ -30,7 +29,11 @@
                            <children>
                               <VBox>
                                  <children>
-                                    <Label fx:id="warning" />
+                                    <Label fx:id="warning">
+                                       <styleClass>
+                                          <String fx:value="warning" />
+                                          <String fx:value="alignment-center-center" />
+                                       </styleClass></Label>
                                     <HBox>
                                        <children>
                                           <Button fx:id="btnConfirmar" focusTraversable="false" mnemonicParsing="false" onAction="#saveData" text="Confirmar" />
@@ -250,7 +253,6 @@
                                     <String fx:value="alignment-center-right" />
                                  </styleClass>
                               </HBox>
-                              <FontAwesomeIconView glyphName="USER_PLUS" GridPane.columnIndex="4" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
                      </center>
@@ -269,7 +271,7 @@
          <top>
             <HBox minWidth="100.0" styleClass="padding-y-1" BorderPane.alignment="CENTER">
                <children>
-                  <Label id="title" focusTraversable="false" text="Agregar Cliente" />
+                  <Label focusTraversable="false" styleClass="title" text="Agregar Cliente" />
                </children>
             </HBox>
          </top>
@@ -283,5 +285,6 @@
       <URL value="@../stylesheets/addClient.css" />
       <URL value="@../stylesheets/alignment.css" />
       <URL value="@../stylesheets/padding.css" />
+      <URL value="@../stylesheets/paleta-colores.css" />
    </stylesheets>
 </StackPane>
