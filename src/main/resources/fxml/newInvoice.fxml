@@ -107,8 +107,8 @@
                                     <HBox styleClass="hbox-v">
                                        <children>
                                           <ComboBox fx:id="cbxShowClients" onMouseClicked="#showClients" prefWidth="150.0" styleClass="combobox" />
-                                          <FontAwesomeIconView glyphName="PLUS" onMouseClicked="#editClient" styleClass="icon-dark" />
-                                          <FontAwesomeIconView glyphName="PENCIL" onMouseClicked="#newClient" styleClass="icon-dark" />
+                                          <FontAwesomeIconView glyphName="PENCIL" onMouseClicked="#editClient" styleClass="icon-dark" />
+                                          <FontAwesomeIconView glyphName="PLUS" onMouseClicked="#newClient" styleClass="icon-dark" />
                                        </children>
                                     </HBox>
                                  </children>

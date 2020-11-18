@@ -1,10 +1,6 @@
 package com.timbrado.center_timbrado.controllers;
 
-
-import java.awt.List;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import com.Facturama.sdk_java.Container.FacturamaApi;
 import com.Facturama.sdk_java.Models.Address;
@@ -22,10 +18,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class EditClientController implements Initializable {
-	
-	private FacturamaApi facturama;
-	
+public class EditClientController{
+
 	//---General Data---
 	@FXML
 	public TextField txtName;	
@@ -59,12 +53,11 @@ public class EditClientController implements Initializable {
 	@FXML 
 	public Button btnConfirmar;
 	
-	@FXML
-	public ComboBox<String> cbxUInvoice;
-	
 	//Object client for update data
 	public Client client;
 	public Address clientAddress;
+	
+    FacturamaApi facturama = new FacturamaApi("ricardomangore", "1nt3rm3zz0", true );
 		
 	//--------Setter & getter methods for contact to modify-----//
 		
@@ -79,8 +72,6 @@ public class EditClientController implements Initializable {
 	//---------Show contact information-------//
 	
 	protected void loadData() {
-		
-		btnConfirmar.setText("Actualizar");
 		
 		//General Data
 		txtName.setText( this.client.getName() );
@@ -138,8 +129,7 @@ public class EditClientController implements Initializable {
 	//-------Save client information----//
 	@FXML		
 	public void saveData() throws IOException, FacturamaException, Exception {
-		
-        facturama = new FacturamaApi("ricardomangore", "1nt3rm3zz0", true );
+
 		if( client == null ) {
 			
 			client = new Client();
@@ -166,7 +156,7 @@ public class EditClientController implements Initializable {
 			
 			this.client.setName(txtName.getText().trim() );
 			this.client.setRfc(txtRFC.getText().trim().toUpperCase() );
-			this.client.setEmail("ariel@gmail.com");
+			this.client.setEmail(txtEmail.getText().trim());
 			this.client.setCfdiUse("P01");
 			
 			//add optional data
@@ -219,7 +209,27 @@ public class EditClientController implements Initializable {
 		if( this.txtRFC.getText().trim().isEmpty() )
 			throw new EmptyFieldException( "El campo RFC no puede estar vacío" );
 		if( this.txtEmail.getText().trim().isEmpty() )
-			throw new EmptyFieldException( "El campo Correo Electrónico no puede estar vacío" );		
+			throw new EmptyFieldException( "El campo Correo Electrónico no puede estar vacío" );
+		
+		/*if( this.txtCountry.getText().trim().isEmpty() )
+			throw new EmptyFieldException( "El campo País no puede estar vacío" );
+		if( this.txtState.getText().trim().isEmpty() )
+			throw new EmptyFieldException( "El campo Estado no puede estar vacío" );
+		if( this.txtMunicipality.getText().trim().isEmpty() )
+			throw new EmptyFieldException( "El campo Municipio no puede estar vacío" );
+		if( this.txtLocality.getText().trim().isEmpty() )
+			throw new EmptyFieldException( "El campo Localidad no puede estar vacío" );
+		if( this.txtZipCode.getText().trim().isEmpty() )
+			throw new EmptyFieldException( "El campo Código Postal no puede estar vacío" );
+		if( this.txtStreet.getText().trim().isEmpty() )
+			throw new EmptyFieldException( "El campo Calle no puede estar vacío" );
+		if( this.txtExteriorNumber.getText().trim().isEmpty() )
+			throw new EmptyFieldException( "El campo Número Exterior no puede estar vacío" );
+		if( this.txtInteriorNumber.getText().trim().isEmpty() )
+			throw new EmptyFieldException( "El campo Número Interior no puede estar vacío" );
+		if( this.txtNeighborhood.getText().trim().isEmpty() )
+			throw new EmptyFieldException( "El campo Colonia no puede estar vacío" );*/
+		
 	}
 	private void checkIfRFCFormatisValid() throws NotFormatRFCException {
 		
@@ -227,11 +237,6 @@ public class EditClientController implements Initializable {
 		if ( rfc.length() < 12 ) 
 			throw new NotFormatRFCException( "El campo RFC debe tener al menos 12 caracteres");
 			
-	}
-
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		facturama = new FacturamaApi("ricardomangore", "1nt3rm3zz0", true );
 	}
 	
 
