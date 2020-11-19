@@ -9,10 +9,8 @@ import com.Facturama.sdk_java.Container.FacturamaApi;
 import com.Facturama.sdk_java.Models.Client;
 import com.Facturama.sdk_java.Models.Product;
 import com.Facturama.sdk_java.Models.Exception.FacturamaException;
-import com.Facturama.sdk_java.Models.Request.Payment;
 import com.Facturama.sdk_java.Models.Response.Catalogs.Catalog;
 import com.Facturama.sdk_java.Models.Response.Catalogs.Cfdi.Currency;
-import com.Facturama.sdk_java.Models.Response.Catalogs.Cfdi.PostalCode;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -129,7 +127,7 @@ public class CreateInvoiceController implements Initializable{
 		//The fxml and the controller are loaded for modify the contact
 		FXMLLoader loader = new FXMLLoader( this.getClass().getResource("/fxml/addClient.fxml"));			
 		Parent parent = loader.load();				
-		EditClientController controller = loader.getController();
+		//EditClientController controller = loader.getController();
 //		Cliente client
 //		controller.setContact( contact );
 //		controller.loadData();

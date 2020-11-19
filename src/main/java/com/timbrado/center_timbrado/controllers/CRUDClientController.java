@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import com.Facturama.sdk_java.Container.FacturamaApi;
 import com.Facturama.sdk_java.Models.Client;
+import com.Facturama.sdk_java.Models.Product;
 import com.Facturama.sdk_java.Models.Exception.FacturamaException;
 
 import javafx.fxml.FXML;
@@ -13,11 +14,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 public class CRUDClientController implements Initializable {
 
@@ -52,7 +56,34 @@ public class CRUDClientController implements Initializable {
 		colRFC.setCellValueFactory(new PropertyValueFactory<Client, String>("rfc"));
 		colName.setCellValueFactory(new PropertyValueFactory<Client, String>("name"));
 		colMail.setCellValueFactory(new PropertyValueFactory<Client, String>("email"));
-		colActions.setCellValueFactory(new PropertyValueFactory<Client, String>("actions"));
+		Callback<TableColumn<Client, String>, TableCell<Client, String>> 
+		cellFactory = new Callback< TableColumn<Client, String>, TableCell<Client, String> >() { 
+	      @Override 
+	      public TableCell call(final TableColumn<Client, String> param) { 
+	       final TableCell<Client, String> cell = new TableCell<Client, String>() { 
+
+	        final Button btn = new Button("Editar"); 
+
+	        @Override 
+	        public void updateItem(String item, boolean empty) { 
+	         super.updateItem(item, empty); 
+	         if (empty) { 
+	          setGraphic(null); 
+	          setText(null); 
+	         } else { 
+	          btn.setOnAction(event -> { 
+	        	  Client client = getTableView().getItems().get(getIndex()); 
+	        	  System.out.println("Prueba Botón Cliente: " + client.getName() ); 
+	          }); 
+	          setGraphic(btn); 
+	          setText(null); 
+	         } 
+	        } 
+	       }; 
+	       return cell; 
+	      } 
+	     }; 
+	     colActions.setCellFactory(cellFactory); 
 	}
 	
 	public void addClients() throws IOException, FacturamaException, Exception {
