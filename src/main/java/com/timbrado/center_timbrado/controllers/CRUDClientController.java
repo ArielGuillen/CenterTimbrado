@@ -8,6 +8,7 @@ import com.Facturama.sdk_java.Container.FacturamaApi;
 import com.Facturama.sdk_java.Models.Client;
 import com.Facturama.sdk_java.Models.Product;
 import com.Facturama.sdk_java.Models.Exception.FacturamaException;
+import com.sun.prism.paint.Color;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +20,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -57,32 +59,63 @@ public class CRUDClientController implements Initializable {
 		colName.setCellValueFactory(new PropertyValueFactory<Client, String>("name"));
 		colMail.setCellValueFactory(new PropertyValueFactory<Client, String>("email"));
 		Callback<TableColumn<Client, String>, TableCell<Client, String>> 
-		cellFactory = new Callback< TableColumn<Client, String>, TableCell<Client, String> >() { 
+		cellFactory = new Callback< TableColumn<Client, String>, TableCell<Client, String> >() {
 	      @Override 
-	      public TableCell call(final TableColumn<Client, String> param) { 
+	      public TableCell call(final TableColumn<Client, String> param) {
 	       final TableCell<Client, String> cell = new TableCell<Client, String>() { 
 
-	        final Button btn = new Button("Editar"); 
-
+	        Button btnDelete = new Button("Eliminar");
+	        Button btnEdit = new Button("Editar");
+	        HBox pane = new HBox(btnDelete, btnEdit);
+	        
 	        @Override 
-	        public void updateItem(String item, boolean empty) { 
+	        public void updateItem(String item, boolean empty) {
+	        	btnDelete.setStyle("-fx-background-color: #8F2626;");
+	        	btnEdit.setStyle("-fx-background-color: #396DAC;");
+	        	pane.setStyle("-fx-alignment: center; -fx-spacing: 15px;");
 	         super.updateItem(item, empty); 
 	         if (empty) { 
 	          setGraphic(null); 
 	          setText(null); 
-	         } else { 
-	          btn.setOnAction(event -> { 
-	        	  Client client = getTableView().getItems().get(getIndex()); 
-	        	  System.out.println("Prueba Botón Cliente: " + client.getName() ); 
+	         } else {
+	          btnDelete.setOnAction(event -> { 
+	        	  Client client = getTableView().getItems().get(getIndex());
+	        	  try {
+					deleteClient(client);
+					
+					tabClients.getItems().clear();
+					addClients();
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+					System.out.println("Excepción de borrar Cliente");
+				}
+	        	  System.out.println("Prueba Botón borrar Cliente: " + client.getName() ); 
 	          }); 
-	          setGraphic(btn); 
+	          
+	          btnEdit.setOnAction(event -> { 
+	        	  Client client = getTableView().getItems().get(getIndex());
+	        	  try {
+	        		  editClient(client);
+	        		  
+	        		  tabClients.getItems().clear();
+	        		  addClients();
+	        		  
+	        	  } catch (Exception e) {
+	        		  e.printStackTrace();
+	        		  System.out.println("Excepción de editar Cliente");
+	        	  }
+	        	  System.out.println("Prueba Botón Editar Cliente: " + client.getName() ); 
+	          }); 
+	          
+	          setGraphic(pane);
 	          setText(null); 
 	         } 
 	        } 
-	       }; 
+	       };
 	       return cell; 
 	      } 
-	     }; 
+	     };
 	     colActions.setCellFactory(cellFactory); 
 	}
 	
@@ -94,7 +127,7 @@ public class CRUDClientController implements Initializable {
 	}
 	
 	@FXML
-	public void newClient() throws IOException {
+	public void newClient() throws FacturamaException, Exception {
 		//The fxml and the controller are loaded for modify the contact
 		FXMLLoader loader = new FXMLLoader( this.getClass().getResource("/fxml/addClient.fxml"));			
 		Parent parent = loader.load();				
@@ -106,7 +139,27 @@ public class CRUDClientController implements Initializable {
 		stage.setTitle("Nuevo Cliente");
 		stage.setScene( scene );
 		stage.showAndWait();
-		tabClients.refresh();
+		tabClients.getItems().clear();
+		addClients();
+	}
+	
+	public void deleteClient(Client client) throws IOException, FacturamaException, Exception {
+		facturama.Clients().Remove(client.getId());
+	}
+	
+	public void editClient(Client client) throws IOException {
+		FXMLLoader loader = new FXMLLoader( this.getClass().getResource("/fxml/addClient.fxml"));			
+		Parent parent = loader.load();				
+		EditClientController controller = loader.getController();
+		controller.setContact( client );
+		controller.loadData();
+		
+		Scene scene = new Scene( parent );
+		Stage stage = new Stage();
+		stage.initModality( Modality.APPLICATION_MODAL );
+		stage.setTitle("Nuevo Cliente");
+		stage.setScene( scene );
+		stage.showAndWait();	
 	}
 	
 }

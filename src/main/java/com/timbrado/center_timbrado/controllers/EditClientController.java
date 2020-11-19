@@ -157,7 +157,7 @@ public class EditClientController{
 			this.client.setName(txtName.getText().trim() );
 			this.client.setRfc(txtRFC.getText().trim().toUpperCase() );
 
-			this.client.setEmail("ariel@gmail.com");
+			this.client.setEmail(txtEmail.getText().trim());
 			this.client.setCfdiUse("P01");
 			
 			//add optional data
