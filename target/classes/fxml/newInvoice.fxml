@@ -106,7 +106,7 @@
                                     <Label styleClass="alignment-center-center" text="Cliente:" />
                                     <HBox styleClass="hbox-v">
                                        <children>
-                                          <ComboBox fx:id="cbxShowClients" onMouseClicked="#showClients" prefWidth="150.0" styleClass="combobox" />
+                                          <ComboBox fx:id="cbxShowClients" onMouseClicked="#updateComboboxClients" prefWidth="150.0" styleClass="combobox" />
                                           <FontAwesomeIconView glyphName="PENCIL" onMouseClicked="#editClient" styleClass="icon-dark" />
                                           <FontAwesomeIconView glyphName="PLUS" onMouseClicked="#newClient" styleClass="icon-dark" />
                                        </children>

@@ -4,11 +4,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.Facturama.sdk_java.Container.FacturamaApi;
 import com.Facturama.sdk_java.Models.Client;
-import com.Facturama.sdk_java.Models.Product;
 import com.Facturama.sdk_java.Models.Exception.FacturamaException;
-import com.sun.prism.paint.Color;
+import com.timbrado.center_timbrado.services.Facturama;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -42,7 +40,7 @@ public class CRUDClientController implements Initializable {
 	@FXML
 	TableColumn<Client, String> colActions;
 	
-	FacturamaApi facturama = new FacturamaApi("ricardomangore", "1nt3rm3zz0", true );
+//	FacturamaApi facturama = new FacturamaApi("ricardomangore", "1nt3rm3zz0", true );
 
 	
 	public void initialize(URL location, ResourceBundle resources) {
@@ -120,7 +118,7 @@ public class CRUDClientController implements Initializable {
 	}
 	
 	public void addClients() throws IOException, FacturamaException, Exception {
-		for(Client client: facturama.Clients().List()) {
+		for(Client client: Facturama.facturama.Clients().List()) {
 			tabClients.getItems().add(client);
 			System.out.println(client.getEmail());
 		}
@@ -144,7 +142,7 @@ public class CRUDClientController implements Initializable {
 	}
 	
 	public void deleteClient(Client client) throws IOException, FacturamaException, Exception {
-		facturama.Clients().Remove(client.getId());
+		Facturama.facturama.Clients().Remove(client.getId());
 	}
 	
 	public void editClient(Client client) throws IOException {

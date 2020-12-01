@@ -5,12 +5,12 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import com.Facturama.sdk_java.Container.FacturamaApi;
 import com.Facturama.sdk_java.Models.Client;
 import com.Facturama.sdk_java.Models.Product;
 import com.Facturama.sdk_java.Models.Exception.FacturamaException;
 import com.Facturama.sdk_java.Models.Response.Catalogs.Catalog;
 import com.Facturama.sdk_java.Models.Response.Catalogs.Cfdi.Currency;
+import com.timbrado.center_timbrado.services.Facturama;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -61,7 +61,7 @@ public class CreateInvoiceController implements Initializable{
 	@FXML
 	TableColumn<Product, Float> colTotal;
 	
-	FacturamaApi facturama = new FacturamaApi("ricardomangore", "1nt3rm3zz0", true );
+//	FacturamaApi facturama = new FacturamaApi("ricardomangore", "1nt3rm3zz0", true );
 
 	public void initialize(URL location, ResourceBundle resources) {
 		
@@ -78,18 +78,12 @@ public class CreateInvoiceController implements Initializable{
 		
 	}
 	
-	public void addProductToTable() throws IOException, FacturamaException, Exception {
-		
-		
-		
-	}
-	
 	public void initializateProductListener() {
 		cbxShowProducts.setOnAction(e -> {
 	        if(cbxShowProducts.getSelectionModel().getSelectedIndex()!=-1) {
 	        	int indiceP = cbxShowProducts.getSelectionModel().getSelectedIndex();
 	        	try {
-					Product product = facturama.Products().List().get(indiceP);
+					Product product = Facturama.facturama.Products().List().get(indiceP);
 					tabProducts.getItems().add(product);
 					System.out.println(product.getUnitCode());
 				} catch (Exception e1) {
@@ -111,26 +105,29 @@ public class CreateInvoiceController implements Initializable{
 	}
 	
 
-	public void showClients() throws IOException, FacturamaException, Exception {
+	public void updateComboboxClients() throws IOException, FacturamaException, Exception {
 		cbxShowClients.getItems().clear();
-		getClients();
+		addClientsToCombobox();
 	}
 	
-	public void getClients() throws IOException, FacturamaException, Exception {
-		for(Client client : facturama.Clients().List() ) {
+//Añadimos todos los clientes al combobox de selección de clientes
+	public void addClientsToCombobox() throws IOException, FacturamaException, Exception {
+		List<Client> clientList = getClients();
+		for(Client client : clientList ) {
 			cbxShowClients.getItems().add(client.getName());
 		}
 	}
 	
+//	Obtener todos los clientes
+	public List<Client> getClients() throws IOException, FacturamaException, Exception{
+		List<Client> allClients = Facturama.facturama.Clients().List();
+		return allClients;
+	}
+	
 	@FXML
 	public void newClient() throws IOException {
-		//The fxml and the controller are loaded for modify the contact
 		FXMLLoader loader = new FXMLLoader( this.getClass().getResource("/fxml/addClient.fxml"));			
-		Parent parent = loader.load();				
-		//EditClientController controller = loader.getController();
-//		Cliente client
-//		controller.setContact( contact );
-//		controller.loadData();
+		Parent parent = loader.load();		
 		
 		Scene scene = new Scene( parent );
 		Stage stage = new Stage();
@@ -148,7 +145,7 @@ public class CreateInvoiceController implements Initializable{
 			Parent parent = loader.load();				
 			EditClientController controller = loader.getController();
 			
-			Client cliente = facturama.Clients().List().get(indice);
+			Client cliente = Facturama.facturama.Clients().List().get(indice);
 			controller.setContact( cliente );
 			controller.loadData();
 			
@@ -168,18 +165,18 @@ public class CreateInvoiceController implements Initializable{
 		for(Product product : productList) {
 			cbxShowProducts.getItems().add(product.getName());
 		}
-		addProductToTable();
 	}
 	
+//Obtener todos los Productos
 	public List<Product> getProducts() throws IOException, FacturamaException, Exception {
-		List<Product> allProducts = facturama.Products().List();
+		List<Product> allProducts = Facturama.facturama.Products().List();
 		return allProducts;
 	}
 	
 	
 //Obtener Formas de Pago
 	public List<Catalog> getPaymentForms() throws IOException, FacturamaException, Exception {
-		List<Catalog> allPaymentsForms = facturama.Catalogs().PaymentForms();
+		List<Catalog> allPaymentsForms = Facturama.facturama.Catalogs().PaymentForms();
 		return allPaymentsForms;
 	}
 	
@@ -194,7 +191,7 @@ public class CreateInvoiceController implements Initializable{
 
 //	Obtener Métodos de Pago	
 	public List<Catalog> getPaymentMethods() throws IOException, FacturamaException, Exception {
-		List<Catalog> allPaymentsMethods = facturama.Catalogs().PaymentMethods();
+		List<Catalog> allPaymentsMethods = Facturama.facturama.Catalogs().PaymentMethods();
 		return allPaymentsMethods;
 	}
 
@@ -208,7 +205,7 @@ public class CreateInvoiceController implements Initializable{
 
 //	Obtener Monedas
 	public List<Currency> getCurrencies() throws IOException, FacturamaException, Exception {
-		List<Currency> allCurrencies = facturama.Catalogs().Currencies();
+		List<Currency> allCurrencies = Facturama.facturama.Catalogs().Currencies();
 		return allCurrencies;
 	}
 	

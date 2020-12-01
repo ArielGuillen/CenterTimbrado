@@ -9,6 +9,7 @@ import com.Facturama.sdk_java.Models.Client;
 import com.Facturama.sdk_java.Models.Exception.FacturamaException;
 import com.timbrado.center_timbrado.exceptions.EmptyFieldException;
 import com.timbrado.center_timbrado.exceptions.NotFormatRFCException;
+import com.timbrado.center_timbrado.services.Facturama;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,8 +18,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class EditClientController{
-	
-	private FacturamaApi facturama;
 	
 	//---General Data---
 	@FXML
@@ -128,20 +127,18 @@ public class EditClientController{
 	@FXML		
 	public void saveData() throws IOException, FacturamaException, Exception {
 		
-        facturama = new FacturamaApi("ricardomangore", "1nt3rm3zz0", true );
-
 		if( client == null ) {
 			
 			client = new Client();
 			saveDataClient();
 					
-			client = facturama.Clients().Create(client);
+			client = Facturama.facturama.Clients().Create(client);
 			System.out.println( client.getName() );
 			System.out.println( client.getRfc() );
 		}
 		else {
 			saveDataClient();
-			facturama.Clients().Update(client, client.getId() );
+			Facturama.facturama.Clients().Update(client, client.getId() );
 		}
 		if( client.getAddress().getCountry() != null )
 		System.out.println( "País: " + client.getAddress().getCountry() );
