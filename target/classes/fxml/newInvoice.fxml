@@ -147,8 +147,15 @@
                                     <Label text="Producto:" />
                                     <HBox>
                                        <children>
+                                          <FontAwesomeIconView glyphName="MINUS" styleClass="icon-dark" />
                                           <ComboBox fx:id="cbxShowProducts" onMouseClicked="#showProducts" prefWidth="150.0" styleClass="combobox" />
+                                          <FontAwesomeIconView glyphName="PLUS" styleClass="icon-dark" />
                                        </children>
+                                       <styleClass>
+                                          <String fx:value="alignment-center-left" />
+                                          <String fx:value="padd" />
+                                          <String fx:value="hbox-v" />
+                                       </styleClass>
                                     </HBox>
                                  </children>
                               </VBox>

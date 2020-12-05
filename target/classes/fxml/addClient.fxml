@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
@@ -75,11 +76,6 @@
                                     <TextField fx:id="txtName" styleClass="textfield" />
                                  </children>
                               </HBox>
-                              <HBox styleClass="hbox" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                 <children>
-                                    <TextField fx:id="txtRFC" styleClass="textfield" />
-                                 </children>
-                              </HBox>
                               <HBox styleClass="hbox" GridPane.columnIndex="3" GridPane.rowIndex="2">
                                  <children>
                                     <TextField fx:id="txtEmail" styleClass="textfield" />
@@ -109,7 +105,7 @@
                                  </styleClass>
                               </HBox>
                               <Label styleClass="padding-l-1" text="Datos Generales" />
-                              <Label styleClass="padding-l-1" text="Datos Opcionales" GridPane.rowIndex="3">
+                              <Label prefHeight="19.0" prefWidth="113.0" styleClass="padding-l-1" text="Datos Opcionales" GridPane.rowIndex="3">
                                  <effect>
                                     <Lighting>
                                        <bumpInput>
@@ -151,7 +147,7 @@
                               </HBox>
                               <HBox styleClass="alignment-center-right" GridPane.columnIndex="4" GridPane.rowIndex="4">
                                  <children>
-                                    <Label text="Municipio" />
+                                    <Label prefHeight="17.0" prefWidth="62.0" text="Municipio" />
                                  </children>
                               </HBox>
                               <HBox styleClass="hbox" GridPane.columnIndex="1" GridPane.rowIndex="5">
@@ -180,7 +176,7 @@
                               </HBox>
                               <HBox GridPane.columnIndex="2" GridPane.rowIndex="6">
                                  <children>
-                                    <Label text="No. Ext" />
+                                    <Label prefHeight="16.0" prefWidth="45.0" text="No. Ext" />
                                  </children>
                                  <styleClass>
                                     <String fx:value="hbox" />
@@ -241,7 +237,7 @@
                               </HBox>
                               <HBox styleClass="hbox" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                  <children>
-                                    <ComboBox fx:id="cbxUInvoice" prefWidth="150.0" styleClass="combobox" />
+                                    <ComboBox fx:id="cbxUInvoice" onMouseClicked="#loadUsesCfdi" prefWidth="150.0" styleClass="combobox" />
                                  </children>
                               </HBox>
                               <HBox GridPane.columnIndex="2" GridPane.rowIndex="1">
@@ -253,6 +249,24 @@
                                     <String fx:value="alignment-center-right" />
                                  </styleClass>
                               </HBox>
+                              <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <children>
+                                    <HBox>
+                                       <children>
+                                          <TextField fx:id="txtRFC" prefHeight="27.0" prefWidth="125.0" styleClass="textfield-search" />
+                                          <FontAwesomeIconView fx:id="iconWarning" glyphName="EXCLAMATION_CIRCLE" styleClass="icon-warning" visible="false" />
+                                       </children>
+                                       <styleClass>
+                                          <String fx:value="hbox-search" />
+                                          <String fx:value="alignment-center-center" />
+                                       </styleClass>
+                                    </HBox>
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="padding-r-1" />
+                                    <String fx:value="alignment-center-center" />
+                                 </styleClass>
+                              </VBox>
                            </children>
                         </GridPane>
                      </center>
@@ -271,7 +285,7 @@
          <top>
             <HBox minWidth="100.0" styleClass="padding-y-1" BorderPane.alignment="CENTER">
                <children>
-                  <Label focusTraversable="false" styleClass="title" text="Agregar Cliente" />
+                  <Label fx:id="lblTitle" focusTraversable="false" styleClass="title" text="Agregar Cliente" />
                </children>
             </HBox>
          </top>

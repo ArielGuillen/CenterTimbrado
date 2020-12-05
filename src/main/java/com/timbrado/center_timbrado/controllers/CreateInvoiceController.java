@@ -95,12 +95,12 @@ public class CreateInvoiceController implements Initializable{
 	
 	public void initializeTableView() {
 		colQuantity.setCellValueFactory(new PropertyValueFactory<Product, Integer>("quantity"));
-		colKeys.setCellValueFactory(new PropertyValueFactory<Product, String>("keys"));
-		colDescription.setCellValueFactory(new PropertyValueFactory<Product, String>("description"));
-		colPrice.setCellValueFactory(new PropertyValueFactory<Product, Float>("price"));
+		colKeys.setCellValueFactory(new PropertyValueFactory<Product, String>("CodeProdServ"));
+		colDescription.setCellValueFactory(new PropertyValueFactory<Product, String>("Description"));
+		colPrice.setCellValueFactory(new PropertyValueFactory<Product, Float>("Price"));
 		colSubtotal.setCellValueFactory(new PropertyValueFactory<Product, Float>("subtotal"));
 		colDiscount.setCellValueFactory(new PropertyValueFactory<Product, Float>("discount"));
-		colTaxes.setCellValueFactory(new PropertyValueFactory<Product, Float>("tax"));
+		colTaxes.setCellValueFactory(new PropertyValueFactory<Product, Float>("Taxes"));
 		colTotal.setCellValueFactory(new PropertyValueFactory<Product, Float>("total"));
 	}
 	

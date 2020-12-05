@@ -13,3 +13,6 @@
 .spacing-4 {
 	-fx-spacing: 48px;
 }
+.spacing-min {
+	-fx-spacing: 5px;
+}

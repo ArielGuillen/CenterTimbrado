@@ -2,17 +2,20 @@ package com.timbrado.center_timbrado.controllers;
 
 
 import java.io.IOException;
+import java.util.List;
 
-import com.Facturama.sdk_java.Container.FacturamaApi;
 import com.Facturama.sdk_java.Models.Address;
 import com.Facturama.sdk_java.Models.Client;
 import com.Facturama.sdk_java.Models.Exception.FacturamaException;
+import com.Facturama.sdk_java.Models.Response.Catalogs.Cfdi.UseCfdi;
 import com.timbrado.center_timbrado.exceptions.EmptyFieldException;
 import com.timbrado.center_timbrado.exceptions.NotFormatRFCException;
 import com.timbrado.center_timbrado.services.Facturama;
 
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -47,10 +50,22 @@ public class EditClientController{
 	@FXML
 	public TextField txtNeighborhood;	
 
+	//--Label--
 	@FXML
 	public Label warning;
+	@FXML
+	public Label lblTitle;
+	
+	//--Icon--
+	@FXML
+	public FontAwesomeIconView iconWarning;
+	
+	//--Button--
 	@FXML 
 	public Button btnConfirmar;
+	
+	@FXML
+	public ComboBox<String> cbxUInvoice;
 	
 	//Object client for update data
 	public Client client;
@@ -70,11 +85,13 @@ public class EditClientController{
 	
 	protected void loadData() {
 		
-		//General Data
+		this.lblTitle.setText("Modificar datos del cliente");
+		//General Client Data
+		
 		txtName.setText( this.client.getName() );
 		txtRFC.setText( this.client.getRfc() );
 		txtEmail.setText( String.valueOf( this.client.getEmail() ) );
-		
+		initializateUsesListener( this.client.getRfc() );
 		//Address Information
         clientAddress = this.client.getAddress();
         
@@ -107,7 +124,39 @@ public class EditClientController{
 		
 	}
 	
-	//----------Cancel View-------------//
+	
+
+	//--------Main Methods------------//
+	
+	@FXML 
+	public void loadUsesCfdi(){
+			if( !this.txtRFC.getText().trim().isEmpty() ) {
+
+				this.iconWarning.setVisible( false );
+				this.txtRFC.setPromptText("");	
+				
+				String rfc = this.txtRFC.getText().trim();
+				initializateUsesListener( rfc );
+			}
+			else {
+				this.iconWarning.setVisible( true );
+				this.txtRFC.setPromptText( "Ingresa un rfc" );		
+			}
+	}
+
+	public void initializateUsesListener( String rfc ) {
+		try {
+			List<UseCfdi> ListUseCfdi = Facturama.facturama.Catalogs().CfdiUses( rfc );
+			for(UseCfdi c : ListUseCfdi) {
+				cbxUInvoice.getItems().add(c.getName() );		
+			}
+		} catch (NotFormatRFCException e1) {
+			e1.printStackTrace();
+		}catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	//---Cancel View---//
 	
 	@FXML
 	public void cancelViewClient() {
@@ -123,7 +172,8 @@ public class EditClientController{
 		stage.close();
 		
 	}
-	//-------Save client information----//
+	
+	//---Save client information---//
 	@FXML		
 	public void saveData() throws IOException, FacturamaException, Exception {
 		
@@ -156,47 +206,57 @@ public class EditClientController{
 
 			this.client.setEmail(txtEmail.getText().trim());
 			this.client.setCfdiUse("P01");
+			int index = this.cbxUInvoice.getSelectionModel().getSelectedIndex();
+			this.client.setCfdiUse( Facturama.facturama.Catalogs().CfdiUses("GUBA090497TT1").get( index ).getName() );
 			
 			//add optional data
-			Address clientAddress = new Address();
-			if( !this.txtCountry.getText().trim().isEmpty() )
-				this.clientAddress.setCountry( this.txtCountry.getText().trim() );
-			
-			if( !this.txtState.getText().trim().isEmpty() )
-				this.clientAddress.setState( this.txtState.getText().trim() );
-			
-			if( !this.txtMunicipality.getText().trim().isEmpty() )
-				this.clientAddress.setMunicipality( this.txtMunicipality.getText().trim() );
-			
-			if( !this.txtLocality.getText().trim().isEmpty() )
-				this.clientAddress.setLocality( this.txtLocality.getText().trim() );
-			
-			if( !this.txtZipCode.getText().trim().isEmpty() )
-				this.clientAddress.setZipCode( this.txtZipCode.getText().trim() );
-			
-			if( !this.txtStreet.getText().trim().isEmpty() )
-				this.clientAddress.setStreet( this.txtStreet.getText().trim() );
-			
-			if( !this.txtExteriorNumber.getText().trim().isEmpty() )
-				this.clientAddress.setExteriorNumber( this.txtExteriorNumber.getText().trim() );
-			
-			if( !this.txtInteriorNumber.getText().trim().isEmpty() )
-				this.clientAddress.setInteriorNumber( this.txtInteriorNumber.getText().trim() );
-			
-			if( !this.txtNeighborhood.getText().trim().isEmpty() )
-				this.clientAddress.setNeighborhood( this.txtNeighborhood.getText().trim() );
-								             
+			Address clientAddress = this.getAddress();								             
 	        client.setAddress(clientAddress);    
-		}catch(EmptyFieldException e ) {
-			
-			warning.setText( e.getMessage() );
-			
+	        
+		}catch(EmptyFieldException e ) {			
+			warning.setText( e.getMessage() );			
 		} catch( NotFormatRFCException e) {				
-			warning.setText( e.getMessage() );
-			
+			warning.setText( e.getMessage() );			
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (FacturamaException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		} 
 	}
 	
+
+	private Address getAddress() {
+		Address clientAddress = new Address();
+		if( !this.txtCountry.getText().trim().isEmpty() )
+			this.clientAddress.setCountry( this.txtCountry.getText().trim() );
+		
+		if( !this.txtState.getText().trim().isEmpty() )
+			this.clientAddress.setState( this.txtState.getText().trim() );
+		
+		if( !this.txtMunicipality.getText().trim().isEmpty() )
+			this.clientAddress.setMunicipality( this.txtMunicipality.getText().trim() );
+		
+		if( !this.txtLocality.getText().trim().isEmpty() )
+			this.clientAddress.setLocality( this.txtLocality.getText().trim() );
+		
+		if( !this.txtZipCode.getText().trim().isEmpty() )
+			this.clientAddress.setZipCode( this.txtZipCode.getText().trim() );
+		
+		if( !this.txtStreet.getText().trim().isEmpty() )
+			this.clientAddress.setStreet( this.txtStreet.getText().trim() );
+		
+		if( !this.txtExteriorNumber.getText().trim().isEmpty() )
+			this.clientAddress.setExteriorNumber( this.txtExteriorNumber.getText().trim() );
+		
+		if( !this.txtInteriorNumber.getText().trim().isEmpty() )
+			this.clientAddress.setInteriorNumber( this.txtInteriorNumber.getText().trim() );
+		
+		if( !this.txtNeighborhood.getText().trim().isEmpty() )
+			this.clientAddress.setNeighborhood( this.txtNeighborhood.getText().trim() );
+		return clientAddress;
+	}
 
 	//--------Exception Methods------------//
 	
@@ -209,33 +269,26 @@ public class EditClientController{
 		if( this.txtEmail.getText().trim().isEmpty() )
 			throw new EmptyFieldException( "El campo Correo Electrónico no puede estar vacío" );
 		
-		/*if( this.txtCountry.getText().trim().isEmpty() )
-			throw new EmptyFieldException( "El campo País no puede estar vacío" );
-		if( this.txtState.getText().trim().isEmpty() )
-			throw new EmptyFieldException( "El campo Estado no puede estar vacío" );
-		if( this.txtMunicipality.getText().trim().isEmpty() )
-			throw new EmptyFieldException( "El campo Municipio no puede estar vacío" );
-		if( this.txtLocality.getText().trim().isEmpty() )
-			throw new EmptyFieldException( "El campo Localidad no puede estar vacío" );
-		if( this.txtZipCode.getText().trim().isEmpty() )
-			throw new EmptyFieldException( "El campo Código Postal no puede estar vacío" );
-		if( this.txtStreet.getText().trim().isEmpty() )
-			throw new EmptyFieldException( "El campo Calle no puede estar vacío" );
-		if( this.txtExteriorNumber.getText().trim().isEmpty() )
-			throw new EmptyFieldException( "El campo Número Exterior no puede estar vacío" );
-		if( this.txtInteriorNumber.getText().trim().isEmpty() )
-			throw new EmptyFieldException( "El campo Número Interior no puede estar vacío" );
-		if( this.txtNeighborhood.getText().trim().isEmpty() )
-			throw new EmptyFieldException( "El campo Colonia no puede estar vacío" );*/
-		
 	}
-	private void checkIfRFCFormatisValid() throws NotFormatRFCException {
-		
+	
+	private void checkIfRFCFormatisValid() throws IOException, FacturamaException, Exception {
 		String rfc = this.txtRFC.getText().trim();
+		if ( rfc.isEmpty() ) 
+			throw new NotFormatRFCException( "Debe llenar el campo RFC");
+		rfc = this.txtRFC.getText().trim();
 		if ( rfc.length() < 12 ) 
-			throw new NotFormatRFCException( "El campo RFC debe tener al menos 12 caracteres");
+			throw new NotFormatRFCException( "El campo RFC debe tener 12 caracteres");
+		if ( rfc.charAt(0) > '1' &&  rfc.charAt(0) < '0') 
+			throw new NotFormatRFCException( "RFC no válido");
+		rfc.toUpperCase();
+		List<Client> clients = Facturama.facturama.Clients().List();
+		for( Client client : clients ) {
+			if( rfc.equals( client.getRfc() ) )
+				throw new NotFormatRFCException( "El RFC registrado está asociado a otro cliente");
+		}
 			
 	}
+	
 	
 
 }
