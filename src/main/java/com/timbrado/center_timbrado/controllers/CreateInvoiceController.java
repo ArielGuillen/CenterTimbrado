@@ -2,6 +2,7 @@ package com.timbrado.center_timbrado.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -12,17 +13,21 @@ import com.Facturama.sdk_java.Models.Response.Catalogs.Catalog;
 import com.Facturama.sdk_java.Models.Response.Catalogs.Cfdi.Currency;
 import com.timbrado.center_timbrado.services.Facturama;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DateCell;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 public class CreateInvoiceController implements Initializable{
 	
@@ -40,6 +45,9 @@ public class CreateInvoiceController implements Initializable{
 
 	@FXML
 	public ComboBox<String> cbxShowCurrencies;
+	
+	@FXML
+	public DatePicker date;
 	
 	
 	@FXML
@@ -66,6 +74,7 @@ public class CreateInvoiceController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		try {
+			initializateDate();
 			initializeTableView();
 			initializatePaymentForms();
 			initializatePaymentMethods();
@@ -78,6 +87,26 @@ public class CreateInvoiceController implements Initializable{
 		
 	}
 	
+	public void initializateDate() {
+		
+		 Callback<DatePicker, DateCell> dayCellFactory = dp -> new DateCell() 
+	     {
+	      @Override 
+	      public void updateItem(LocalDate item, boolean empty) 
+	      { 
+	       super.updateItem(item, empty); 
+
+	       if(item.isBefore(LocalDate.now().minusDays(2)) || item.isAfter(LocalDate.now())) 
+	       { 
+	        setStyle("-fx-background-color: gray;"); 
+	        Platform.runLater(() -> setDisable(true));
+	       } 
+	      } 
+	     };
+	     
+	     date.setDayCellFactory(dayCellFactory); 
+	}
+
 	public void initializateProductListener() {
 		cbxShowProducts.setOnAction(e -> {
 	        if(cbxShowProducts.getSelectionModel().getSelectedIndex()!=-1) {

@@ -138,8 +138,7 @@
                               <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <children>
                                     <Label text="Fecha de Emisión:" />
-                                    <ComboBox prefWidth="150.0" styleClass="combobox" />
-                                    <DatePicker />
+                                    <DatePicker fx:id="date" prefWidth="150.0" />
                                  </children>
                               </VBox>
                               <VBox GridPane.columnIndex="2" GridPane.rowIndex="1">
@@ -147,7 +146,6 @@
                                     <Label text="Producto:" />
                                     <HBox>
                                        <children>
-                                          <FontAwesomeIconView glyphName="MINUS" styleClass="icon-dark" />
                                           <ComboBox fx:id="cbxShowProducts" onMouseClicked="#showProducts" prefWidth="150.0" styleClass="combobox" />
                                           <FontAwesomeIconView glyphName="PLUS" styleClass="icon-dark" />
                                        </children>
