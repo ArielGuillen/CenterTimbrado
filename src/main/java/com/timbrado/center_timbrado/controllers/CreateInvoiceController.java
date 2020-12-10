@@ -122,7 +122,7 @@ public class CreateInvoiceController implements Initializable{
 					tabProducts.getItems().add(product);
 					System.out.println(product.getUnitCode());
 				} catch (Exception e1) {
-					e1.printStackTrace();
+					e1.printStackTrace(); 
 				}
 	        }
 	    });
