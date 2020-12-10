@@ -136,7 +136,7 @@
                               <VBox GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <children>
                                     <Label text="Unidad" />
-                                    <ComboBox fx:id="cbxUnit" prefWidth="150.0" styleClass="combobox" />
+                                    <ComboBox fx:id="cbxUnit" onMouseClicked="#loadUnits" prefWidth="150.0" styleClass="combobox" />
                                  </children>
                                  <styleClass>
                                     <String fx:value="alignment-center-left" />
@@ -205,7 +205,7 @@
                                  <children>
                                     <HBox prefHeight="23.0" prefWidth="117.0">
                                        <children>
-                                          <TextField fx:id="txtKeyword" prefHeight="26.0" prefWidth="157.0" promptText="Ingrese una palabara clave" styleClass="textfield-search" />
+                                          <TextField fx:id="txtKeywordProduct" prefHeight="26.0" prefWidth="157.0" promptText="Ingrese una palabara clave" styleClass="textfield-search" />
                                           <FontAwesomeIconView fx:id="iconWarning" glyphName="EXCLAMATION_CIRCLE" visible="false">
                                              <styleClass>
                                                 <String fx:value="icon-warning" />
@@ -233,6 +233,29 @@
                                  <children>
                                     <Label styleClass="padding-y-1" text="Campos obligatorios CFDI 3.3 SAT" />
                                  </children>
+                              </VBox>
+                              <VBox GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <children>
+                                    <HBox prefHeight="23.0" prefWidth="117.0">
+                                       <children>
+                                          <TextField fx:id="txtKeywordUnit" prefHeight="26.0" prefWidth="157.0" promptText="Ingrese una palabara clave" styleClass="textfield-search" />
+                                          <FontAwesomeIconView fx:id="iconWarningUnit" glyphName="EXCLAMATION_CIRCLE" visible="false">
+                                             <styleClass>
+                                                <String fx:value="icon-warning" />
+                                                <String fx:value="alignment-center-right" />
+                                             </styleClass>
+                                          </FontAwesomeIconView>
+                                       </children>
+                                       <styleClass>
+                                          <String fx:value="hbox-search" />
+                                          <String fx:value="alignment-center-left" />
+                                       </styleClass>
+                                    </HBox>
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="alignment-bottom-right" />
+                                    <String fx:value="padding-x-1" />
+                                 </styleClass>
                               </VBox>
                            </children>
                         </GridPane>

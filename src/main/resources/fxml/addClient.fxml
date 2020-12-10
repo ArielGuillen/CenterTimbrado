@@ -249,23 +249,19 @@
                                     <String fx:value="alignment-center-right" />
                                  </styleClass>
                               </HBox>
-                              <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
+                              <VBox minHeight="25.0" prefHeight="25.0" prefWidth="146.0" styleClass="alignment-center-left" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <children>
-                                    <HBox>
+                                    <HBox maxWidth="145.0" minHeight="25.0" prefHeight="18.0" prefWidth="145.0">
                                        <children>
-                                          <TextField fx:id="txtRFC" prefHeight="27.0" prefWidth="125.0" styleClass="textfield-search" />
+                                          <TextField fx:id="txtRFC" minHeight="23.0" prefHeight="22.0" prefWidth="125.0" styleClass="textfield-search" />
                                           <FontAwesomeIconView fx:id="iconWarning" glyphName="EXCLAMATION_CIRCLE" styleClass="icon-warning" visible="false" />
                                        </children>
                                        <styleClass>
                                           <String fx:value="hbox-search" />
-                                          <String fx:value="alignment-center-center" />
+                                          <String fx:value="alignment-center-left" />
                                        </styleClass>
                                     </HBox>
                                  </children>
-                                 <styleClass>
-                                    <String fx:value="padding-r-1" />
-                                    <String fx:value="alignment-center-center" />
-                                 </styleClass>
                               </VBox>
                            </children>
                         </GridPane>

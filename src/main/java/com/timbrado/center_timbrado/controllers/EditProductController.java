@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import com.Facturama.sdk_java.Models.Response.Catalogs.Cfdi.ProductServices;
+import com.Facturama.sdk_java.Models.Response.Catalogs.Cfdi.Unit;
 import com.timbrado.center_timbrado.services.Facturama;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -16,14 +17,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
 public class EditProductController  implements Initializable{
 	
 	//--ComboBox--
 	@FXML
-	public ComboBox<String> cbxCProduct;
+	public ComboBox<ProductServices> cbxCProduct;
 	@FXML
-	public ComboBox<String> cbxUnit;
+	public ComboBox<Unit> cbxUnit;
 	@FXML
 	public ComboBox<String> cbxIva;
 	@FXML
@@ -43,8 +45,9 @@ public class EditProductController  implements Initializable{
 	@FXML
 	public TextField txtCPredial;
 	@FXML
-	public TextField txtKeyword;
-	
+	public TextField txtKeywordProduct;
+	@FXML
+	public TextField txtKeywordUnit;
 	//--TextArea--
 	@FXML 
 	public TextArea txtDescription;
@@ -62,6 +65,8 @@ public class EditProductController  implements Initializable{
 	//--Icon--
 	@FXML
 	public FontAwesomeIconView iconWarning;
+	@FXML
+	public FontAwesomeIconView iconWarningUnit;
 	
 	
 	//--Initialize Methods--
@@ -70,24 +75,13 @@ public class EditProductController  implements Initializable{
 		try {
 			initializateIva();
 			initializateIvaRet();
+			initializatecbxConverter();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 	}
 
-	/*private void initializeCodeProduct() {
-		//Pendiente hacerlo con el texto ingresado en txtKeyword
-		try {
-			List<ProductServices> productServices =  Facturama.facturama.Catalogs().ProductsOrServices("desarrollo");
-			for(ProductServices prod : productServices) {
-				cbxCProduct.getItems().add(prod.getName() );		
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}*/
 
 	private void initializateIva() {
 		// TODO Auto-generated method stub
@@ -100,22 +94,46 @@ public class EditProductController  implements Initializable{
 	}
 	
 	
-	//--Main methods--
+	//------------------------------------Main methods--------------------------------
 	
+	public void initializatecbxConverter() {
+		this.cbxCProduct.setConverter( new StringConverter <ProductServices>()  {
+			@Override
+			public String toString( ProductServices codeProduct ) {
+				return codeProduct.getName();
+			}
+			@Override
+			public ProductServices fromString( String string ) {
+				return null;
+			}
+
+		});
+		this.cbxUnit.setConverter( new StringConverter <Unit>()  {
+			@Override
+			public String toString( Unit unit ) {
+				return unit.getName();
+			}
+			@Override
+			public Unit fromString( String string ) {
+				return null;
+			}
+
+		});
+	}
 	
-	//-------Load Codes--------//
+	//-------Load ComboBox Data--------//
 	
 	@FXML
 	public void loadCodes(){
 		try {
-			if( !this.txtKeyword.getText().trim().isEmpty() ) {
+			if( !this.txtKeywordProduct.getText().trim().isEmpty() ) {
 
 				this.iconWarning.setVisible( false );
 				
-				String key = this.txtKeyword.getText().trim();
-				List<ProductServices> productServices =  Facturama.facturama.Catalogs().ProductsOrServices(key);
+				String key = this.txtKeywordProduct.getText().trim();
+				List<ProductServices> productServices =  Facturama.facturama.Catalogs().ProductsOrServices( key );
 				for(ProductServices prod : productServices) {
-					cbxCProduct.getItems().add(prod.getName() );		
+					cbxCProduct.getItems().add( prod );		
 				}
 			}
 			else {
@@ -125,6 +143,30 @@ public class EditProductController  implements Initializable{
 			e.printStackTrace();
 		}
 	}
+	
+	@FXML
+	public void loadUnits(){
+		try {
+			if( !this.txtKeywordUnit.getText().trim().isEmpty() ) {
+				
+				this.iconWarningUnit.setVisible( false );
+
+				String key = this.txtKeywordProduct.getText().trim();
+				List<Unit> units =  Facturama.facturama.Catalogs().Units( key );
+				for(Unit unit : units) {
+					cbxUnit.getItems().add( unit );		
+				}	
+			} 
+
+			else {
+				this.iconWarningUnit.setVisible( true );		
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 	//-------Cancel operation----//
 	@FXML
 	public void cancelViewProduct() {

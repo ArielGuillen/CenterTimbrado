@@ -2,6 +2,10 @@ package com.timbrado.center_timbrado.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -18,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -60,6 +65,8 @@ public class CreateInvoiceController implements Initializable{
 	TableColumn<Product, Float> colTaxes;
 	@FXML
 	TableColumn<Product, Float> colTotal;
+	@FXML
+	public DatePicker datePicker;
 	
 //	FacturamaApi facturama = new FacturamaApi("ricardomangore", "1nt3rm3zz0", true );
 
@@ -71,6 +78,8 @@ public class CreateInvoiceController implements Initializable{
 			initializatePaymentMethods();
 			initializateCurrencies();
 			initializateProductListener();
+			
+			initializateDatePickerListener();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -78,12 +87,26 @@ public class CreateInvoiceController implements Initializable{
 		
 	}
 	
+	public void initializatecbxConverter() {
+		
+	}
+	public void initializateDatePickerListener() {
+		datePicker.setOnAction(e -> {
+	        if(datePicker.getValue() != null) {
+	        	LocalDate localDate = datePicker.getValue();
+	        	Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
+	        	Date date = Date.from(instant);
+	        	System.out.println(localDate + "\n" + instant + "\n" + date);
+	        }
+	    });
+	}
 	public void initializateProductListener() {
 		cbxShowProducts.setOnAction(e -> {
 	        if(cbxShowProducts.getSelectionModel().getSelectedIndex()!=-1) {
 	        	int indiceP = cbxShowProducts.getSelectionModel().getSelectedIndex();
 	        	try {
 					Product product = Facturama.facturama.Products().List().get(indiceP);
+					
 					tabProducts.getItems().add(product);
 					System.out.println(product.getUnitCode());
 				} catch (Exception e1) {

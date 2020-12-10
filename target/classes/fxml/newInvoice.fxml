@@ -139,7 +139,7 @@
                                  <children>
                                     <Label text="Fecha de Emisión:" />
                                     <ComboBox prefWidth="150.0" styleClass="combobox" />
-                                    <DatePicker />
+                                    <DatePicker fx:id="datePicker" />
                                  </children>
                               </VBox>
                               <VBox GridPane.columnIndex="2" GridPane.rowIndex="1">
