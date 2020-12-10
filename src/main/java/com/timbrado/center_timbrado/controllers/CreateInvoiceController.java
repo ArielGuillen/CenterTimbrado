@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import com.Facturama.sdk_java.Models.Client;
 import com.Facturama.sdk_java.Models.Product;
 import com.Facturama.sdk_java.Models.Exception.FacturamaException;
+import com.Facturama.sdk_java.Models.Request.Tax;
 import com.Facturama.sdk_java.Models.Response.Catalogs.Catalog;
 import com.Facturama.sdk_java.Models.Response.Catalogs.Cfdi.Currency;
 import com.timbrado.center_timbrado.services.Facturama;
@@ -22,17 +23,20 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javafx.util.StringConverter;
 
 public class CreateInvoiceController implements Initializable{
 	
 	@FXML
-	public ComboBox<String> cbxShowClients;
+	public ComboBox<Client> cbxShowClients;
 	
 	@FXML
 	public ComboBox<String> cbxShowProducts;
@@ -74,6 +78,7 @@ public class CreateInvoiceController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		try {
+			initialiseComboboxClientsConverters();
 			initializateDate();
 			initializeTableView();
 			initializatePaymentForms();
@@ -86,6 +91,7 @@ public class CreateInvoiceController implements Initializable{
 	
 		
 	}
+	
 	
 	public void initializateDate() {
 		
@@ -122,6 +128,21 @@ public class CreateInvoiceController implements Initializable{
 	    });
 	}
 	
+	public void initialiseComboboxClientsConverters(){
+		cbxShowClients.setConverter(new StringConverter<Client>() {
+			
+			@Override
+			public String toString(Client c) {
+				return c.getName();
+			}
+			
+			@Override
+			public Client fromString(String string) {
+				return null;
+			}
+		});
+	}
+	
 	public void initializeTableView() {
 		colQuantity.setCellValueFactory(new PropertyValueFactory<Product, Integer>("quantity"));
 		colKeys.setCellValueFactory(new PropertyValueFactory<Product, String>("CodeProdServ"));
@@ -143,7 +164,7 @@ public class CreateInvoiceController implements Initializable{
 	public void addClientsToCombobox() throws IOException, FacturamaException, Exception {
 		List<Client> clientList = getClients();
 		for(Client client : clientList ) {
-			cbxShowClients.getItems().add(client.getName());
+			cbxShowClients.getItems().add(client);
 		}
 	}
 	
@@ -167,15 +188,15 @@ public class CreateInvoiceController implements Initializable{
 	}
 	
 	@FXML
-	public void editClient() throws IOException, FacturamaException, Exception {
-		int indice = cbxShowClients.getSelectionModel().getSelectedIndex();
-		if(indice!=-1) {
+	public void editClient() throws IOException, FacturamaException, Exception { 
+		Client client = cbxShowClients.getSelectionModel().getSelectedItem();
+		
+		if(client != null) {
 			FXMLLoader loader = new FXMLLoader( this.getClass().getResource("/fxml/addClient.fxml"));			
 			Parent parent = loader.load();				
 			EditClientController controller = loader.getController();
-			
-			Client cliente = Facturama.facturama.Clients().List().get(indice);
-			controller.setContact( cliente );
+	
+			controller.setContact( client );
 			controller.loadData();
 			
 			Scene scene = new Scene( parent );
@@ -185,7 +206,7 @@ public class CreateInvoiceController implements Initializable{
 			stage.setScene( scene );
 			stage.showAndWait();			
 		}
-		System.out.println(indice);
+		
 	}
 	
 	public void showProducts() throws IOException, FacturamaException, Exception {
