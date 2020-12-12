@@ -9,12 +9,17 @@ import java.util.ResourceBundle;
 import com.Facturama.sdk_java.Models.Client;
 import com.Facturama.sdk_java.Models.Product;
 import com.Facturama.sdk_java.Models.Exception.FacturamaException;
-import com.Facturama.sdk_java.Models.Request.Tax;
+import com.Facturama.sdk_java.Models.Request.ProductTax;
 import com.Facturama.sdk_java.Models.Response.Catalogs.Catalog;
 import com.Facturama.sdk_java.Models.Response.Catalogs.Cfdi.Currency;
 import com.timbrado.center_timbrado.services.Facturama;
 
 import javafx.application.Platform;
+import javafx.beans.property.ReadOnlyDoubleWrapper;
+import javafx.beans.property.ReadOnlyFloatWrapper;
+import javafx.beans.property.ReadOnlyIntegerWrapper;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,11 +28,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableColumn.CellDataFeatures;
+import javafx.scene.control.TreeTableView;
+import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -55,32 +60,34 @@ public class CreateInvoiceController implements Initializable{
 	
 	
 	@FXML
-	public TableView<Product> tabProducts;
+	public TreeTableView<Product> tabProducts;
 	@FXML
-	TableColumn<Product, Integer> colQuantity;
+	TreeTableColumn<Product, Integer> colQuantity;
 	@FXML
-	TableColumn<Product, String> colKeys;
+	TreeTableColumn<Product, String> colKeys;
 	@FXML
-	TableColumn<Product, String> colDescription;
+	TreeTableColumn<Product, String> colDescription;
 	@FXML
-	TableColumn<Product, Float> colPrice;
+	TreeTableColumn<Product, Double> colPrice;
 	@FXML
-	TableColumn<Product, Float> colSubtotal;
+	TreeTableColumn<Product, Float> colSubtotal;
 	@FXML
-	TableColumn<Product, Float> colDiscount;
+	TreeTableColumn<Product, Float> colDiscount;
 	@FXML
-	TableColumn<Product, Float> colTaxes;
+	TreeTableColumn<Product, List<ProductTax>> colTaxes;
 	@FXML
-	TableColumn<Product, Float> colTotal;
+	TreeTableColumn<Product, Float> colTotal;
+	
+	
 	
 //	FacturamaApi facturama = new FacturamaApi("ricardomangore", "1nt3rm3zz0", true );
 
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		try {
+			initializeTreeTableView();
 			initialiseComboboxClientsConverters();
 			initializateDate();
-			initializeTableView();
 			initializatePaymentForms();
 			initializatePaymentMethods();
 			initializateCurrencies();
@@ -118,9 +125,11 @@ public class CreateInvoiceController implements Initializable{
 	        if(cbxShowProducts.getSelectionModel().getSelectedIndex()!=-1) {
 	        	int indiceP = cbxShowProducts.getSelectionModel().getSelectedIndex();
 	        	try {
-					Product product = Facturama.facturama.Products().List().get(indiceP);
-					tabProducts.getItems().add(product);
-					System.out.println(product.getUnitCode());
+	        		
+					TreeItem<Product> product = new TreeItem<>(Facturama.facturama.Products().List().get(indiceP));
+					
+					tabProducts.setRoot(product);
+					
 				} catch (Exception e1) {
 					e1.printStackTrace(); 
 				}
@@ -143,15 +152,29 @@ public class CreateInvoiceController implements Initializable{
 		});
 	}
 	
-	public void initializeTableView() {
-		colQuantity.setCellValueFactory(new PropertyValueFactory<Product, Integer>("quantity"));
-		colKeys.setCellValueFactory(new PropertyValueFactory<Product, String>("CodeProdServ"));
-		colDescription.setCellValueFactory(new PropertyValueFactory<Product, String>("Description"));
-		colPrice.setCellValueFactory(new PropertyValueFactory<Product, Float>("Price"));
-		colSubtotal.setCellValueFactory(new PropertyValueFactory<Product, Float>("subtotal"));
-		colDiscount.setCellValueFactory(new PropertyValueFactory<Product, Float>("discount"));
-		colTaxes.setCellValueFactory(new PropertyValueFactory<Product, Float>("Taxes"));
-		colTotal.setCellValueFactory(new PropertyValueFactory<Product, Float>("total"));
+	public void initializeTreeTableView() throws IOException, FacturamaException, Exception {
+		
+		colKeys.setCellValueFactory((CellDataFeatures<Product, String> p) ->
+		new ReadOnlyStringWrapper(p.getValue().getValue().getUnitCode()));
+
+		colDescription.setCellValueFactory((CellDataFeatures<Product, String> p) ->
+			new ReadOnlyStringWrapper(p.getValue().getValue().getDescription()));
+		
+		colPrice.setCellValueFactory((CellDataFeatures<Product, Double> p) ->
+		new ReadOnlyObjectWrapper<Double>(p.getValue().getValue().getPrice()));
+
+		colTaxes.setCellValueFactory((CellDataFeatures<Product, List<ProductTax>> p) ->
+		new ReadOnlyObjectWrapper<List<ProductTax>>(p.getValue().getValue().getTaxes()));
+		
+		for(Product p: getProducts()) {
+			
+			for(ProductTax pt:p.getTaxes()) {
+				System.out.println(pt.getName() + " " + pt.getRate() + " " + pt.getTotal());
+			}
+		}
+
+		
+		
 	}
 	
 

@@ -17,7 +17,7 @@ public class Invoice extends Application{
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(this.getClass().getResource("/fxml/newInvoice.fxml"));
+			Parent root = FXMLLoader.load(this.getClass().getResource("/fxml/newInvoice2.fxml"));
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Nueva Factura");
