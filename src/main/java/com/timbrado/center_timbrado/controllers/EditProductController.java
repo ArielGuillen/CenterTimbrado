@@ -127,13 +127,19 @@ public class EditProductController  implements Initializable{
 	public void loadCodes(){
 		try {
 			if( !this.txtKeywordProduct.getText().trim().isEmpty() ) {
-
+				this.cbxCProduct.setPromptText("");
 				this.iconWarning.setVisible( false );
 				
 				String key = this.txtKeywordProduct.getText().trim();
 				List<ProductServices> productServices =  Facturama.facturama.Catalogs().ProductsOrServices( key );
-				for(ProductServices prod : productServices) {
-					cbxCProduct.getItems().add( prod );		
+				if( productServices.size() != 0 ) {
+					for(ProductServices prod : productServices) {
+						cbxCProduct.getItems().add( prod );		
+					}
+				}
+				else {
+					this.cbxCProduct.setPromptText("No se encontraron resultados");
+					this.iconWarning.setVisible( true );		
 				}
 			}
 			else {
@@ -148,14 +154,22 @@ public class EditProductController  implements Initializable{
 	public void loadUnits(){
 		try {
 			if( !this.txtKeywordUnit.getText().trim().isEmpty() ) {
-				
+
+				this.cbxUnit.setPromptText("");
 				this.iconWarningUnit.setVisible( false );
 
-				String key = this.txtKeywordProduct.getText().trim();
+				String key = this.txtKeywordUnit.getText().trim();
 				List<Unit> units =  Facturama.facturama.Catalogs().Units( key );
-				for(Unit unit : units) {
-					cbxUnit.getItems().add( unit );		
-				}	
+				if( units.size() != 0 ) {
+					for(Unit unit : units) {
+						cbxUnit.getItems().add( unit );		
+					}	
+				}
+				else {
+					this.cbxUnit.setPromptText("No se encontraron resultados");
+					this.iconWarningUnit.setVisible( true );		
+				}
+				
 			} 
 
 			else {

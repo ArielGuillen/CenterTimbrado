@@ -12,27 +12,41 @@ import java.util.ResourceBundle;
 import com.Facturama.sdk_java.Models.Client;
 import com.Facturama.sdk_java.Models.Product;
 import com.Facturama.sdk_java.Models.Exception.FacturamaException;
+import com.Facturama.sdk_java.Models.Request.ProductTax;
 import com.Facturama.sdk_java.Models.Response.Catalogs.Catalog;
 import com.Facturama.sdk_java.Models.Response.Catalogs.Cfdi.Currency;
+import com.timbrado.center_timbrado.pojos.Producto;
 import com.timbrado.center_timbrado.services.Facturama;
 
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
+import javafx.util.StringConverter;
 
 public class CreateInvoiceController implements Initializable{
 	
 	@FXML
-	public ComboBox<String> cbxShowClients;
+	public ComboBox<Client> cbxShowClients;
 	
 	@FXML
 	public ComboBox<String> cbxShowProducts;
@@ -46,11 +60,16 @@ public class CreateInvoiceController implements Initializable{
 	@FXML
 	public ComboBox<String> cbxShowCurrencies;
 	
+	@FXML
+	public DatePicker date;
+	
 	
 	@FXML
 	public TableView<Product> tabProducts;
 	@FXML
-	TableColumn<Product, Integer> colQuantity;
+	TableColumn<Product, String> colQuantity;
+	@FXML
+	TableColumn<Product, String> colName;
 	@FXML
 	TableColumn<Product, String> colKeys;
 	@FXML
@@ -62,24 +81,26 @@ public class CreateInvoiceController implements Initializable{
 	@FXML
 	TableColumn<Product, Float> colDiscount;
 	@FXML
-	TableColumn<Product, Float> colTaxes;
+	TableColumn<Product, String> colTaxes;
 	@FXML
 	TableColumn<Product, Float> colTotal;
-	@FXML
-	public DatePicker datePicker;
+	
+	
 	
 //	FacturamaApi facturama = new FacturamaApi("ricardomangore", "1nt3rm3zz0", true );
 
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		try {
+			initialiseComboboxClientsConverters();
+			initializateDate();
 			initializeTableView();
 			initializatePaymentForms();
 			initializatePaymentMethods();
 			initializateCurrencies();
 			initializateProductListener();
 			
-			initializateDatePickerListener();
+			//initializateDatePickerListener();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -87,28 +108,36 @@ public class CreateInvoiceController implements Initializable{
 		
 	}
 	
-	public void initializatecbxConverter() {
+	
+	
+	public void initializateDate() {
 		
+		 Callback<DatePicker, DateCell> dayCellFactory = dp -> new DateCell() 
+	     {
+	      @Override 
+	      public void updateItem(LocalDate item, boolean empty) 
+	      { 
+	       super.updateItem(item, empty); 
+
+	       if(item.isBefore(LocalDate.now().minusDays(2)) || item.isAfter(LocalDate.now())) 
+	       { 
+	        setStyle("-fx-background-color: gray;"); 
+	        Platform.runLater(() -> setDisable(true));
+	       } 
+	      } 
+	     };
+	     
+	     date.setDayCellFactory(dayCellFactory); 
 	}
-	public void initializateDatePickerListener() {
-		datePicker.setOnAction(e -> {
-	        if(datePicker.getValue() != null) {
-	        	LocalDate localDate = datePicker.getValue();
-	        	Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
-	        	Date date = Date.from(instant);
-	        	System.out.println(localDate + "\n" + instant + "\n" + date);
-	        }
-	    });
-	}
+
 	public void initializateProductListener() {
 		cbxShowProducts.setOnAction(e -> {
 	        if(cbxShowProducts.getSelectionModel().getSelectedIndex()!=-1) {
 	        	int indiceP = cbxShowProducts.getSelectionModel().getSelectedIndex();
 	        	try {
 					Product product = Facturama.facturama.Products().List().get(indiceP);
-					
+					//Código para conoarar productos pendiente
 					tabProducts.getItems().add(product);
-					System.out.println(product.getUnitCode());
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
@@ -116,14 +145,144 @@ public class CreateInvoiceController implements Initializable{
 	    });
 	}
 	
+	public void initialiseComboboxClientsConverters(){
+		cbxShowClients.setConverter(new StringConverter<Client>() {
+			
+			@Override
+			public String toString(Client c) {
+				return c.getName();
+			}
+			
+			@Override
+			public Client fromString(String string) {
+				return null;
+			}
+		});
+	}
+	
 	public void initializeTableView() {
-		colQuantity.setCellValueFactory(new PropertyValueFactory<Product, Integer>("quantity"));
-		colKeys.setCellValueFactory(new PropertyValueFactory<Product, String>("CodeProdServ"));
+		Callback<TableColumn<Product, String>, TableCell<Product, String>> 
+		cellFactory = new Callback< TableColumn<Product, String>, TableCell<Product, String> >() {
+		      @Override 
+		      public TableCell call(final TableColumn<Product, String> param) {
+		       final TableCell<Product, String> cell = new TableCell<Product, String>() { 
+
+		        Label labelProduct = new Label();
+		        Label labelTitleProduct = new Label("Código de producto");
+		        Label labelUnit = new Label();
+		        Label labelTitleUnit = new Label("Código de unidad");
+		        VBox pane = new VBox( labelTitleProduct, labelProduct, labelTitleUnit, labelUnit);
+		        
+		        @Override 
+		        public void updateItem(String item, boolean empty) {
+		        	labelProduct.setStyle("-fx-background-color: whitesmoke;");
+		        	labelUnit.setStyle("-fx-background-color: whitesmoke;");
+		        	pane.setStyle("-fx-alignment: center; -fx-spacing: 5px;");
+		         super.updateItem(item, empty); 
+		         if (empty) { 
+		          setGraphic(null); 
+		          setText(null); 
+		         } else {
+		        	  Product product = getTableView().getItems().get(getIndex());
+		        	  
+		        	  labelProduct.setText( product.getCodeProdServ() );
+		        	  labelUnit.setText( product.getUnitCode() );
+						
+		          setGraphic(pane);
+		          setText(null); 
+		         } 
+		        } 
+		       };
+		       return cell; 
+		      } 
+		     };
+		
+	    Callback<TableColumn<Product, String>, TableCell<Product, String>> 
+	    cellFactoryQuantity = new Callback< TableColumn<Product, String>, TableCell<Product, String> >() {
+				      @Override 
+				      public TableCell call(final TableColumn<Product, String> param) {
+				       final TableCell<Product, String> cell = new TableCell<Product, String>() { 
+
+				        TextField txtCant = new TextField("1");
+				        HBox pane = new HBox( txtCant );
+				        
+				        @Override 
+				        public void updateItem(String item, boolean empty) {
+				        	
+				         pane.setStyle("-fx-alignment: center; -fx-spacing: 5px;");
+				         super.updateItem(item, empty); 
+				         if (empty) { 
+					          setGraphic(null); 
+					          setText(null); 
+				         } else {		
+				        	 	Product product = getTableView().getItems().get(getIndex());
+				           	 	txtCant.textProperty().addListener(new ChangeListener<String>() {
+				        		    @Override
+									public void changed(ObservableValue<? extends String> observable, String oldValue,
+											String newValue) {
+
+										
+									}
+				        		});
+				           	 	
+				           	 	setGraphic(pane); 
+				           	 	setText(null);
+				         } 
+				        }
+ 
+				       };
+				       return cell; 
+				      } 
+				     };    
+		     
+		colQuantity.setCellFactory( cellFactoryQuantity );
+		
+		colKeys.setCellFactory(cellFactory);
+		colName.setCellValueFactory( new PropertyValueFactory<Product, String >("Name") );
 		colDescription.setCellValueFactory(new PropertyValueFactory<Product, String>("Description"));
 		colPrice.setCellValueFactory(new PropertyValueFactory<Product, Float>("Price"));
 		colSubtotal.setCellValueFactory(new PropertyValueFactory<Product, Float>("subtotal"));
 		colDiscount.setCellValueFactory(new PropertyValueFactory<Product, Float>("discount"));
-		colTaxes.setCellValueFactory(new PropertyValueFactory<Product, Float>("Taxes"));
+		
+		Callback<TableColumn<Product, String>, TableCell<Product, String>> 
+		cellFactoryTaxes = new Callback< TableColumn<Product, String>, TableCell<Product, String> >() {
+		      @Override 
+		      public TableCell call(final TableColumn<Product, String> param) {
+		       final TableCell<Product, String> cell = new TableCell<Product, String>() { 
+
+		        
+		        Label labelTax = new Label();
+		        VBox pane = new VBox(labelTax);
+		        
+		        @Override 
+		        public void updateItem(String item, boolean empty) {
+		        	//labelProduct.setStyle("-fx-background-color: #666666;");
+		        	//labelUnit.setStyle("-fx-background-color: #666666;");
+		        	//pane.setStyle("-fx-alignment: center; -fx-spacing: 15px;");
+		         super.updateItem(item, empty); 
+		         if (empty) { 
+		          setGraphic(null); 
+		          setText(null); 
+		         } else {
+		        	  Product product = getTableView().getItems().get(getIndex());
+		        	  String showTaxes = "";
+		        	  List<ProductTax> listTax = product.getTaxes();
+		        	  for( ProductTax prodTax : listTax ) {
+		        		  showTaxes += "\n" + prodTax.getName( ) + " : " + prodTax.getRate()*product.getPrice();
+		        	  }
+		        	  labelTax.setText( showTaxes );
+						
+		        	   
+		          setGraphic(pane);
+		          setText(null); 
+		         } 
+		        } 
+		       };
+		       return cell; 
+		      } 
+		     };
+		
+		colTaxes.setCellFactory( cellFactoryTaxes );
 		colTotal.setCellValueFactory(new PropertyValueFactory<Product, Float>("total"));
 	}
 	
@@ -137,7 +296,7 @@ public class CreateInvoiceController implements Initializable{
 	public void addClientsToCombobox() throws IOException, FacturamaException, Exception {
 		List<Client> clientList = getClients();
 		for(Client client : clientList ) {
-			cbxShowClients.getItems().add(client.getName());
+			cbxShowClients.getItems().add(client);
 		}
 	}
 	
@@ -161,15 +320,15 @@ public class CreateInvoiceController implements Initializable{
 	}
 	
 	@FXML
-	public void editClient() throws IOException, FacturamaException, Exception {
-		int indice = cbxShowClients.getSelectionModel().getSelectedIndex();
-		if(indice!=-1) {
+	public void editClient() throws IOException, FacturamaException, Exception { 
+		Client client = cbxShowClients.getSelectionModel().getSelectedItem();
+		
+		if(client != null) {
 			FXMLLoader loader = new FXMLLoader( this.getClass().getResource("/fxml/addClient.fxml"));			
 			Parent parent = loader.load();				
 			EditClientController controller = loader.getController();
-			
-			Client cliente = Facturama.facturama.Clients().List().get(indice);
-			controller.setContact( cliente );
+	
+			controller.setContact( client );
 			controller.loadData();
 			
 			Scene scene = new Scene( parent );
@@ -179,7 +338,7 @@ public class CreateInvoiceController implements Initializable{
 			stage.setScene( scene );
 			stage.showAndWait();			
 		}
-		System.out.println(indice);
+		
 	}
 	
 	public void showProducts() throws IOException, FacturamaException, Exception {

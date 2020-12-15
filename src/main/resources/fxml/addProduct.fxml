@@ -125,22 +125,22 @@
                               <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <children>
                                     <Label text="Clave de producto ó servicio" />
-                                    <ComboBox fx:id="cbxCProduct" onMouseClicked="#loadCodes" prefWidth="150.0" styleClass="combobox" />
+                                    <ComboBox fx:id="cbxCProduct" onMouseClicked="#loadCodes" prefWidth="250.0" styleClass="combobox" />
                                  </children>
                                  <styleClass>
                                     <String fx:value="alignment-center-left" />
-                                    <String fx:value="padding-x-1" />
+                                    <String fx:value="padding-l-1" />
                                     <String fx:value="spacing-min" />
                                  </styleClass>
                               </VBox>
                               <VBox GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <children>
                                     <Label text="Unidad" />
-                                    <ComboBox fx:id="cbxUnit" onMouseClicked="#loadUnits" prefWidth="150.0" styleClass="combobox" />
+                                    <ComboBox fx:id="cbxUnit" onMouseClicked="#loadUnits" prefWidth="250.0" styleClass="combobox" />
                                  </children>
                                  <styleClass>
                                     <String fx:value="alignment-center-left" />
-                                    <String fx:value="padding-x-1" />
+                                    <String fx:value="padding-l-1" />
                                     <String fx:value="spacing-min" />
                                  </styleClass>
                               </VBox>
@@ -201,11 +201,11 @@
                                     <String fx:value="spacing-min" />
                                  </styleClass>
                               </VBox>
-                              <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
+                              <VBox minHeight="25.0" minWidth="250.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <children>
-                                    <HBox prefHeight="23.0" prefWidth="117.0">
+                                    <HBox maxHeight="25.0" minHeight="25.0" minWidth="75.0" prefHeight="29.0" prefWidth="249.0">
                                        <children>
-                                          <TextField fx:id="txtKeywordProduct" prefHeight="26.0" prefWidth="157.0" promptText="Ingrese una palabara clave" styleClass="textfield-search" />
+                                          <TextField fx:id="txtKeywordProduct" minHeight="23.0" prefHeight="27.0" prefWidth="222.0" promptText="Ingrese una palabara clave" styleClass="textfield-search" />
                                           <FontAwesomeIconView fx:id="iconWarning" glyphName="EXCLAMATION_CIRCLE" visible="false">
                                              <styleClass>
                                                 <String fx:value="icon-warning" />
@@ -220,8 +220,9 @@
                                     </HBox>
                                  </children>
                                  <styleClass>
-                                    <String fx:value="alignment-bottom-right" />
+                                    <String fx:value="alignment-bottom-left" />
                                     <String fx:value="padding-x-1" />
+                                    <String fx:value="spacing-min" />
                                  </styleClass>
                               </VBox>
                               <VBox styleClass="padding-y-1">
@@ -234,11 +235,11 @@
                                     <Label styleClass="padding-y-1" text="Campos obligatorios CFDI 3.3 SAT" />
                                  </children>
                               </VBox>
-                              <VBox GridPane.columnIndex="1" GridPane.rowIndex="4">
+                              <VBox minHeight="25.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <children>
-                                    <HBox prefHeight="23.0" prefWidth="117.0">
+                                    <HBox minHeight="25.0" prefHeight="23.0" prefWidth="117.0">
                                        <children>
-                                          <TextField fx:id="txtKeywordUnit" prefHeight="26.0" prefWidth="157.0" promptText="Ingrese una palabara clave" styleClass="textfield-search" />
+                                          <TextField fx:id="txtKeywordUnit" minHeight="23.0" prefHeight="26.0" prefWidth="157.0" promptText="Ingrese una palabara clave" styleClass="textfield-search" />
                                           <FontAwesomeIconView fx:id="iconWarningUnit" glyphName="EXCLAMATION_CIRCLE" visible="false">
                                              <styleClass>
                                                 <String fx:value="icon-warning" />

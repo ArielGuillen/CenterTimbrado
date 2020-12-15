@@ -7,8 +7,8 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.timbrado.center_timbrado.controllers.CreateInvoiceController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.timbrado.center_timbrado.controllers.CreateInvoiceController">
    <children>
       <BorderPane>
          <top>
@@ -36,22 +36,21 @@
                <bottom>
                   <VBox prefHeight="300.0" styleClass="padding-x-2" BorderPane.alignment="CENTER">
                      <children>
-                        <TableView fx:id="tabProducts">
+                        <TreeTableView fx:id="tabProducts2">
                           <columns>
-                            <TableColumn fx:id="colQuantity" text="Cantidad" />
-                              <TableColumn fx:id="colName" prefWidth="75.0" text="Nombre" />
-                            <TableColumn fx:id="colKeys" text="Claves" />
-                            <TableColumn fx:id="colDescription" text="Descripción" />
-                            <TableColumn fx:id="colPrice" text="Precio" />
-                            <TableColumn fx:id="colSubtotal" text="Subtotal" />
-                            <TableColumn fx:id="colDiscount" text="Descuento" />
-                            <TableColumn fx:id="colTaxes" text="Impuestos" />
-                            <TableColumn fx:id="colTotal" text="Total" />
+                            <TreeTableColumn fx:id="colQuantity" minWidth="-1.0" prefWidth="75.0" text="Cantidad" />
+                            <TreeTableColumn fx:id="colKeys" minWidth="-1.0" prefWidth="75.0" text="Claves" />
+                              <TreeTableColumn fx:id="colDescription" minWidth="-1.0" prefWidth="75.0" text="Descripción" />
+                              <TreeTableColumn fx:id="colPrice" minWidth="-1.0" prefWidth="75.0" text="Precio" />
+                              <TreeTableColumn fx:id="colSubtotal" prefWidth="75.0" text="Subtotal" />
+                              <TreeTableColumn fx:id="colDiscount" prefWidth="75.0" text="Descuento" />
+                              <TreeTableColumn fx:id="colTaxes" prefWidth="75.0" text="Impuestos" />
+                              <TreeTableColumn fx:id="colTaxes" minWidth="-1.0" prefWidth="75.0" text="Total" />
                           </columns>
-                          <columnResizePolicy>
-	                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-	                      </columnResizePolicy>
-                        </TableView>
+                           <columnResizePolicy>
+                              <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TreeTableView>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label text="Subtotal" />
@@ -139,9 +138,6 @@
                               <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <children>
                                     <Label text="Fecha de Emisión:" />
-
-                                    <ComboBox prefWidth="150.0" styleClass="combobox" />
-
                                     <DatePicker fx:id="date" prefWidth="150.0" />
                                  </children>
                               </VBox>
