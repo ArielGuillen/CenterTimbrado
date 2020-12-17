@@ -1,5 +1,5 @@
 package com.timbrado.center_timbrado;
-
+/*
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import com.Facturama.sdk_java.Container.FacturamaApi;
 import com.Facturama.sdk_java.Models.Request.Receiver;
 import com.Facturama.sdk_java.Models.Request.Tax;
 import com.Facturama.sdk_java.Models.Response.Catalogs.Cfdi.Currency;
-import com.timbrado.center_timbrado.services.Facturama;
+import com.timbrado.center_timbrado.services.Facturama;*/
 
 
 public class CreateInvoice {

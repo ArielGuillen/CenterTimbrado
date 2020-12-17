@@ -2,7 +2,9 @@ package com.timbrado.center_timbrado.controllers;
 
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import com.Facturama.sdk_java.Models.Address;
 import com.Facturama.sdk_java.Models.Client;
@@ -14,14 +16,17 @@ import com.timbrado.center_timbrado.services.Facturama;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
-public class EditClientController{
+public class EditClientController implements Initializable{
 	
+		
 	//---General Data---
 	@FXML
 	public TextField txtName;	
@@ -64,14 +69,17 @@ public class EditClientController{
 	@FXML 
 	public Button btnConfirmar;
 	
+	//--ComboBox--
 	@FXML
-	public ComboBox<String> cbxUInvoice;
+	public ComboBox<UseCfdi> cbxUInvoice;
 	
-	//Object client for update data
+	
+	//-------------------Object client for update data-------------------
+	
 	public Client client;
 	public Address clientAddress;
 		
-	//--------Setter & getter methods for contact to modify-----//
+	//---Setter & getter methods for contact to modify---//
 		
 	public void setContact(Client client) {
 		this.client = client;
@@ -80,8 +88,10 @@ public class EditClientController{
 	public Client getClient() {
 		return this.client;
 	}
+	//----------------------- End Object client----------------------------
 	
-	//---------Show contact information-------//
+	
+	//---------Show contact information to Update-------//
 	
 	protected void loadData() {
 		
@@ -91,7 +101,7 @@ public class EditClientController{
 		txtName.setText( this.client.getName() );
 		txtRFC.setText( this.client.getRfc() );
 		txtEmail.setText( String.valueOf( this.client.getEmail() ) );
-		initializateUsesListener( this.client.getRfc() );
+		initializateUses( this.client.getRfc() );
 		//Address Information
         clientAddress = this.client.getAddress();
         
@@ -126,52 +136,88 @@ public class EditClientController{
 	
 	
 
-	//--------Main Methods------------//
+	//-----------------------------Main Methods----------------------------
 	
+	//---Cancel View---//
+		@FXML
+		public void cancelViewClient() {
+			
+			this.client = null;	//null assignment for validation of changes in contact
+			closeWindow();
+			
+		}
+		
+		public void closeWindow() {
+
+			Stage stage = (Stage) this.btnConfirmar.getScene().getWindow();
+			stage.close();
+			
+		}
+	
+	//--Initialize Methods--
+	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		
+		try {
+			initializatecbxConverter();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+		
 	@FXML 
 	public void loadUsesCfdi(){
+		
 			if( !this.txtRFC.getText().trim().isEmpty() ) {
 
 				this.iconWarning.setVisible( false );
 				this.txtRFC.setPromptText("");	
 				
 				String rfc = this.txtRFC.getText().trim();
-				initializateUsesListener( rfc );
+				initializateUses( rfc );
 			}
 			else {
 				this.iconWarning.setVisible( true );
 				this.txtRFC.setPromptText( "Ingresa un rfc" );		
 			}
+			
 	}
 
-	public void initializateUsesListener( String rfc ) {
+	public void initializateUses( String rfc ) {
+		
 		try {
 			List<UseCfdi> ListUseCfdi = Facturama.facturama.Catalogs().CfdiUses( rfc );
-			for(UseCfdi c : ListUseCfdi) {
-				cbxUInvoice.getItems().add(c.getName() );		
+			for(UseCfdi useCfdi : ListUseCfdi) {
+				cbxUInvoice.getItems().add( useCfdi );		
 			}
 		} catch (NotFormatRFCException e1) {
 			e1.printStackTrace();
 		}catch (Exception e1) {
 			e1.printStackTrace();
 		}
-	}
-	//---Cancel View---//
-	
-	@FXML
-	public void cancelViewClient() {
-		
-		this.client = null;	//null assignment for validation of changes in contact
-		closeWindow();
 		
 	}
 	
-	public void closeWindow() {
+	public void initializatecbxConverter() {
+		
+		this.cbxUInvoice.setConverter( new StringConverter <UseCfdi>()  {
+			@Override
+			public String toString( UseCfdi useCfdi ) {
+				return useCfdi.getName();
+			}
+			@Override
+			public UseCfdi fromString( String string ) {
+				return null;
+			}
 
-		Stage stage = (Stage) this.btnConfirmar.getScene().getWindow();
-		stage.close();
+		});
 		
 	}
+	
+	
+	
 	
 	//---Save client information---//
 	@FXML		
@@ -205,9 +251,7 @@ public class EditClientController{
 			this.client.setRfc(txtRFC.getText().trim().toUpperCase() );
 
 			this.client.setEmail(txtEmail.getText().trim());
-			this.client.setCfdiUse("P01");
-			int index = this.cbxUInvoice.getSelectionModel().getSelectedIndex();
-			this.client.setCfdiUse( Facturama.facturama.Catalogs().CfdiUses("GUBA090497TT1").get( index ).getName() );
+			this.client.setCfdiUse(this.cbxUInvoice.getSelectionModel().getSelectedItem().getValue() );
 			
 			//add optional data
 			Address clientAddress = this.getAddress();								             
@@ -258,7 +302,7 @@ public class EditClientController{
 		return clientAddress;
 	}
 
-	//--------Exception Methods------------//
+	//-----------------------------Exception Methods-------------------------//
 	
 	public void checkIfFieldsIsNotEmpty()throws EmptyFieldException{
 		

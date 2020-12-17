@@ -7,8 +7,9 @@
 
 .hbox-v{
 	-fx-alignment: center-left;
-	-fx-spacing: .5em;
+	-fx-spacing: 1.5em;
 }
+
 .borderpane{	
 	-fx-background-color: -fx-primary-dark;
 }
@@ -21,18 +22,20 @@
 	-fx-effect: dropshadow( gaussian, #00000033, 12,0, 0, 5);
 }
 
-.gridpane{
-	-fx-vgap: 0.5em;
-	-fx-hgap: 1em;
+.grid-pane{
+	-fx-hgap: 3.5em;
 }
 
 
 /*CONTROLES-------------------- */
 
 .label{
+	-fx-font-family: "DM Sans Regular";
 	-fx-text-fill: #025164;
 }
 .button{
+	-fx-font-size: 1.15em;
+	-fx-font-family: "DM Sans Bold";
 	-fx-alignment: center;
 	-fx-background-color: #034f8a;
 	-fx-background-radius: 0.4em;		
@@ -40,6 +43,11 @@
 	-fx-text-fill: white;
 	-fx-effect: dropshadow( gaussian, #ffffff33, 12,0, 0, 5);
 }
+
+.button .glyph {
+	-fx-fill: white;
+}
+
 .button:hover{
 	-fx-background-color: #328fd7;
 	-fx-text-fill: white;
@@ -50,9 +58,30 @@
 	-fx-text-fill: #034f8a;
 	-fx-effect: dropshadow( gaussian, #00000033, 12,0, 0, 5);
 }
-.textfield{
-	-fx-effect: dropshadow( gaussian, #00000033, 12,0, 0, 5);
+
+.text-field{
+	-fx-border-width: 2.5px;
+	-fx-border-color: #ddd;
+	-fx-border-radius: 6px;
+	-fx-background-color: #ddd;
+	-fx-background-radius: 6px;
+	-fx-prompt-text-fill: #888;
+	-fx-text-fill: #333;
+	-fx-font-family: "DM Sans Medium";
+	-fx-font-size: 1.1em;
+	/*-fx-effect: dropshadow( gaussian, #00000022, 12,0, 0, 5);*/
 }
+
+.text-field:hover {
+	-fx-border-color: #eee;
+	-fx-background-color: #eee;
+}
+
+.text-field:focused {
+	-fx-border-color: -fx-primary-light;
+	-fx-background-color: white;
+}
+
 .textfield-search{
 	-fx-background-color: white;
 	-fx-border-color: white;
@@ -125,12 +154,18 @@
 	-fx-fill: red;
 }
 .title{
-	-fx-font-family: "Helvetica";
+	-fx-font-family: "Poppins Bold";
 	-fx-font-size:2.2em;
-	-fx-font-weight: bold;
 	-fx-text-fill: white;
 	
 }
+
+.header {
+	-fx-font-family: "Poppins SemiBold";
+	-fx-font-size: 1.1em;
+	
+}
+
 .warning{
 	-fx-font-family: "Helvetica";
 	-fx-font-style: italic;

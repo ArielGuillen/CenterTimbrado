@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import java.lang.String?>
 <?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -17,7 +19,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.timbrado.center_timbrado.controllers.EditProductController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.timbrado.center_timbrado.controllers.EditProductController">
    <children>
       <BorderPane>
          <center>
@@ -27,22 +29,24 @@
                      <bottom>
                         <StackPane BorderPane.alignment="CENTER">
                            <children>
-                              <VBox styleClass="padding-y-1">
+                              <VBox styleClass="padding-top-1">
                                  <children>
                                     <Label fx:id="warning">
                                        <styleClass>
                                           <String fx:value="warning" />
                                           <String fx:value="alignment-center-center" />
                                        </styleClass></Label>
-                                    <HBox>
+                                    <HBox spacing="15.0" styleClass="alignment-center-center">
                                        <children>
-                                          <Button fx:id="btnConfirmar" focusTraversable="false" mnemonicParsing="false" onAction="#saveData" text="Confirmar" />
-                                          <Button focusTraversable="false" mnemonicParsing="false" onAction="#cancelViewProduct" text="Cancelar" />
+                                          <Button focusTraversable="false" mnemonicParsing="false" onAction="#cancelViewProduct" text="Cancelar">
+                                             <graphic>
+                                                <MaterialDesignIconView glyphName="CLOSE" size="16" styleClass="glyph" />
+                                             </graphic></Button>
+                                          <Button fx:id="btnConfirmar" focusTraversable="false" graphicTextGap="6.0" mnemonicParsing="false" onAction="#saveData" text="Confirmar">
+                                             <graphic>
+                                                <MaterialDesignIconView glyphName="CHECK" size="16" styleClass="glyph" />
+                                             </graphic></Button>
                                        </children>
-                                       <styleClass>
-                                          <String fx:value="hbox" />
-                                          <String fx:value="alignment-center-center" />
-                                       </styleClass>
                                     </HBox>
                                  </children>
                               </VBox>
@@ -50,12 +54,13 @@
                         </StackPane>
                      </bottom>
                      <center>
-                        <GridPane styleClass="gridpane" BorderPane.alignment="CENTER">
+                        <GridPane styleClass="grid-pane" BorderPane.alignment="CENTER">
                            <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                            </columnConstraints>
                            <rowConstraints>
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
@@ -125,7 +130,7 @@
                               <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <children>
                                     <Label text="Clave de producto ó servicio" />
-                                    <ComboBox fx:id="cbxCProduct" onMouseClicked="#loadCodes" prefWidth="150.0" styleClass="combobox" />
+                                    <ComboBox fx:id="cbxCProduct" maxWidth="1.7976931348623157E308" onMouseClicked="#loadCodes" styleClass="combobox" />
                                  </children>
                                  <styleClass>
                                     <String fx:value="alignment-center-left" />
@@ -136,7 +141,7 @@
                               <VBox GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <children>
                                     <Label text="Unidad" />
-                                    <ComboBox fx:id="cbxUnit" prefWidth="150.0" styleClass="combobox" />
+                                    <ComboBox fx:id="cbxUnit" maxWidth="1.7976931348623157E308" onMouseClicked="#loadUnits" styleClass="combobox" />
                                  </children>
                                  <styleClass>
                                     <String fx:value="alignment-center-left" />
@@ -144,15 +149,15 @@
                                     <String fx:value="spacing-min" />
                                  </styleClass>
                               </VBox>
-                              <VBox styleClass="padding-y-1" GridPane.rowIndex="6">
+                              <VBox styleClass="padding-1" GridPane.columnSpan="2" GridPane.rowIndex="7">
                                  <children>
-                                    <Label text="Impuestos (Selecciona los necesarios)" />
+                                    <Label styleClass="header" text="Impuestos (Selecciona los necesarios)" />
                                  </children>
                               </VBox>
-                              <VBox GridPane.columnIndex="1" GridPane.rowIndex="7">
+                              <VBox GridPane.columnIndex="1" GridPane.rowIndex="8">
                                  <children>
                                     <Label text="IVA RET" />
-                                    <ComboBox fx:id="cbxIvaRet" prefWidth="150.0" styleClass="combobox" />
+                                    <ComboBox fx:id="cbxIvaRet" prefWidth="170.0" styleClass="combobox" />
                                  </children>
                                  <styleClass>
                                     <String fx:value="alignment-center-left" />
@@ -160,7 +165,7 @@
                                     <String fx:value="spacing-min" />
                                  </styleClass>
                               </VBox>
-                              <VBox GridPane.rowIndex="8">
+                              <VBox GridPane.rowIndex="9">
                                  <children>
                                     <HBox>
                                        <children>
@@ -173,27 +178,27 @@
                                           <String fx:value="padding-y-1" />
                                        </styleClass>
                                     </HBox>
-                                    <ComboBox fx:id="cbxIeps" prefWidth="150.0" styleClass="combobox" />
+                                    <ComboBox fx:id="cbxIeps" prefWidth="170.0" styleClass="combobox" />
                                  </children>
                                  <styleClass>
                                     <String fx:value="alignment-center-left" />
                                     <String fx:value="padding-x-1" />
                                  </styleClass>
                               </VBox>
-                              <VBox GridPane.columnIndex="1" GridPane.rowIndex="8">
+                              <VBox GridPane.columnIndex="1" GridPane.rowIndex="9">
                                  <children>
                                     <Label styleClass="padding-y-1" text="ISR" />
-                                    <ComboBox fx:id="cbxIsr" prefWidth="150.0" styleClass="combobox" />
+                                    <ComboBox fx:id="cbxIsr" prefWidth="170.0" styleClass="combobox" />
                                  </children>
                                  <styleClass>
                                     <String fx:value="alignment-center-left" />
                                     <String fx:value="padding-x-1" />
                                  </styleClass>
                               </VBox>
-                              <VBox GridPane.rowIndex="7">
+                              <VBox GridPane.rowIndex="8">
                                  <children>
                                     <Label text="IVA" />
-                                    <ComboBox fx:id="cbxIva" prefWidth="150.0" styleClass="combobox" />
+                                    <ComboBox fx:id="cbxIva" prefWidth="170.0" styleClass="combobox" />
                                  </children>
                                  <styleClass>
                                     <String fx:value="alignment-center-left" />
@@ -202,11 +207,46 @@
                                  </styleClass>
                               </VBox>
                               <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <styleClass>
+                                    <String fx:value="alignment-bottom-left" />
+                                    <String fx:value="padding-x-1" />
+                                    <String fx:value="spacing-min" />
+                                 </styleClass>
                                  <children>
-                                    <HBox prefHeight="23.0" prefWidth="117.0">
+                                    <BorderPane styleClass="hbox-search">
+                                       <center>
+                                          <TextField fx:id="txtKeywordProduct" promptText="Ingrese una palabara clave" styleClass="textfield-search" BorderPane.alignment="CENTER" />
+                                       </center>
+                                       <right>
+                                          <FontAwesomeIconView fx:id="iconWarning" glyphName="EXCLAMATION_CIRCLE" visible="false" BorderPane.alignment="CENTER">
+                                             <styleClass>
+                                                <String fx:value="icon-warning" />
+                                                <String fx:value="alignment-center-right" />
+                                             </styleClass>
+                                          </FontAwesomeIconView>
+                                       </right>
+                                       <padding>
+                                          <Insets right="6.0" />
+                                       </padding>
+                                    </BorderPane>
+                                 </children>
+                              </VBox>
+                              <VBox styleClass="padding-1">
+                                 <children>
+                                    <Label styleClass="header" text="Datos del producto" />
+                                 </children>
+                              </VBox>
+                              <VBox styleClass="padding-1" GridPane.columnIndex="1">
+                                 <children>
+                                    <Label styleClass="header" text="Campos obligatorios CFDI 3.3 SAT" />
+                                 </children>
+                              </VBox>
+                              <VBox GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <children>
+                                    <HBox>
                                        <children>
-                                          <TextField fx:id="txtKeyword" prefHeight="26.0" prefWidth="157.0" promptText="Ingrese una palabara clave" styleClass="textfield-search" />
-                                          <FontAwesomeIconView fx:id="iconWarning" glyphName="EXCLAMATION_CIRCLE" visible="false">
+                                          <TextField fx:id="txtKeywordUnit" maxWidth="1.7976931348623157E308" promptText="Ingrese una palabara clave" styleClass="textfield-search" />
+                                          <FontAwesomeIconView fx:id="iconWarningUnit" glyphName="EXCLAMATION_CIRCLE" visible="false">
                                              <styleClass>
                                                 <String fx:value="icon-warning" />
                                                 <String fx:value="alignment-center-right" />
@@ -224,16 +264,6 @@
                                     <String fx:value="padding-x-1" />
                                  </styleClass>
                               </VBox>
-                              <VBox styleClass="padding-y-1">
-                                 <children>
-                                    <Label text="Datos del producto" />
-                                 </children>
-                              </VBox>
-                              <VBox GridPane.columnIndex="1">
-                                 <children>
-                                    <Label styleClass="padding-y-1" text="Campos obligatorios CFDI 3.3 SAT" />
-                                 </children>
-                              </VBox>
                            </children>
                         </GridPane>
                      </center>
@@ -250,7 +280,7 @@
             <StackPane BorderPane.alignment="CENTER" />
          </left>
          <top>
-            <HBox minWidth="100.0" styleClass="padding-y-1" BorderPane.alignment="CENTER">
+            <HBox minWidth="100.0" styleClass="padding-bottom-1" BorderPane.alignment="CENTER">
                <children>
                   <Label fx:id="lblTitle" focusTraversable="false" styleClass="title" text="Agregar Producto" />
                </children>
@@ -258,15 +288,17 @@
          </top>
          <styleClass>
             <String fx:value="borderpane" />
-            <String fx:value="padding-2" />
+            <String fx:value="padding-1" />
          </styleClass>
       </BorderPane>
    </children>
    <stylesheets>
-      <URL value="@../stylesheets/addClient.css" />
       <URL value="@../stylesheets/alignment.css" />
       <URL value="@../stylesheets/padding.css" />
       <URL value="@../stylesheets/paleta-colores.css" />
       <URL value="@../stylesheets/spacing.css" />
+      <URL value="@../stylesheets/grid-pane.css" />
+      <URL value="@../stylesheets/addClient.css" />
+      <URL value="@../stylesheets/fuentes.css" />
    </stylesheets>
 </StackPane>

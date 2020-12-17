@@ -1,13 +1,37 @@
 package com.timbrado.center_timbrado.pojos;
 
+import com.Facturama.sdk_java.Models.Product;
+
 public class Producto {
-	private String id;
-	private String unitCode;
-	private String unit;
-	private String identificationNumber;
-	private String name;
-	private String description; 
-	private double price;
-	private String codeProdServ;
-	private String cuentaPredial;
+	private int quantity;
+	private Product product;
+	
+	
+	public Producto() {
+		super();
+	}
+	
+	
+	
+	public Producto(int quantity, Product product) {
+		super();
+		this.quantity = quantity;
+		this.product = product;
+	}
+
+
+
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	public Product getProduct() {
+		return product;
+	}
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+	
 }
