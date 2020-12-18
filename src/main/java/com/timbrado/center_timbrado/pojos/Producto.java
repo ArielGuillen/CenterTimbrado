@@ -13,7 +13,7 @@ public class Producto {
 	
 	
 	
-	public Producto(int quantity, Product product) {
+	public Producto( Product product, int quantity ) {
 		super();
 		this.quantity = quantity;
 		this.product = product;

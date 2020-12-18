@@ -2,9 +2,11 @@ package com.timbrado.center_timbrado.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.NumberFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -36,6 +38,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -85,9 +88,9 @@ public class CreateInvoiceController implements Initializable{
 	@FXML
 	TableColumn<Product, Float> colTotal;
 	
+	ArrayList<Producto> productos = new ArrayList<Producto>();
 	
-	
-//	FacturamaApi facturama = new FacturamaApi("ricardomangore", "1nt3rm3zz0", true );
+
 
 	public void initialize(URL location, ResourceBundle resources) {
 		
@@ -197,45 +200,14 @@ public class CreateInvoiceController implements Initializable{
 		      } 
 		     };
 		
-	    Callback<TableColumn<Product, String>, TableCell<Product, String>> 
-	    cellFactoryQuantity = new Callback< TableColumn<Product, String>, TableCell<Product, String> >() {
-				      @Override 
-				      public TableCell call(final TableColumn<Product, String> param) {
-				       final TableCell<Product, String> cell = new TableCell<Product, String>() { 
-
-				        TextField txtCant = new TextField("1");
-				        HBox pane = new HBox( txtCant );
-				        
-				        @Override 
-				        public void updateItem(String item, boolean empty) {
-				        	
-				         pane.setStyle("-fx-alignment: center; -fx-spacing: 5px;");
-				         super.updateItem(item, empty); 
-				         if (empty) { 
-					          setGraphic(null); 
-					          setText(null); 
-				         } else {		
-				        	 	Product product = getTableView().getItems().get(getIndex());
-				           	 	txtCant.textProperty().addListener(new ChangeListener<String>() {
-				        		    @Override
-									public void changed(ObservableValue<? extends String> observable, String oldValue,
-											String newValue) {
-
-										
-									}
-				        		});
-				           	 	
-				           	 	setGraphic(pane); 
-				           	 	setText(null);
-				         } 
-				        }
- 
-				       };
-				       return cell; 
-				      } 
-				     };    
-		     
-		colQuantity.setCellFactory( cellFactoryQuantity );
+		
+		colQuantity.setCellValueFactory(new PropertyValueFactory<Product, String>("Quantity"));
+		colQuantity.setCellFactory(TextFieldTableCell.forTableColumn() );
+		this.tabProducts.setEditable(true);
+		colQuantity.setOnEditCommit(data -> {
+		    System.out.println("Nuevo Nombre: " +  data.getNewValue());
+		    System.out.println("Antiguo Nombre: " + data.getOldValue());
+		});
 		
 		colKeys.setCellFactory(cellFactory);
 		colName.setCellValueFactory( new PropertyValueFactory<Product, String >("Name") );
