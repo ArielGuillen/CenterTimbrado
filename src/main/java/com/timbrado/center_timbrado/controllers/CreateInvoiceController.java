@@ -115,19 +115,20 @@ public class CreateInvoiceController implements Initializable{
 	
 	public void initializateDate() {
 		
-		 Callback<DatePicker, DateCell> dayCellFactory = dp -> new DateCell() 
-	     {
-	      @Override 
-	      public void updateItem(LocalDate item, boolean empty) 
-	      { 
-	       super.updateItem(item, empty); 
-
-	       if(item.isBefore(LocalDate.now().minusDays(2)) || item.isAfter(LocalDate.now())) 
-	       { 
-	        setStyle("-fx-background-color: gray;"); 
-	        Platform.runLater(() -> setDisable(true));
-	       } 
-	      } 
+		 Callback<DatePicker, DateCell> dayCellFactory = dp -> new DateCell() {
+			 
+		      @Override 
+		      public void updateItem(LocalDate item, boolean empty) {
+		    	  
+			       super.updateItem(item, empty); 
+		
+			       if(item.isBefore(LocalDate.now().minusDays(2)) || item.isAfter(LocalDate.now())) { 
+			    	   setStyle("-fx-background-color: gray;"); 
+			    	   Platform.runLater(() -> setDisable(true));
+			       }
+			       
+		      }
+		      
 	     };
 	     
 	     date.setDayCellFactory(dayCellFactory); 

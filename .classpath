@@ -6,6 +6,11 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
 		<attributes>
 			<attribute name="test" value="true"/>
@@ -23,6 +28,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/ariel/Documentos/Alora/facturama-java-sdk-dev/dist/FacturamaAPISDK-0.2.4.jar"/>
+	<classpathentry kind="lib" path="C:/APPS/Java_libraries/facturama/facturama-java-sdk-dev/dist/FacturamaAPISDK-0.2.4.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

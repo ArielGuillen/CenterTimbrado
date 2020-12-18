@@ -1,11 +1,51 @@
+/* ROBOTO */
+
 @font-face {
-	src: url('../fuentes/Roboto-Regular.ttf');
+	src: url('../fuentes/Roboto/Roboto-Regular.ttf');
 }
 
 @font-face {
-	src: url('../fuentes/Roboto-Medium.ttf');	
+	src: url('../fuentes/Roboto/Roboto-Medium.ttf');	
 }
 
 @font-face {
-	src: url('../fuentes/Roboto-Bold.ttf');
+	src: url('../fuentes/Roboto/Roboto-Bold.ttf');
+}
+
+
+/* POPPINS */
+
+@font-face {
+	src: url('../fuentes/Poppins/Poppins-Regular.ttf');
+}
+
+@font-face {
+	src: url('../fuentes/Poppins/Poppins-Medium.ttf');	
+}
+
+@font-face {
+	src: url('../fuentes/Poppins/Poppins-Bold.ttf');
+}
+
+@font-face {
+	src: url('../fuentes/Poppins/Poppins-SemiBold.ttf');
+}
+
+@font-face {
+	src: url('../fuentes/Poppins/Poppins-Light.ttf');
+}
+
+
+/* DM Sans */
+
+@font-face {
+	src: url('../fuentes/DMSans/DMSans-Regular.ttf');
+}
+
+@font-face {
+	src: url('../fuentes/DMSans/DMSans-Medium.ttf');	
+}
+
+@font-face {
+	src: url('../fuentes/DMSans/DMSans-Bold.ttf');
 }
