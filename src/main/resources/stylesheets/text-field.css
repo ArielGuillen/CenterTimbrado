@@ -1,11 +1,12 @@
-.text-field {
-	-fx-font-family: "Roboto Medium";
-	-fx-font-size: 13px;
-	-fx-text-fill: -fx-text-dark;
-	-fx-prompt-text-fill: -fx-info;
-}
-
-.jfx-text-field {
-	-jfx-focus-color: -fx-primary;
-	-jfx-unfocus-color: -fx-info;
+.text-field{
+	-fx-border-width: 2.5px;
+	-fx-border-color: #ddd;
+	-fx-border-radius: 6px;
+	-fx-background-color: #ddd;
+	-fx-background-radius: 6px;
+	-fx-prompt-text-fill: #888;
+	-fx-text-fill: #333;
+	-fx-font-family: "DM Sans Medium";
+	-fx-font-size: 1.1em;
+	/*-fx-effect: dropshadow( gaussian, #00000022, 12,0, 0, 5);*/
 }

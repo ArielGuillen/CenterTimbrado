@@ -1,11 +1,13 @@
 * {
+	-fx-primary: #034f8a;
 	-fx-primary-light: #7FABDF;
 	-fx-primary-dark: #032C5D;	
 	-fx-text-light: whitesmoke;
 	-fx-dashboardOptions: #7FABDF;
 	-fx-dashboardBackground: #CA8A15;
 	-fx-iconsDashboard: whitesmoke;
-	
+	-fx-secondary: #686565; 
+	-fx-secondary-light: #969292; 
 
 }
 /* 

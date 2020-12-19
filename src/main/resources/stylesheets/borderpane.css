@@ -1,0 +1,11 @@
+.borderpane-background{	
+	-fx-background-color: -fx-primary-dark;
+}
+
+
+.borderpane-form{	
+	-fx-background-color: white;
+	-fx-background-radius: 0.5em;
+	-fx-border-radius: 0.5em;
+	-fx-effect: dropshadow( gaussian, #00000033, 12,0, 0, 5);
+}

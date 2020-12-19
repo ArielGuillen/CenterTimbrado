@@ -1,18 +1,47 @@
 .button {
-	-fx-text-fill: white;
-	-fx-border-radius: 3px;
-	-fx-background-radius:3px;
-	-fx-font-size:14px;
+	-fx-font-size: 1.15em;
 	-fx-font-family: "DM Sans Bold";
-	-fx-background-color: -fx-primary-light ;
-	
+	-fx-alignment: center;
+	-fx-background-radius: 0.4em;		
+	-fx-border-radius: 0.4em;
+	-fx-effect: dropshadow( gaussian, #ffffff33, 12,0, 0, 5);
 }
 
-.button-primary {
-	-fx-background-color: -fx-primary-dark ;
+.button-primary { 
+	-fx-background-color: -fx-primary;
+	-fx-text-fill: white;
 }
+
 
 .button-secondary {
 	-fx-background-color: -fx-primary-light;
+	-fx-text-fill: white;
 }
 
+
+.button-cancel {
+	-fx-background-color: -fx-secondary;
+	-fx-text-fill: white;
+}
+
+.button .glyph {
+	-fx-fill: white;
+}
+
+.button:hover{
+	-fx-background-color: #328fd7;
+	-fx-text-fill: white;
+	-fx-effect: dropshadow( gaussian, #00000033, 12,0, 0, 5);
+}
+
+.button-cancel:hover{
+	-fx-background-color: -fx-secondary-light;
+	-fx-text-fill: white;
+	-fx-effect: dropshadow( gaussian, #00000033, 12,0, 0, 5);
+}
+
+.button:pressed{
+	-fx-background-color: white;
+	-fx-text-fill: #034f8a;
+	-fx-effect: dropshadow( gaussian, #00000033, 12,0, 0, 5);
+}

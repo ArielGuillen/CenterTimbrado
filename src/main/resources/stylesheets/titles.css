@@ -1,0 +1,38 @@
+.big-title{
+	-fx-font-family: "Poppins Bold";
+	-fx-font-size:2.2em;
+	-fx-text-fill: white;	
+}
+
+.normal-title{
+	-fx-font-family: "Poppins Bold";
+	-fx-font-size: 1.9em;
+	-fx-text-fill: white;	
+}
+
+.small-title{
+	-fx-font-family: "Poppins Bold";
+	-fx-font-size: 1.6em;
+	-fx-text-fill: white;	
+}
+
+.big-header {
+	-fx-font-family: "Poppins SemiBold";
+	-fx-font-size: 1.4em;
+}
+
+.normal-header{
+	-fx-font-family: "Poppins SemiBold";
+	-fx-font-size: 1.1em;
+}
+
+.small-header{
+	-fx-font-family: "Poppins SemiBold";
+	-fx-font-size: .8em;
+}
+
+.warning{
+	-fx-font-family: "Helvetica";
+	-fx-font-style: italic;
+	-fx-text-fill: #03687f;
+}
