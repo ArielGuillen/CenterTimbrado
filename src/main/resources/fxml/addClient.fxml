@@ -37,8 +37,8 @@
                                        </styleClass></Label>
                                     <HBox>
                                        <children>
-                                          <Button fx:id="btnConfirmar" focusTraversable="false" mnemonicParsing="false" onAction="#saveData" text="Confirmar" />
-                                          <Button focusTraversable="false" mnemonicParsing="false" onAction="#cancelViewClient" text="Cancelar" />
+                                          <Button focusTraversable="false" mnemonicParsing="false" onAction="#cancelViewClient" styleClass="button-cancel" text="Cancelar" />
+                                          <Button fx:id="btnConfirmar" focusTraversable="false" mnemonicParsing="false" onAction="#saveData" styleClass="button-primary" text="Confirmar" />
                                        </children>
                                        <styleClass>
                                           <String fx:value="hbox" />
@@ -51,7 +51,7 @@
                         </StackPane>
                      </bottom>
                      <center>
-                        <GridPane styleClass="gridpane" BorderPane.alignment="CENTER">
+                        <GridPane styleClass="grid-pane" BorderPane.alignment="CENTER">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -275,8 +275,7 @@
                         </GridPane>
                      </center>
                      <styleClass>
-                        <String fx:value="borderpane" />
-                        <String fx:value="form" />
+                        <String fx:value="borderpane-form" />
                         <String fx:value="padding-1" />
                      </styleClass>
                   </BorderPane>
@@ -294,7 +293,7 @@
             </HBox>
          </top>
          <styleClass>
-            <String fx:value="borderpane" />
+            <String fx:value="borderpane-background" />
             <String fx:value="padding-2" />
          </styleClass>
       </BorderPane>
@@ -305,5 +304,9 @@
       <URL value="@../stylesheets/padding.css" />
       <URL value="@../stylesheets/paleta-colores.css" />
       <URL value="@../stylesheets/titles.css" />
+      <URL value="@../stylesheets/borderpane.css" />
+      <URL value="@../stylesheets/grid-pane.css" />
+      <URL value="@../stylesheets/text-field.css" />
+      <URL value="@../stylesheets/button.css" />
    </stylesheets>
 </StackPane>

@@ -36,13 +36,13 @@
                <bottom>
                   <VBox prefHeight="300.0" styleClass="padding-x-2" BorderPane.alignment="CENTER">
                      <children>
-                        <TreeTableView fx:id="tabProducts2">
+                        <TreeTableView fx:id="tabProducts">
                           <columns>
                             <TreeTableColumn fx:id="colQuantity" minWidth="-1.0" prefWidth="75.0" text="Cantidad" />
                             <TreeTableColumn fx:id="colKeys" minWidth="-1.0" prefWidth="75.0" text="Claves" />
                               <TreeTableColumn fx:id="colDescription" minWidth="-1.0" prefWidth="75.0" text="Descripción" />
                               <TreeTableColumn fx:id="colPrice" minWidth="-1.0" prefWidth="75.0" text="Precio" />
-                              <TreeTableColumn fx:id="colSubtotal" prefWidth="75.0" text="Subtotal" />
+                              <TreeTableColumn fx:id="colSubtotal" prefWidth="75.0" text="Subtotala" />
                               <TreeTableColumn fx:id="colDiscount" prefWidth="75.0" text="Descuento" />
                               <TreeTableColumn fx:id="colTaxes" prefWidth="75.0" text="Impuestos" />
                               <TreeTableColumn fx:id="colTaxes" minWidth="-1.0" prefWidth="75.0" text="Total" />
@@ -54,7 +54,7 @@
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label text="Subtotal" />
-                              <Label text="\$$$" />
+                              <Label text=" $$$" />
                            </children>
                            <styleClass>
                               <String fx:value="alignment-center-right" />

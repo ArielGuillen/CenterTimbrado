@@ -74,7 +74,7 @@
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Button mnemonicParsing="false" text="Crear factura" />
+                              <Button mnemonicParsing="false" styleClass="button-primary" text="Crear factura" />
                            </children>
                            <styleClass>
                               <String fx:value="alignment-center-center" />
@@ -84,10 +84,6 @@
                      </children>
                   </VBox>
                </bottom>
-               <styleClass>
-                  <String fx:value="form" />
-                  <String fx:value="borderpane" />
-               </styleClass>
                <center>
                   <StackPane BorderPane.alignment="CENTER">
                      <children>
@@ -164,11 +160,15 @@
                      </children>
                   </StackPane>
                </center>
+               <styleClass>
+                  <String fx:value="borderpane-form" />
+                  <String fx:value="padding-1" />
+               </styleClass>
             </BorderPane>
          </center>
          <styleClass>
-            <String fx:value="borderpane" />
             <String fx:value="padding-2" />
+            <String fx:value="borderpane-background" />
          </styleClass>
       </BorderPane>
    </children>
@@ -179,5 +179,7 @@
       <URL value="@../stylesheets/addClient.css" />
       <URL value="@../stylesheets/paleta-colores.css" />
       <URL value="@../stylesheets/titles.css" />
+      <URL value="@../stylesheets/borderpane.css" />
+      <URL value="@../stylesheets/button.css" />
    </stylesheets>
 </StackPane>
