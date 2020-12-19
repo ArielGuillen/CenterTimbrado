@@ -23,7 +23,7 @@
          <top>
             <HBox BorderPane.alignment="CENTER">
                <children>
-                  <Label styleClass="title" text="Datos de la Factura" />
+                  <Label styleClass="big-title" text="Datos de la Factura" />
                </children>
                <styleClass>
                   <String fx:value="hbox" />
@@ -104,7 +104,7 @@
                            <children>
                               <VBox>
                                  <children>
-                                    <Label styleClass="alignment-center-center" text="Cliente:" />
+                                    <Label styleClass="normal-header" text="Cliente:" />
                                     <HBox styleClass="hbox-v">
                                        <children>
                                           <ComboBox fx:id="cbxShowClients" onMouseClicked="#updateComboboxClients" prefWidth="150.0" styleClass="combobox" />
@@ -120,34 +120,32 @@
                               </VBox>
                               <VBox styleClass="hbox" GridPane.columnIndex="1">
                                  <children>
-                                    <Label text="Forma de pago:" />
+                                    <Label styleClass="normal-header" text="Forma de pago:" />
                                     <ComboBox fx:id="cbxShowPaymentsForms" prefWidth="150.0" styleClass="combobox" />
                                  </children>
                               </VBox>
                               <VBox styleClass="hbox" GridPane.columnIndex="2">
                                  <children>
-                                    <Label text="Método de pago:" />
+                                    <Label styleClass="normal-header" text="Método de pago:" />
                                     <ComboBox fx:id="cbxShowPaymentsMethods" prefWidth="150.0" styleClass="combobox" />
                                  </children>
                               </VBox>
                               <VBox styleClass="padding-l-2" GridPane.rowIndex="1">
                                  <children>
-                                    <Label text="Moneda:" />
+                                    <Label styleClass="normal-header" text="Moneda:" />
                                     <ComboBox fx:id="cbxShowCurrencies" prefWidth="150.0" styleClass="combobox" />
                                  </children>
                               </VBox>
                               <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <children>
-                                    <Label text="Fecha de Emisión:" />
-
-                                    <ComboBox prefWidth="150.0" styleClass="combobox" />
+                                    <Label styleClass="normal-header" text="Fecha de Emisión:" />
 
                                     <DatePicker fx:id="date" prefWidth="150.0" />
                                  </children>
                               </VBox>
                               <VBox GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <children>
-                                    <Label text="Producto:" />
+                                    <Label styleClass="normal-header" text="Producto:" />
                                     <HBox>
                                        <children>
                                           <ComboBox fx:id="cbxShowProducts" onMouseClicked="#showProducts" prefWidth="150.0" styleClass="combobox" />
@@ -180,5 +178,6 @@
       <URL value="@../stylesheets/spacing.css" />
       <URL value="@../stylesheets/addClient.css" />
       <URL value="@../stylesheets/paleta-colores.css" />
+      <URL value="@../stylesheets/titles.css" />
    </stylesheets>
 </StackPane>
