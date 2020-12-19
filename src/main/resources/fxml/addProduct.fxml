@@ -151,7 +151,7 @@
                               </VBox>
                               <VBox styleClass="padding-1" GridPane.columnSpan="2" GridPane.rowIndex="7">
                                  <children>
-                                    <Label styleClass="header" text="Impuestos (Selecciona los necesarios)" />
+                                    <Label styleClass="header" text="Impuestos (Selecciona los necesarios)" wrapText="true" />
                                  </children>
                               </VBox>
                               <VBox GridPane.columnIndex="1" GridPane.rowIndex="8">
@@ -233,12 +233,12 @@
                               </VBox>
                               <VBox styleClass="padding-1">
                                  <children>
-                                    <Label styleClass="header" text="Datos del producto" />
+                                    <Label styleClass="header" text="Datos del producto" wrapText="true" />
                                  </children>
                               </VBox>
                               <VBox styleClass="padding-1" GridPane.columnIndex="1">
                                  <children>
-                                    <Label styleClass="header" text="Campos obligatorios CFDI 3.3 SAT" />
+                                    <Label styleClass="header" text="Campos obligatorios CFDI 3.3 SAT" wrapText="true" />
                                  </children>
                               </VBox>
                               <VBox GridPane.columnIndex="1" GridPane.rowIndex="4">
