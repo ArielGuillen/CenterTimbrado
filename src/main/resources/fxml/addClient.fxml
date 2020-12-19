@@ -104,8 +104,12 @@
                                     <String fx:value="alignment-center-right" />
                                  </styleClass>
                               </HBox>
-                              <Label styleClass="padding-l-1" text="Datos Generales" />
-                              <Label prefHeight="19.0" prefWidth="113.0" styleClass="padding-l-1" text="Datos Opcionales" GridPane.rowIndex="3">
+                              <Label text="Datos Generales" GridPane.columnSpan="2">
+                                 <styleClass>
+                                    <String fx:value="padding-l-1" />
+                                    <String fx:value="big-header" />
+                                 </styleClass></Label>
+                              <Label text="Datos Opcionales" GridPane.columnSpan="2" GridPane.rowIndex="3">
                                  <effect>
                                     <Lighting>
                                        <bumpInput>
@@ -116,6 +120,10 @@
                                        </light>
                                     </Lighting>
                                  </effect>
+                                 <styleClass>
+                                    <String fx:value="padding-l-1" />
+                                    <String fx:value="big-header" />
+                                 </styleClass>
                               </Label>
                               <HBox GridPane.rowIndex="4">
                                  <children>
@@ -269,7 +277,7 @@
                      <styleClass>
                         <String fx:value="borderpane" />
                         <String fx:value="form" />
-                        <String fx:value="padding-y-1" />
+                        <String fx:value="padding-1" />
                      </styleClass>
                   </BorderPane>
                </children>
@@ -281,7 +289,7 @@
          <top>
             <HBox minWidth="100.0" styleClass="padding-y-1" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="lblTitle" focusTraversable="false" styleClass="title" text="Agregar Cliente" />
+                  <Label fx:id="lblTitle" focusTraversable="false" styleClass="big-title" text="Agregar Cliente" />
                </children>
             </HBox>
          </top>
@@ -296,5 +304,6 @@
       <URL value="@../stylesheets/alignment.css" />
       <URL value="@../stylesheets/padding.css" />
       <URL value="@../stylesheets/paleta-colores.css" />
+      <URL value="@../stylesheets/titles.css" />
    </stylesheets>
 </StackPane>
