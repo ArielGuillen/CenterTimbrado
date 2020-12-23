@@ -28,7 +28,7 @@
 	-fx-fill: white;
 }
 
-.button:hover{
+.button-primary:hover{
 	-fx-background-color: #328fd7;
 	-fx-text-fill: white;
 	-fx-effect: dropshadow( gaussian, #00000033, 12,0, 0, 5);

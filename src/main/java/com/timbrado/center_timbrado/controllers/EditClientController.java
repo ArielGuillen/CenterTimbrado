@@ -81,7 +81,7 @@ public class EditClientController implements Initializable{
 		
 	//---Setter & getter methods for contact to modify---//
 		
-	public void setContact(Client client) {
+	public void setClient(Client client) {
 		this.client = client;
 	}
 
@@ -91,7 +91,7 @@ public class EditClientController implements Initializable{
 	//----------------------- End Object client----------------------------
 	
 	
-	//---------Show contact information to Update-------//
+	//---------Show client information to Update-------//
 	
 	protected void loadData() {
 		

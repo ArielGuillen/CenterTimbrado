@@ -1,22 +1,3 @@
-/*CONTENEDORES ------------------------------- */
-
-.hbox{
-
- -fx-alignment: center-left;
-	-fx-spacing: .7em;
-	
-}
-
-.hbox-v{
-	-fx-alignment: center-left;
-	-fx-spacing: 1.5em;
-}
-
-.grid-pane{
-	-fx-hgap: 3.5em;
-}
-
-
 /*CONTROLES-------------------- */
 
 .label{
@@ -109,14 +90,6 @@
 	-fx-fill: white;
 }
 
-/*--------------- */
-.combobox{ 
-	-fx-background-color: white;		
-	-fx-border-color: #cccccc;
-	-fx-background-radius: 0.3em;		
-	-fx-border-radius: 0.3em;
-	-fx-effect: dropshadow( gaussian, #00000033, 12,0, 0, 5);
-}
 /* IDs------------------------------- */
 .icon-dark{
 	-fx-fill: -fx-primary-dark;

@@ -11,8 +11,10 @@ import com.Facturama.sdk_java.Models.Client;
 import com.Facturama.sdk_java.Models.Product;
 import com.Facturama.sdk_java.Models.Exception.FacturamaException;
 import com.Facturama.sdk_java.Models.Request.ProductTax;
+import com.Facturama.sdk_java.Models.Request.Tax;
 import com.Facturama.sdk_java.Models.Response.Catalogs.Catalog;
 import com.Facturama.sdk_java.Models.Response.Catalogs.Cfdi.Currency;
+import com.Facturama.sdk_java.Models.Response.Catalogs.Cfdi.FiscalRegimen;
 import com.timbrado.center_timbrado.pojos.Producto;
 import com.timbrado.center_timbrado.services.Facturama;
 
@@ -391,6 +393,7 @@ public class CreateInvoiceController implements Initializable{
 		stage.showAndWait();
 	}
 	
+	/* --------- Methods to Add and Edit Clients -------*/
 	@FXML
 	public void editClient() throws IOException, FacturamaException, Exception { 
 		Client client = cbxShowClients.getSelectionModel().getSelectedItem();
@@ -400,7 +403,7 @@ public class CreateInvoiceController implements Initializable{
 			Parent parent = loader.load();				
 			EditClientController controller = loader.getController();
 	
-			controller.setContact( client );
+			controller.setClient( client );
 			controller.loadData();
 			
 			Scene scene = new Scene( parent );
@@ -413,7 +416,40 @@ public class CreateInvoiceController implements Initializable{
 		
 	}
 	
+	/* --------- Methods to Add and Edit Products -------*/
+	@FXML
+	public void newProduct() throws IOException {
+		FXMLLoader loader = new FXMLLoader( this.getClass().getResource("/fxml/addProduct.fxml"));			
+		Parent parent = loader.load();		
+		
+		Scene scene = new Scene( parent );
+		Stage stage = new Stage();
+		stage.initModality( Modality.APPLICATION_MODAL );
+		stage.setTitle("Nuevo Producto");
+		stage.setScene( scene );
+		stage.showAndWait();
+	}
 
+	@FXML
+	public void editProduct() throws IOException, FacturamaException, Exception { 
+		Product product = cbxShowProducts.getSelectionModel().getSelectedItem();
+		
+		if(product != null) {
+			FXMLLoader loader = new FXMLLoader( this.getClass().getResource("/fxml/addProduct.fxml"));			
+			Parent parent = loader.load();				
+			EditProductController controller = loader.getController();
 	
+			controller.setProduct( product );
+			controller.loadData();
+			
+			Scene scene = new Scene( parent );
+			Stage stage = new Stage();
+			stage.initModality( Modality.APPLICATION_MODAL );
+			stage.setTitle("Nuevo Cliente");
+			stage.setScene( scene );
+			stage.showAndWait();			
+		}
+		
+	}
 
 }

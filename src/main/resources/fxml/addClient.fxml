@@ -7,9 +7,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Light.Distant?>
-<?import javafx.scene.effect.Lighting?>
-<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -41,8 +38,8 @@
                                           <Button fx:id="btnConfirmar" focusTraversable="false" mnemonicParsing="false" onAction="#saveData" styleClass="button-primary" text="Confirmar" />
                                        </children>
                                        <styleClass>
-                                          <String fx:value="hbox" />
                                           <String fx:value="alignment-center-center" />
+                                          <String fx:value="spacing-1" />
                                        </styleClass>
                                     </HBox>
                                  </children>
@@ -53,12 +50,12 @@
                      <center>
                         <GridPane styleClass="grid-pane" BorderPane.alignment="CENTER">
                            <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="75.0" minWidth="10.0" prefWidth="75.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="10.0" prefWidth="141.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="38.0" prefWidth="60.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="10.0" prefWidth="149.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="106.0" minWidth="10.0" prefWidth="82.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="212.0" minWidth="10.0" prefWidth="165.0" />
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
@@ -83,7 +80,7 @@
                               </HBox>
                               <HBox GridPane.rowIndex="1">
                                  <children>
-                                    <Label focusTraversable="false" text="Nombre" />
+                                    <Label focusTraversable="false" styleClass="normal-header" text="Nombre" />
                                  </children>
                                  <styleClass>
                                     <String fx:value="hbox" />
@@ -92,12 +89,12 @@
                               </HBox>
                               <HBox styleClass="alignment-center-right" GridPane.rowIndex="2">
                                  <children>
-                                    <Label focusTraversable="false" text="RFC" />
+                                    <Label focusTraversable="false" styleClass="normal-header" text="RFC" />
                                  </children>
                               </HBox>
                               <HBox GridPane.columnIndex="2" GridPane.rowIndex="2">
                                  <children>
-                                    <Label focusTraversable="false" text="Email" />
+                                    <Label focusTraversable="false" styleClass="normal-header" text="Email" />
                                  </children>
                                  <styleClass>
                                     <String fx:value="hbox" />
@@ -110,16 +107,6 @@
                                     <String fx:value="big-header" />
                                  </styleClass></Label>
                               <Label text="Datos Opcionales" GridPane.columnSpan="2" GridPane.rowIndex="3">
-                                 <effect>
-                                    <Lighting>
-                                       <bumpInput>
-                                          <Shadow />
-                                       </bumpInput>
-                                       <light>
-                                          <Light.Distant />
-                                       </light>
-                                    </Lighting>
-                                 </effect>
                                  <styleClass>
                                     <String fx:value="padding-l-1" />
                                     <String fx:value="big-header" />
@@ -127,7 +114,7 @@
                               </Label>
                               <HBox GridPane.rowIndex="4">
                                  <children>
-                                    <Label text="País" />
+                                    <Label styleClass="normal-header" text="País" />
                                  </children>
                                  <styleClass>
                                     <String fx:value="hbox" />
@@ -141,7 +128,7 @@
                               </HBox>
                               <HBox GridPane.columnIndex="2" GridPane.rowIndex="4">
                                  <children>
-                                    <Label text="Estado" />
+                                    <Label styleClass="normal-header" text="Estado" />
                                  </children>
                                  <styleClass>
                                     <String fx:value="hbox" />
@@ -155,7 +142,7 @@
                               </HBox>
                               <HBox styleClass="alignment-center-right" GridPane.columnIndex="4" GridPane.rowIndex="4">
                                  <children>
-                                    <Label prefHeight="17.0" prefWidth="62.0" text="Municipio" />
+                                    <Label styleClass="normal-header" text="Municipio" />
                                  </children>
                               </HBox>
                               <HBox styleClass="hbox" GridPane.columnIndex="1" GridPane.rowIndex="5">
@@ -165,26 +152,22 @@
                               </HBox>
                               <HBox styleClass="alignment-center-right" GridPane.rowIndex="5">
                                  <children>
-                                    <Label text="Localidad" />
+                                    <Label styleClass="normal-header" text="Localidad" />
                                  </children>
                               </HBox>
-                              <HBox GridPane.columnIndex="5" GridPane.rowIndex="4">
+                              <HBox styleClass="hbox" GridPane.columnIndex="5" GridPane.rowIndex="4">
                                  <children>
                                     <TextField fx:id="txtMunicipality" styleClass="textfield" />
                                  </children>
-                                 <styleClass>
-                                    <String fx:value="hbox" />
-                                    <String fx:value="padding-r-4" />
-                                 </styleClass>
                               </HBox>
                               <HBox styleClass="alignment-center-right" GridPane.columnIndex="2" GridPane.rowIndex="5">
                                  <children>
-                                    <Label text="CP" />
+                                    <Label styleClass="normal-header" text="CP" />
                                  </children>
                               </HBox>
                               <HBox GridPane.columnIndex="2" GridPane.rowIndex="6">
                                  <children>
-                                    <Label prefHeight="16.0" prefWidth="45.0" text="No. Ext" />
+                                    <Label prefHeight="16.0" prefWidth="45.0" styleClass="normal-header" text="No. Ext" />
                                  </children>
                                  <styleClass>
                                     <String fx:value="hbox" />
@@ -208,7 +191,7 @@
                               </HBox>
                               <HBox GridPane.rowIndex="6">
                                  <children>
-                                    <Label text="Calle" />
+                                    <Label styleClass="normal-header" text="Calle" />
                                  </children>
                                  <styleClass>
                                     <String fx:value="hbox" />
@@ -217,7 +200,7 @@
                               </HBox>
                               <HBox GridPane.columnIndex="4" GridPane.rowIndex="6">
                                  <children>
-                                    <Label text="No. Int" />
+                                    <Label styleClass="normal-header" text="No. Int" />
                                  </children>
                                  <styleClass>
                                     <String fx:value="hbox" />
@@ -235,7 +218,7 @@
                                     <String fx:value="alignment-center-right" />
                                  </styleClass>
                                  <children>
-                                    <Label text="Colonia" />
+                                    <Label styleClass="normal-header" text="Colonia" />
                                  </children>
                               </HBox>
                               <HBox styleClass="hbox" GridPane.columnIndex="1" GridPane.rowIndex="7">
@@ -250,7 +233,7 @@
                               </HBox>
                               <HBox GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <children>
-                                    <Label text="Uso" />
+                                    <Label styleClass="normal-header" text="Uso" />
                                  </children>
                                  <styleClass>
                                     <String fx:value="hbox" />
@@ -259,9 +242,9 @@
                               </HBox>
                               <VBox minHeight="25.0" prefHeight="25.0" prefWidth="146.0" styleClass="alignment-center-left" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <children>
-                                    <HBox maxWidth="145.0" minHeight="25.0" prefHeight="18.0" prefWidth="145.0">
+                                    <HBox>
                                        <children>
-                                          <TextField fx:id="txtRFC" minHeight="23.0" prefHeight="22.0" prefWidth="125.0" styleClass="textfield-search" />
+                                          <TextField fx:id="txtRFC" styleClass="text-field" />
                                           <FontAwesomeIconView fx:id="iconWarning" glyphName="EXCLAMATION_CIRCLE" styleClass="icon-warning" visible="false" />
                                        </children>
                                        <styleClass>
@@ -308,5 +291,7 @@
       <URL value="@../stylesheets/grid-pane.css" />
       <URL value="@../stylesheets/text-field.css" />
       <URL value="@../stylesheets/button.css" />
+      <URL value="@../stylesheets/combobox.css" />
+      <URL value="@../stylesheets/spacing.css" />
    </stylesheets>
 </StackPane>

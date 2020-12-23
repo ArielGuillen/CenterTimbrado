@@ -4,6 +4,9 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import com.Facturama.sdk_java.Models.Address;
+import com.Facturama.sdk_java.Models.Client;
+import com.Facturama.sdk_java.Models.Product;
 import com.Facturama.sdk_java.Models.Request.ProductTax;
 import com.Facturama.sdk_java.Models.Response.Catalogs.Cfdi.ProductServices;
 import com.Facturama.sdk_java.Models.Response.Catalogs.Cfdi.Unit;
@@ -15,8 +18,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
@@ -69,6 +74,67 @@ public class EditProductController  implements Initializable{
 	@FXML
 	public FontAwesomeIconView iconWarningUnit;
 	
+	//--Radio Buttons--
+	@FXML
+	public RadioButton rdbtnTasa;
+
+	@FXML
+	public RadioButton rdbtnCuota;
+	
+	
+	//-------------------Object client for update data-------------------
+	
+	public Product product;
+		
+	//---Setter & getter methods for contact to modify---//
+		
+	public void setProduct(Product product) {
+		this.product = product;;
+	}
+
+	public Product getProduct() {
+		return this.product;
+	}
+
+	//---------Show client information to Update-------//
+	
+	protected void loadData() {
+		
+		this.lblTitle.setText("Modificar datos del producto");
+		//General Client Data
+		
+		txtName.setText( this.product.getName() );
+		txtPrice.setText( String.valueOf(this.product.getPrice()) );
+		txtDescription.setText( this.product.getDescription());
+		txtId.setText( this.product.getIdentificationNumber());
+		txtCPredial.setText( product.getCuentaPredial());
+			
+	}
+	
+	//-------Cancel operation----//
+	@FXML
+	public void cancelViewProduct() {
+		
+		//this.client = null;	//null assignment for validation of changes in contact
+		closeWindow();
+		
+	}
+	
+	public void closeWindow() {
+
+		Stage stage = (Stage) this.btnConfirmar.getScene().getWindow();
+		stage.close();
+		
+	}
+	
+	//-------Save product information----//
+	@FXML		
+	public void saveData() {
+//		Product p = new Product();
+//		p.setName( this.txtName.getText());
+	}
+	
+		
 	
 	//--Initialize Methods--
 	@Override
@@ -77,6 +143,8 @@ public class EditProductController  implements Initializable{
 			initializatecbxConverter();
 			initializeTaxesIva();
 			initializeTaxesIvaRet();
+			initializeTaxesIsr();
+			initializateIeps();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -142,6 +210,19 @@ public class EditProductController  implements Initializable{
 			}
 
 		});
+		
+		this.cbxIeps.setConverter( new StringConverter<ProductTax>() {
+
+			@Override
+			public String toString(ProductTax productTax) {
+				return productTax.getName() + " - " + productTax.getRate()*100 + "%" ;
+			}
+
+			@Override
+			public ProductTax fromString(String string) {
+				return null;
+			}
+		});
 	}
 	
 	//-------Load ComboBox Data--------//
@@ -203,26 +284,6 @@ public class EditProductController  implements Initializable{
 		
 	}
 	
-	//-------Cancel operation----//
-	@FXML
-	public void cancelViewProduct() {
-		
-		//this.client = null;	//null assignment for validation of changes in contact
-		closeWindow();
-		
-	}
-	
-	public void closeWindow() {
-
-		Stage stage = (Stage) this.btnConfirmar.getScene().getWindow();
-		stage.close();
-		
-	}
-	//-------Save product information----//
-	@FXML		
-	public void saveData() {
-		
-	}
 	
 	public void initializeTaxesIva() {
 		
@@ -257,10 +318,63 @@ public class EditProductController  implements Initializable{
 		this.createTax( "IVA Ret" , false, 0.000, true, cbxIvaRet );
 	    
 	}
-	
-	public void initializeTaxIsr() {
+		
+	public void initializeTaxesIsr() {
+		this.createTax("ISR", false, .2, true, cbxIsr);
+		this.createTax("ISR", false, .10666, true, cbxIsr);
+		this.createTax("ISR", false, .10, true, cbxIsr);
+		this.createTax("ISR", false, .054, true, cbxIsr);
+		this.createTax("ISR", false, .04, true, cbxIsr);
+		this.createTax("ISR", false, .03, true, cbxIsr);
+		this.createTax("ISR", false, .02, true, cbxIsr);
+		this.createTax("ISR", false, .011, true, cbxIsr);
+		this.createTax("ISR", false, .009, true, cbxIsr);
+		this.createTax("ISR", false, .005, true, cbxIsr);
+		this.createTax("ISR", false, .004, true, cbxIsr);
+		this.createTax("ISR", false, .000, true, cbxIsr);
 		
 	}
+	
+	public void initializateTaxesIeps() {
+		this.createTax("IEPS", false, 3.00, true, cbxIeps);
+		this.createTax("IEPS", false, 1.60, true, cbxIeps);
+		this.createTax("IEPS", false, .53, true, cbxIeps);
+		this.createTax("IEPS", false, .50, true, cbxIeps);
+		this.createTax("IEPS", false, .35, true, cbxIeps);
+		this.createTax("IEPS", false, .304, true, cbxIeps);
+		this.createTax("IEPS", false, .30, true, cbxIeps);
+		this.createTax("IEPS", false, .2988, true, cbxIeps);
+		this.createTax("IEPS", false, .265, true, cbxIeps);
+		this.createTax("IEPS", false, .25, true, cbxIeps);
+		this.createTax("IEPS", false, .09, true, cbxIeps);
+		this.createTax("IEPS", false, .08, true, cbxIeps);
+		this.createTax("IEPS", false, .07, true, cbxIeps);
+		this.createTax("IEPS", false, .06, true, cbxIeps);
+		this.createTax("IEPS", false, .0591, true, cbxIeps);
+		this.createTax("IEPS", false, .04, true, cbxIeps);
+	}
+	
+	public void initializateIeps() {
+		final ToggleGroup groupIEPS = new ToggleGroup();
+		this.rdbtnTasa.setToggleGroup(groupIEPS);
+		this.rdbtnCuota.setToggleGroup(groupIEPS);
+		
+		//Cuando se selecciona el RadioButton de Tasa
+		this.rdbtnTasa.setOnMouseClicked(event -> {
+			initializateTaxesIeps();
+		}
+		);
+
+		//Cuando se selecciona el RadioButton de Cuota
+		this.rdbtnCuota.setOnMouseClicked(event -> {
+			//Código para quitar el Combobox y poner TextField
+			System.out.println("Cambiamos el combobox por un TextField pero no sé cómo :D");
+			cbxIeps.getItems().clear();
+			
+		}
+		);
+	}
+	
 	
 	public void createTax( String name, boolean quota, double rate, boolean retention, ComboBox<ProductTax> comboBox ) {
 		

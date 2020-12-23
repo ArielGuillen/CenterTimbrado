@@ -4,3 +4,8 @@
 	-fx-hgap: 1em;
 	
 }
+
+.grid-pane-g-2{
+	-fx-vgap: 2em;
+	-fx-hgap: 2em;
+}

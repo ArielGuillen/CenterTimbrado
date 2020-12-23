@@ -149,7 +149,7 @@ public class CRUDClientController implements Initializable {
 		FXMLLoader loader = new FXMLLoader( this.getClass().getResource("/fxml/addClient.fxml"));			
 		Parent parent = loader.load();				
 		EditClientController controller = loader.getController();
-		controller.setContact( client );
+		controller.setClient( client );
 		controller.loadData();
 		
 		Scene scene = new Scene( parent );

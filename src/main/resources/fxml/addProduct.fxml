@@ -35,7 +35,7 @@
                                           <String fx:value="warning" />
                                           <String fx:value="alignment-center-center" />
                                        </styleClass></Label>
-                                    <HBox spacing="15.0" styleClass="alignment-center-center">
+                                    <HBox spacing="15.0">
                                        <children>
                                           <Button focusTraversable="false" mnemonicParsing="false" onAction="#cancelViewProduct" styleClass="button-cancel" text="Cancelar">
                                              <graphic>
@@ -46,6 +46,10 @@
                                                 <MaterialDesignIconView glyphName="CHECK" size="16" styleClass="glyph" />
                                              </graphic></Button>
                                        </children>
+                                       <styleClass>
+                                          <String fx:value="alignment-center-center" />
+                                          <String fx:value="spacing-1" />
+                                       </styleClass>
                                     </HBox>
                                  </children>
                               </VBox>
@@ -169,12 +173,12 @@
                                     <HBox>
                                        <children>
                                           <Label styleClass="normal-header" text="IEPS" />
-                                          <RadioButton mnemonicParsing="false" text="Tasa" />
-                                          <RadioButton mnemonicParsing="false" text="Cuota" />
+                                          <RadioButton fx:id="rdbtnTasa" mnemonicParsing="false" text="Tasa" />
+                                          <RadioButton fx:id="rdbtnCuota" mnemonicParsing="false" text="Cuota" />
                                        </children>
                                        <styleClass>
-                                          <String fx:value="hbox-v" />
                                           <String fx:value="padding-y-1" />
+                                          <String fx:value="spacing-1" />
                                        </styleClass>
                                     </HBox>
                                     <ComboBox fx:id="cbxIeps" prefWidth="170.0" styleClass="combobox" />
@@ -297,5 +301,6 @@
       <URL value="@../stylesheets/borderpane.css" />
       <URL value="@../stylesheets/button.css" />
       <URL value="@../stylesheets/text-field.css" />
+      <URL value="@../stylesheets/combobox.css" />
    </stylesheets>
 </StackPane>
