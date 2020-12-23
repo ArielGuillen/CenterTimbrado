@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import com.Facturama.sdk_java.Models.Request.ProductTax;
 import com.Facturama.sdk_java.Models.Response.Catalogs.Cfdi.ProductServices;
 import com.Facturama.sdk_java.Models.Response.Catalogs.Cfdi.Unit;
 import com.timbrado.center_timbrado.services.Facturama;
@@ -27,13 +28,13 @@ public class EditProductController  implements Initializable{
 	@FXML
 	public ComboBox<Unit> cbxUnit;
 	@FXML
-	public ComboBox<String> cbxIva;
+	public ComboBox< ProductTax > cbxIva;
 	@FXML
-	public ComboBox<String> cbxIvaRet;
+	public ComboBox< ProductTax > cbxIvaRet;
 	@FXML
-	public ComboBox<String> cbxIeps;
+	public ComboBox< ProductTax > cbxIeps;
 	@FXML
-	public ComboBox<String> cbxIsr;
+	public ComboBox< ProductTax > cbxIsr;
 	
 	//--TextField--
 	@FXML
@@ -73,23 +74,12 @@ public class EditProductController  implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		try {
-			initializateIva();
-			initializateIvaRet();
 			initializatecbxConverter();
+			initializeTaxesIva();
+			initializeTaxesIvaRet();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-	}
-
-
-	private void initializateIva() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	private void initializateIvaRet() {
-		// TODO Auto-generated method stub
 		
 	}
 	
@@ -115,6 +105,39 @@ public class EditProductController  implements Initializable{
 			}
 			@Override
 			public Unit fromString( String string ) {
+				return null;
+			}
+
+		});
+		this.cbxIva.setConverter( new StringConverter <ProductTax>()  {
+			@Override
+			public String toString( ProductTax productTax ) {
+				return productTax.getName() + " - " + productTax.getRate()*100 + "%" ;
+			}
+			@Override
+			public ProductTax fromString( String string ) {
+				return null;
+			}
+
+		});
+		this.cbxIvaRet.setConverter( new StringConverter <ProductTax>()  {
+			@Override
+			public String toString( ProductTax productTax ) {
+				return productTax.getName() + " - " + productTax.getRate()*100 + "%" ;
+			}
+			@Override
+			public ProductTax fromString( String string ) {
+				return null;
+			}
+
+		});
+		this.cbxIsr.setConverter( new StringConverter <ProductTax>()  {
+			@Override
+			public String toString( ProductTax productTax ) {
+				return productTax.getName() + " - " + productTax.getRate()*100 + "%" ;
+			}
+			@Override
+			public ProductTax fromString( String string ) {
 				return null;
 			}
 
@@ -157,7 +180,6 @@ public class EditProductController  implements Initializable{
 
 				this.cbxUnit.setPromptText("");
 				this.iconWarningUnit.setVisible( false );
-
 				String key = this.txtKeywordUnit.getText().trim();
 				List<Unit> units =  Facturama.facturama.Catalogs().Units( key );
 				if( units.size() != 0 ) {
@@ -201,7 +223,54 @@ public class EditProductController  implements Initializable{
 	public void saveData() {
 		
 	}
+	
+	public void initializeTaxesIva() {
+		
+		
+		this.createTax( "IVA" , false, 0.16, false, cbxIva );
+		this.createTax( "IVA" , false, 0.08, false, cbxIva );
+		this.createTax( "IVA" , false, 0.00, false, cbxIva );
+	    
+	}
 
-
+	private void initializeTaxesIvaRet() {
+		
+		this.createTax( "IVA Ret" , false, 0.16, true, cbxIvaRet );
+		this.createTax( "IVA Ret" , false, 0.106668, true, cbxIvaRet );
+		this.createTax( "IVA Ret" , false, 0.106667, true, cbxIvaRet );
+		this.createTax( "IVA Ret" , false, 0.106666, true, cbxIvaRet );
+		this.createTax( "IVA Ret" , false, 0.1067, true, cbxIvaRet );
+		this.createTax( "IVA Ret" , false, 0.1066, true, cbxIvaRet );
+		this.createTax( "IVA Ret" , false, 0.106, true, cbxIvaRet );
+		this.createTax( "IVA Ret" , false, 0.10, true, cbxIvaRet );
+		this.createTax( "IVA Ret" , false, 0.08, true, cbxIvaRet );
+		this.createTax( "IVA Ret" , false, 0.06, true, cbxIvaRet );
+		this.createTax( "IVA Ret" , false, 0.05, true, cbxIvaRet );
+		this.createTax( "IVA Ret" , false, 0.053333, true, cbxIvaRet );
+		this.createTax( "IVA Ret" , false, 0.04, true, cbxIvaRet );
+		this.createTax( "IVA Ret" , false, 0.03, true, cbxIvaRet );
+		this.createTax( "IVA Ret" , false, 0.025, true, cbxIvaRet );
+		this.createTax( "IVA Ret" , false, 0.02, true, cbxIvaRet );
+		this.createTax( "IVA Ret" , false, 0.007, true, cbxIvaRet );
+		this.createTax( "IVA Ret" , false, 0.005, true, cbxIvaRet );
+		this.createTax( "IVA Ret" , false, 0.002, true, cbxIvaRet );
+		this.createTax( "IVA Ret" , false, 0.000, true, cbxIvaRet );
+	    
+	}
+	
+	public void initializeTaxIsr() {
+		
+	}
+	
+	public void createTax( String name, boolean quota, double rate, boolean retention, ComboBox<ProductTax> comboBox ) {
+		
+		ProductTax tax = new ProductTax();	    
+	    tax.setName( name );
+	    tax.setIsQuota( quota );
+	    tax.setRate( rate );
+	    tax.setIsRetention( retention );
+	    comboBox.getItems().add( tax );
+	    
+	}
 
 }
