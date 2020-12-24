@@ -37,11 +37,11 @@
                                        </styleClass></Label>
                                     <HBox spacing="15.0">
                                        <children>
-                                          <Button focusTraversable="false" mnemonicParsing="false" onAction="#cancelViewProduct" styleClass="button-cancel" text="Cancelar">
+                                          <Button focusTraversable="false" mnemonicParsing="false" onMouseClicked="#cancelViewProduct" styleClass="button-cancel" text="Cancelar">
                                              <graphic>
                                                 <MaterialDesignIconView glyphName="CLOSE" size="16" styleClass="glyph" />
                                              </graphic></Button>
-                                          <Button fx:id="btnConfirmar" focusTraversable="false" graphicTextGap="6.0" mnemonicParsing="false" onAction="#saveData" styleClass="button-primary" text="Confirmar">
+                                          <Button fx:id="btnConfirmar" focusTraversable="false" graphicTextGap="6.0" mnemonicParsing="false" onMouseClicked="#saveProduct" styleClass="button-primary" text="Confirmar">
                                              <graphic>
                                                 <MaterialDesignIconView glyphName="CHECK" size="16" styleClass="glyph" />
                                              </graphic></Button>
@@ -181,7 +181,12 @@
                                           <String fx:value="spacing-1" />
                                        </styleClass>
                                     </HBox>
-                                    <ComboBox fx:id="cbxIeps" prefWidth="170.0" styleClass="combobox" />
+                                    <StackPane styleClass="alignment-center-left">
+                                       <children>
+                                          <ComboBox fx:id="cbxIeps" prefWidth="170.0" styleClass="combobox" />
+                                          <TextField fx:id="txtIeps" maxWidth="170.0" styleClass="text-field" visible="false" />
+                                       </children>
+                                    </StackPane>
                                  </children>
                                  <styleClass>
                                     <String fx:value="alignment-center-left" />
@@ -216,9 +221,9 @@
                                     <String fx:value="spacing-min" />
                                  </styleClass>
                                  <children>
-                                    <BorderPane styleClass="hbox-search">
+                                    <BorderPane maxHeight="27.0" prefHeight="27.0" styleClass="border-pane-icon">
                                        <center>
-                                          <TextField fx:id="txtKeywordProduct" promptText="Ingrese una palabara clave" styleClass="textfield-search" BorderPane.alignment="CENTER" />
+                                          <TextField fx:id="txtKeywordProduct" promptText="Ingrese una palabara clave" styleClass="text-field-icon" BorderPane.alignment="CENTER" />
                                        </center>
                                        <right>
                                           <FontAwesomeIconView fx:id="iconWarning" glyphName="EXCLAMATION_CIRCLE" visible="false" BorderPane.alignment="CENTER">
@@ -243,9 +248,9 @@
                               </VBox>
                               <VBox GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <children>
-                                    <BorderPane styleClass="hbox-search">
+                                    <BorderPane styleClass="border-pane-icon">
                                        <center>
-                                          <TextField fx:id="txtKeywordUnit" promptText="Ingrese una palabra clave" styleClass="textfield-search" BorderPane.alignment="CENTER" />
+                                          <TextField fx:id="txtKeywordUnit" promptText="Ingrese una palabra clave" styleClass="text-field-icon" BorderPane.alignment="CENTER" />
                                        </center>
                                        <right>
                                           <FontAwesomeIconView fx:id="iconWarningUnit" glyphName="EXCLAMATION_CIRCLE" visible="false" BorderPane.alignment="CENTER">

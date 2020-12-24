@@ -1,15 +1,18 @@
 package com.timbrado.center_timbrado.controllers;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import com.Facturama.sdk_java.Models.Address;
-import com.Facturama.sdk_java.Models.Client;
 import com.Facturama.sdk_java.Models.Product;
+import com.Facturama.sdk_java.Models.Exception.FacturamaException;
 import com.Facturama.sdk_java.Models.Request.ProductTax;
 import com.Facturama.sdk_java.Models.Response.Catalogs.Cfdi.ProductServices;
 import com.Facturama.sdk_java.Models.Response.Catalogs.Cfdi.Unit;
+import com.timbrado.center_timbrado.exceptions.EmptyComboBoxSelectionException;
+import com.timbrado.center_timbrado.exceptions.EmptyFieldException;
 import com.timbrado.center_timbrado.services.Facturama;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -54,12 +57,14 @@ public class EditProductController  implements Initializable{
 	public TextField txtKeywordProduct;
 	@FXML
 	public TextField txtKeywordUnit;
+	@FXML
+	public TextField txtIeps;
 	//--TextArea--
 	@FXML 
 	public TextArea txtDescription;
 	
 	//--Buttons--
-	@FXML
+	@FXML 
 	public Button btnConfirmar;
 	
 	//--Label--
@@ -82,7 +87,7 @@ public class EditProductController  implements Initializable{
 	public RadioButton rdbtnCuota;
 	
 	
-	//-------------------Object client for update data-------------------
+	//-------------------Object Product for update data-------------------
 	
 	public Product product;
 		
@@ -96,7 +101,7 @@ public class EditProductController  implements Initializable{
 		return this.product;
 	}
 
-	//---------Show client information to Update-------//
+	//---------Show Product information to Update-------//
 	
 	protected void loadData() {
 		
@@ -128,14 +133,66 @@ public class EditProductController  implements Initializable{
 	}
 	
 	//-------Save product information----//
-	@FXML		
-	public void saveData() {
-//		Product p = new Product();
-//		p.setName( this.txtName.getText());
+
+	@FXML
+	public void saveProduct() throws IOException, FacturamaException, Exception {
+		if( this.product == null ) {
+			
+			this.product = new Product();
+			saveDataProduct();
+			Facturama.facturama.Products().Create(this.product);
+		}
+		else {
+			saveDataProduct();
+			Facturama.facturama.Products().Update( product, product.getId() );
+		}
+		closeWindow();	
 	}
 	
 		
 	
+	private void saveDataProduct() {
+		try {
+			checkIfFieldsIsNotEmpty();	
+			checkifComboBoxHasASelection();
+			//--Add General Data--
+			this.product.setName(txtName.getText().trim() );
+			this.product.setIdentificationNumber( txtId.getText().trim().toUpperCase() );
+
+			this.product.setDescription( txtDescription.getText().trim());
+			this.product.setPrice( Double.parseDouble( txtPrice.getText().trim() ) );
+			
+			if( !txtCPredial.getText().isEmpty() )
+			this.product.setCuentaPredial( txtCPredial.getText().trim() );
+			
+			//--Add Codes--
+			this.product.setCodeProdServ( this.cbxCProduct.getSelectionModel().getSelectedItem().getValue() );
+			this.product.setUnit( this.cbxUnit.getSelectionModel().getSelectedItem().getName() );
+			this.product.setUnitCode( this.cbxUnit.getSelectionModel().getSelectedItem().getValue() );
+			
+			
+			//--Add Taxes--
+			List< ProductTax > taxes = new ArrayList<ProductTax>();
+			if( this.cbxIva.getSelectionModel().getSelectedItem() != null )
+				taxes.add( this.cbxIva.getSelectionModel().getSelectedItem() );
+			if( this.cbxIvaRet.getSelectionModel().getSelectedItem() != null )
+				taxes.add( this.cbxIvaRet.getSelectionModel().getSelectedItem() );
+			if( this.cbxIsr.getSelectionModel().getSelectedItem() != null )
+				taxes.add( this.cbxIsr.getSelectionModel().getSelectedItem() );
+			//Checar ieps si se usa por tasa o cuota
+			
+			this.product.setTaxes( taxes );			
+	        
+		}catch(EmptyFieldException e ) {			
+			warning.setText( e.getMessage() );			
+		} catch( NumberFormatException e) {				
+			warning.setText( e.getMessage() );
+		} catch (EmptyComboBoxSelectionException e) {
+			warning.setText( e.getMessage() );
+		}
+		
+	}
+
 	//--Initialize Methods--
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -173,6 +230,7 @@ public class EditProductController  implements Initializable{
 			}
 			@Override
 			public Unit fromString( String string ) {
+				
 				return null;
 			}
 
@@ -284,7 +342,7 @@ public class EditProductController  implements Initializable{
 		
 	}
 	
-	
+	//-----------------Initialize Taxes Methods----------------------
 	public void initializeTaxesIva() {
 		
 		
@@ -361,16 +419,18 @@ public class EditProductController  implements Initializable{
 		
 		//Cuando se selecciona el RadioButton de Tasa
 		this.rdbtnTasa.setOnMouseClicked(event -> {
+
+			this.cbxIeps.setVisible( true );
+			this.txtIeps.setVisible( false );
 			initializateTaxesIeps();
+
 		}
 		);
 
 		//Cuando se selecciona el RadioButton de Cuota
 		this.rdbtnCuota.setOnMouseClicked(event -> {
-			//Código para quitar el Combobox y poner TextField
-			System.out.println("Cambiamos el combobox por un TextField pero no sé cómo :D");
-			cbxIeps.getItems().clear();
-			
+			this.cbxIeps.setVisible( false );
+			this.txtIeps.setVisible( true );
 		}
 		);
 	}
@@ -386,5 +446,30 @@ public class EditProductController  implements Initializable{
 	    comboBox.getItems().add( tax );
 	    
 	}
+	
+	//-----------------------------Exception Methods-------------------------//
+	
+		public void checkIfFieldsIsNotEmpty()throws EmptyFieldException{
+			
+			if( this.txtName.getText().trim().isEmpty() )
+				throw new EmptyFieldException( "El campo Nombre no puede estar vacío" );
+			if( this.txtId.getText().trim().isEmpty() )
+				throw new EmptyFieldException( "El campo No. de identificación no puede estar vacío" );
+			if( this.txtDescription.getText().trim().isEmpty() )
+				throw new EmptyFieldException( "El campo Descripción no puede estar vacío" );
+			if( this.txtPrice.getText().trim().isEmpty() )
+				throw new EmptyFieldException( "El campo Precio no puede estar vacío" );
+			//if( this.txtCPredial.getText().trim().isEmpty() )
+				//throw new EmptyFieldException( "El campo Cuenta Predial no puede estar vacío" );
+			
+		}
+		
+		public void checkifComboBoxHasASelection()throws EmptyComboBoxSelectionException {
+			if( this.cbxCProduct.getSelectionModel().getSelectedItem() == null )
+				throw new EmptyComboBoxSelectionException( "Seleccione un código de producto" );
+			if( this.cbxUnit.getSelectionModel().getSelectedItem() == null )
+				throw new EmptyComboBoxSelectionException( "Seleccione la unidad correspondiente" );
+			
+		}
 
 }

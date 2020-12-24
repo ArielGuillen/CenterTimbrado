@@ -8,5 +8,31 @@
 	-fx-text-fill: #333;
 	-fx-font-family: "DM Sans Medium";
 	-fx-font-size: 1.1em;
-	/*-fx-effect: dropshadow( gaussian, #00000022, 12,0, 0, 5);*/
+}
+.text-field-icon{	
+	-fx-background-color: #ddd;
+	-fx-background-radius: 6px;
+	-fx-prompt-text-fill: #888;
+}
+.text-field-icon:focused{	
+	-fx-background-color: #ddd;
+	-fx-background-radius: 6px;
+	-fx-prompt-text-fill: #888;
+}
+
+.text-field:hover {
+	-fx-border-color: #eee;
+	-fx-background-color: #eee;
+}
+
+.text-field:focused {
+	-fx-border-color: -fx-primary-light;
+	-fx-background-color: white;
+}
+
+.textfield-search{
+	-fx-background-color: white;
+	-fx-border-color: white;
+	-fx-background-radius: 0.4em;		
+	-fx-border-radius: 0.4em;
 }
