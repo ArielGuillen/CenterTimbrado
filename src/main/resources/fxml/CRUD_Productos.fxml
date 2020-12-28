@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.timbrado.center_timbrado.controllers.CRUDClientController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.timbrado.center_timbrado.controllers.CRUDProductosController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <left>
@@ -76,14 +76,13 @@
          <center>
             <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <center>
-                  <TableView fx:id="tabClients" styleClass="padding-x-2" BorderPane.alignment="CENTER">
+                  <TableView fx:id="tabProductos" styleClass="padding-x-2" BorderPane.alignment="CENTER">
                      <columns>
-                        <TableColumn fx:id="colRFC" prefWidth="75.0" text="Clave Producto" />
-                        <TableColumn fx:id="colName" prefWidth="75.0" text="No. Identificación" />
-                        <TableColumn fx:id="colMail" prefWidth="75.0" text="Nombre" />
-                        <TableColumn fx:id="colActions" prefWidth="75.0" text="Descripción" />
-                        <TableColumn prefWidth="75.0" text="Precio" />
-                        <TableColumn prefWidth="75.0" text="Acciones" />
+                        <TableColumn fx:id="colClave" prefWidth="75.0" text="Clave Producto" />
+                        <TableColumn fx:id="colNumIdent" prefWidth="75.0" text="No. Identificación" />
+                        <TableColumn fx:id="colNombre" prefWidth="75.0" text="Nombre" />
+                        <TableColumn fx:id="colPrecio"  prefWidth="75.0" text="Precio" />
+                        <TableColumn fx:id="colActions"  prefWidth="75.0" text="Acciones" />
                      </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -125,7 +124,7 @@
                         </HBox>
                         <HBox GridPane.columnIndex="3">
                            <children>
-                              <HBox onMouseClicked="#newClient">
+                              <HBox onMouseClicked="#newProduct">
                                  <children>
                                     <FontAwesomeIconView fill="WHITE" glyphName="PLUS">
                                        <styleClass>
