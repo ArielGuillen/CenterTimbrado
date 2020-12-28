@@ -1,0 +1,68 @@
+.table-view{
+	-fx-background-color: -fx-primary-light;
+	-fx-background-radius: .8em;
+	-fx-font-family: "Poppins Medium";
+	
+}
+
+.table-view .column-header-background{ 
+  -fx-background-color: -fx-primary;
+  -fx-background-radius: .8em .8em 0 0;
+}
+
+.table-view .column-header {
+	-fx-background-color: transparent;
+	}
+
+.table-view .table-cell{
+    -fx-border-color: transparent;
+}
+
+.table-view .column-header .label{
+    -fx-text-fill: whitesmoke;
+    -fx-font-family:  "Poppins SemiBold";
+    -fx-alignment: center;
+}
+
+.table-view .column-header-background .filler {
+     -fx-background-color: transparent;
+}
+
+
+.table-view:row-selection .table-row-cell:filled:hover { 
+    -fx-background-color: #eee;
+}
+
+.table-view:row-selection .table-row-cell:filled:selected { 
+    -fx-background-color: -fx-primary-light;
+}
+
+.table-view .scroll-bar .increment-button, 
+.table-view .scroll-bar .decrement-button, 
+.table-view .scroll-barl .increment-arrow, 
+.table-view .scroll-bar .decrement-arrow { 
+    -fx-background-color: -fx-primary;
+    -fx-background-radius: .8em;
+    -fx-opacity: 0;
+} 
+
+.table-view *.scroll-bar *.track {
+	-fx-oppacity: 0;
+}
+
+.table-view .scroll-bar {
+    -fx-padding: -5;
+}
+
+.scroll-bar { 
+    -fx-opacity: .7;
+} 
+
+.thumb {
+	-fx-background-color: -fx-primary;
+}
+
+.thumb:hover,
+.thumb:pressed { 
+    -fx-background-color: -fx-primary-dark;
+} 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
@@ -34,8 +35,14 @@
                                        </styleClass></Label>
                                     <HBox>
                                        <children>
-                                          <Button focusTraversable="false" mnemonicParsing="false" onAction="#cancelViewClient" styleClass="button-cancel" text="Cancelar" />
-                                          <Button fx:id="btnConfirmar" focusTraversable="false" mnemonicParsing="false" onAction="#saveData" styleClass="button-primary" text="Confirmar" />
+                                          <Button focusTraversable="false" mnemonicParsing="false" onAction="#cancelViewClient" styleClass="button-cancel" text="Cancelar">
+                                             <graphic>
+                                                <MaterialDesignIconView glyphName="CLOSE" size="16" styleClass="glyph" />
+                                             </graphic></Button>
+                                          <Button fx:id="btnConfirmar" focusTraversable="false" mnemonicParsing="false" onAction="#saveData" styleClass="button-primary" text="Confirmar">
+                                             <graphic>
+                                                <MaterialDesignIconView glyphName="CHECK" size="16" styleClass="glyph" />
+                                             </graphic></Button>
                                        </children>
                                        <styleClass>
                                           <String fx:value="alignment-center-center" />
@@ -78,28 +85,20 @@
                                     <TextField fx:id="txtEmail" styleClass="textfield" />
                                  </children>
                               </HBox>
-                              <HBox GridPane.rowIndex="1">
+                              <HBox styleClass="alignment-center-right" GridPane.rowIndex="1">
                                  <children>
                                     <Label focusTraversable="false" styleClass="normal-header" text="Nombre" />
                                  </children>
-                                 <styleClass>
-                                    <String fx:value="hbox" />
-                                    <String fx:value="alignment-center-right" />
-                                 </styleClass>
                               </HBox>
                               <HBox styleClass="alignment-center-right" GridPane.rowIndex="2">
                                  <children>
                                     <Label focusTraversable="false" styleClass="normal-header" text="RFC" />
                                  </children>
                               </HBox>
-                              <HBox GridPane.columnIndex="2" GridPane.rowIndex="2">
+                              <HBox styleClass="alignment-center-right" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                  <children>
                                     <Label focusTraversable="false" styleClass="normal-header" text="Email" />
                                  </children>
-                                 <styleClass>
-                                    <String fx:value="hbox" />
-                                    <String fx:value="alignment-center-right" />
-                                 </styleClass>
                               </HBox>
                               <Label text="Datos Generales" GridPane.columnSpan="2">
                                  <styleClass>
@@ -112,28 +111,20 @@
                                     <String fx:value="big-header" />
                                  </styleClass>
                               </Label>
-                              <HBox GridPane.rowIndex="4">
+                              <HBox styleClass="alignment-center-right" GridPane.rowIndex="4">
                                  <children>
                                     <Label styleClass="normal-header" text="País" />
                                  </children>
-                                 <styleClass>
-                                    <String fx:value="hbox" />
-                                    <String fx:value="alignment-center-right" />
-                                 </styleClass>
                               </HBox>
                               <HBox styleClass="hbox" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <children>
                                     <TextField fx:id="txtCountry" styleClass="textfield" />
                                  </children>
                               </HBox>
-                              <HBox GridPane.columnIndex="2" GridPane.rowIndex="4">
+                              <HBox styleClass="alignment-center-right" GridPane.columnIndex="2" GridPane.rowIndex="4">
                                  <children>
                                     <Label styleClass="normal-header" text="Estado" />
                                  </children>
-                                 <styleClass>
-                                    <String fx:value="hbox" />
-                                    <String fx:value="alignment-center-right" />
-                                 </styleClass>
                               </HBox>
                               <HBox styleClass="hbox" GridPane.columnIndex="3" GridPane.rowIndex="4">
                                  <children>
@@ -165,14 +156,10 @@
                                     <Label styleClass="normal-header" text="CP" />
                                  </children>
                               </HBox>
-                              <HBox GridPane.columnIndex="2" GridPane.rowIndex="6">
+                              <HBox styleClass="alignment-center-right" GridPane.columnIndex="2" GridPane.rowIndex="6">
                                  <children>
                                     <Label prefHeight="16.0" prefWidth="45.0" styleClass="normal-header" text="No. Ext" />
                                  </children>
-                                 <styleClass>
-                                    <String fx:value="hbox" />
-                                    <String fx:value="alignment-center-right" />
-                                 </styleClass>
                               </HBox>
                               <HBox styleClass="hbox" GridPane.columnIndex="3" GridPane.rowIndex="5">
                                  <children>
@@ -189,34 +176,22 @@
                                     <TextField fx:id="txtStreet" styleClass="textfield" />
                                  </children>
                               </HBox>
-                              <HBox GridPane.rowIndex="6">
+                              <HBox styleClass="alignment-center-right" GridPane.rowIndex="6">
                                  <children>
                                     <Label styleClass="normal-header" text="Calle" />
                                  </children>
-                                 <styleClass>
-                                    <String fx:value="hbox" />
-                                    <String fx:value="alignment-center-right" />
-                                 </styleClass>
                               </HBox>
-                              <HBox GridPane.columnIndex="4" GridPane.rowIndex="6">
+                              <HBox styleClass="alignment-center-right" GridPane.columnIndex="4" GridPane.rowIndex="6">
                                  <children>
                                     <Label styleClass="normal-header" text="No. Int" />
                                  </children>
-                                 <styleClass>
-                                    <String fx:value="hbox" />
-                                    <String fx:value="alignment-center-right" />
-                                 </styleClass>
                               </HBox>
                               <HBox styleClass="hbox" GridPane.columnIndex="5" GridPane.rowIndex="6">
                                  <children>
                                     <TextField fx:id="txtInteriorNumber" styleClass="textfield" />
                                  </children>
                               </HBox>
-                              <HBox GridPane.rowIndex="7">
-                                 <styleClass>
-                                    <String fx:value="hbox" />
-                                    <String fx:value="alignment-center-right" />
-                                 </styleClass>
+                              <HBox styleClass="alignment-center-right" GridPane.rowIndex="7">
                                  <children>
                                     <Label styleClass="normal-header" text="Colonia" />
                                  </children>
@@ -231,14 +206,10 @@
                                     <ComboBox fx:id="cbxUInvoice" onMouseClicked="#loadUsesCfdi" prefWidth="150.0" styleClass="combobox" />
                                  </children>
                               </HBox>
-                              <HBox GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <HBox styleClass="alignment-center-right" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <children>
                                     <Label styleClass="normal-header" text="Uso" />
                                  </children>
-                                 <styleClass>
-                                    <String fx:value="hbox" />
-                                    <String fx:value="alignment-center-right" />
-                                 </styleClass>
                               </HBox>
                               <VBox minHeight="25.0" prefHeight="25.0" prefWidth="146.0" styleClass="alignment-center-left" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <children>
