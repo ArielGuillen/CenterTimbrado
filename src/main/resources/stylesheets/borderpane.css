@@ -9,3 +9,27 @@
 	-fx-border-radius: 0.5em;
 	-fx-effect: dropshadow( gaussian, #00000033, 12,0, 0, 5);
 }
+.border-pane-icon {
+	-fx-border-width: 2.5px;
+	-fx-border-color: #ddd;
+	-fx-border-radius: 6px;
+	-fx-background-color: #ddd;
+	-fx-background-radius: 6px;
+	-fx-prompt-text-fill: #888;
+	-fx-text-fill: #333;
+	-fx-font-family: "DM Sans Medium";
+	-fx-font-size: 1.1em;
+}
+
+.border-pane-icon:focused {
+	-fx-border-color: -fx-primary-light;
+	-fx-background-color: white;
+}
+.border-pane-icon:hover{
+	-fx-border-color: #eee;
+	-fx-background-color: #eee;
+}
+.border-pane-icon:hover .text-field-icon{
+	-fx-border-color: #eee;
+	-fx-background-color: #eee;
+}

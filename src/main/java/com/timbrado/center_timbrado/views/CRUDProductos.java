@@ -18,7 +18,7 @@ public class CRUDProductos extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		try{
-			Parent parent = FXMLLoader.load(this.getClass().getResource("/fxml/CRUD_Productos.fxml"));
+			Parent parent = FXMLLoader.load(this.getClass().getResource("/fxml/CRUD_Products.fxml"));
 			Scene scene = new Scene( parent );
 			primaryStage.setScene( scene );
 			primaryStage.setTitle("CRUD Productos");

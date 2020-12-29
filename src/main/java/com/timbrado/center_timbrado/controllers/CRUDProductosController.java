@@ -10,6 +10,7 @@ import com.timbrado.center_timbrado.services.Facturama;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -22,7 +23,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
-public class CRUDProductosController {
+public class CRUDProductosController implements Initializable{
 	
 	@FXML
 	public TableView<Product> tabProductos;
@@ -55,71 +56,78 @@ public class CRUDProductosController {
 	}
 	
 	public void initializeTableView() {
-		colClave.setCellValueFactory(new PropertyValueFactory<Product, String>("clave"));
-		colNumIdent.setCellValueFactory(new PropertyValueFactory<Product, String>("Num_identificacion"));
-		colNombre.setCellValueFactory(new PropertyValueFactory<Product, String>("nombre"));
-		colPrecio.setCellValueFactory(new PropertyValueFactory<Product, Float>("precio"));
-		Callback<TableColumn <Product, String>, TableCell<Product, String>> 
-		cellFactory = new Callback<TableColumn<Product, String>, TableCell<Product, String> >() {
-	      @Override 
-	      public TableCell call(final TableColumn<Product, String> param) {
-	       final TableCell<Product, String> cell = new TableCell<Product, String>() { 
-
-	        Button btnDelete = new Button("Eliminar");
-	        Button btnEdit = new Button("Editar");
-	        HBox pane = new HBox(btnDelete, btnEdit);
-	        
-	        @Override 
-	        public void updateItem(String item, boolean empty) {
-	        	btnDelete.setStyle("-fx-background-color: #8F2626;");
-	        	btnEdit.setStyle("-fx-background-color: #396DAC;");
-	        	pane.setStyle("-fx-alignment: center; -fx-spacing: 15px;");
-	         super.updateItem(item, empty); 
-	         if (empty) { 
-	          setGraphic(null); 
-	          setText(null); 
-	         } else {
-	          btnDelete.setOnAction(event -> { 
-	        	  Product product = getTableView().getItems().get(getIndex());
-	        	  try {
-					deleteProduct(product);
-					
-					tabProductos.getItems().clear();
-					addProduct();
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-					System.out.println("Excepción de borrar Producto");
-				}
-	        	  System.out.println("Prueba Botón borrar Producto: " + product.getName() ); 
-	          }); 
-	          
-	          btnEdit.setOnAction(event -> { 
-	        	  Product product = getTableView().getItems().get(getIndex());
-	        	  try {
-	        		  editProduct(product);
-	        		  
-	        		  tabProductos.getItems().clear();
-	        		  addProduct();
-	        		  
-	        	  } catch (Exception e) {
-	        		  e.printStackTrace();
-	        		  System.out.println("Excepción de editar Producto");
-	        	  }
-	        	  System.out.println("Prueba Botón Editar Producto: " + product.getName() ); 
-	          }); 
-	          
-	          setGraphic(pane);
-	          setText(null); 
-	         } 
-	        } 
-	       };
-	       return cell; 
-	      } 
-	     };
-	     colActions.setCellFactory(cellFactory); 
+		colClave.setCellValueFactory(new PropertyValueFactory<Product, String>("CodeProdServ"));
+		colNumIdent.setCellValueFactory(new PropertyValueFactory<Product, String>("IdentificationNumber"));
+		colNombre.setCellValueFactory(new PropertyValueFactory<Product, String>("Name"));
+		colPrecio.setCellValueFactory(new PropertyValueFactory<Product, Float>("Price"));
+		
+		createCellFactoryActions();
+		 
 	}
 	
+	private void createCellFactoryActions() {
+		Callback<TableColumn <Product, String>, TableCell<Product, String>> 
+		cellFactory = new Callback<TableColumn<Product, String>, TableCell<Product, String> >() {
+		      @Override 
+		      public TableCell call(final TableColumn<Product, String> param) {
+		       final TableCell<Product, String> cell = new TableCell<Product, String>() { 
+
+		        Button btnDelete = new Button("Eliminar");
+		        Button btnEdit = new Button("Editar");
+		        HBox pane = new HBox(btnDelete, btnEdit);
+		        
+		        @Override 
+		        public void updateItem(String item, boolean empty) {
+		        	btnDelete.setStyle("-fx-background-color: #8F2626; -fx-text-fill: white;");
+		        	btnEdit.setStyle("-fx-background-color: #396DAC; -fx-text-fill: white;");
+		        	pane.setStyle("-fx-alignment: center; -fx-spacing: 15px;");
+		         super.updateItem(item, empty); 
+		         if (empty) { 
+		          setGraphic(null); 
+		          setText(null); 
+		         } else {
+		          btnDelete.setOnAction(event -> { 
+		        	  Product product = getTableView().getItems().get(getIndex());
+		        	  try {
+						deleteProduct(product);
+						
+						tabProductos.getItems().clear();
+						addProduct();
+						
+					} catch (Exception e) {
+						e.printStackTrace();
+						System.out.println("Excepción de borrar Producto");
+					}
+		        	  System.out.println("Prueba Botón borrar Producto: " + product.getName() ); 
+		          }); 
+		          
+		          btnEdit.setOnAction(event -> { 
+		        	  Product product = getTableView().getItems().get(getIndex());
+		        	  try {
+		        		  editProduct(product);
+		        		  
+		        		  tabProductos.getItems().clear();
+		        		  addProduct();
+		        		  
+		        	  } catch (Exception e) {
+		        		  e.printStackTrace();
+		        		  System.out.println("Excepción de editar Producto");
+		        	  }
+		        	  System.out.println("Prueba Botón Editar Producto: " + product.getName() ); 
+		          }); 
+		          
+		          setGraphic(pane);
+		          setText(null); 
+		         } 
+		        } 
+		       };
+		       return cell; 
+		      } 
+		     };
+		     colActions.setCellFactory(cellFactory);
+		
+	}
+
 	public void addProduct() throws IOException, FacturamaException, Exception {
 		for(Product product: Facturama.facturama.Products().List()) {
 			tabProductos.getItems().add(product);

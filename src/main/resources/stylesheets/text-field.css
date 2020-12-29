@@ -9,16 +9,6 @@
 	-fx-font-family: "DM Sans Medium";
 	-fx-font-size: 1.1em;
 }
-.text-field-icon{	
-	-fx-background-color: #ddd;
-	-fx-background-radius: 6px;
-	-fx-prompt-text-fill: #888;
-}
-.text-field-icon:focused{	
-	-fx-background-color: #ddd;
-	-fx-background-radius: 6px;
-	-fx-prompt-text-fill: #888;
-}
 
 .text-field:hover {
 	-fx-border-color: #eee;
@@ -35,4 +25,23 @@
 	-fx-border-color: white;
 	-fx-background-radius: 0.4em;		
 	-fx-border-radius: 0.4em;
+}
+
+
+.text-field-icon{	
+	-fx-background-color: #ddd;
+	-fx-background-radius: 6px;
+	-fx-prompt-text-fill: #888;
+}
+.text-field-icon:focused{	
+	-fx-background-color: #ddd;
+	-fx-border-color: #ddd;
+}
+.text-field-icon:hover {	
+	-fx-border-color: #eee;
+	-fx-background-color: #eee;
+}
+.text-field-icon:hover{	
+	-fx-border-color: #eee;
+	-fx-background-color: #eee;
 }
