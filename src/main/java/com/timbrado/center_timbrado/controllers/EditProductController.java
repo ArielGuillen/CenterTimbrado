@@ -144,7 +144,7 @@ public class EditProductController  implements Initializable{
 		}
 		else {
 			saveDataProduct();
-			Facturama.facturama.Products().Update( product, product.getId() );
+			Facturama.facturama.Products().Update( this.product, this.product.getId() );
 		}
 		closeWindow();	
 	}
@@ -153,13 +153,14 @@ public class EditProductController  implements Initializable{
 	
 	private void saveDataProduct() {
 		try {
+			this.warning.setText("");
 			checkIfFieldsIsNotEmpty();	
 			checkifComboBoxHasASelection();
 			//--Add General Data--
 			this.product.setName(txtName.getText().trim() );
 			this.product.setIdentificationNumber( txtId.getText().trim().toUpperCase() );
 
-			this.product.setDescription( txtDescription.getText().trim());
+			this.product.setDescription( txtDescription.getText().trim() );
 			this.product.setPrice( Double.parseDouble( txtPrice.getText().trim() ) );
 			
 			if( !txtCPredial.getText().isEmpty() )
