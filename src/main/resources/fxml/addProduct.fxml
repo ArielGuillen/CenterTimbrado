@@ -4,7 +4,6 @@
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import java.lang.String?>
 <?import java.net.URL?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -38,11 +37,11 @@
                                        </styleClass></Label>
                                     <HBox spacing="15.0" styleClass="alignment-center-center">
                                        <children>
-                                          <Button focusTraversable="false" mnemonicParsing="false" onAction="#cancelViewProduct" text="Cancelar">
+                                          <Button focusTraversable="false" mnemonicParsing="false" onAction="#cancelViewProduct" styleClass="button-cancel" text="Cancelar">
                                              <graphic>
                                                 <MaterialDesignIconView glyphName="CLOSE" size="16" styleClass="glyph" />
                                              </graphic></Button>
-                                          <Button fx:id="btnConfirmar" focusTraversable="false" graphicTextGap="6.0" mnemonicParsing="false" onAction="#saveData" text="Confirmar">
+                                          <Button fx:id="btnConfirmar" focusTraversable="false" graphicTextGap="6.0" mnemonicParsing="false" onAction="#saveData" styleClass="button-primary" text="Confirmar">
                                              <graphic>
                                                 <MaterialDesignIconView glyphName="CHECK" size="16" styleClass="glyph" />
                                              </graphic></Button>
@@ -74,7 +73,7 @@
                            <children>
                               <VBox GridPane.rowIndex="1">
                                  <children>
-                                    <Label focusTraversable="false" text="Nombre Interno" />
+                                    <Label focusTraversable="false" styleClass="normal-header" text="Nombre Interno" />
                                     <TextField fx:id="txtName" styleClass="textfield" />
                                  </children>
                                  <styleClass>
@@ -85,7 +84,7 @@
                               </VBox>
                               <VBox GridPane.rowIndex="2">
                                  <children>
-                                    <Label focusTraversable="false" text="No Identificación" />
+                                    <Label focusTraversable="false" styleClass="normal-header" text="No Identificación" />
                                     <TextField fx:id="txtId" styleClass="textfield" />
                                  </children>
                                  <styleClass>
@@ -96,7 +95,7 @@
                               </VBox>
                               <VBox GridPane.rowIndex="3">
                                  <children>
-                                    <Label text="Descripción" />
+                                    <Label styleClass="normal-header" text="Descripción" />
                                     <TextArea fx:id="txtDescription" prefHeight="57.0" prefWidth="157.0" />
                                  </children>
                                  <styleClass>
@@ -107,7 +106,7 @@
                               </VBox>
                               <VBox GridPane.rowIndex="4">
                                  <children>
-                                    <Label text="Precio Unitario" />
+                                    <Label styleClass="normal-header" text="Precio Unitario" />
                                     <TextField fx:id="txtPrice" styleClass="textfield" />
                                  </children>
                                  <styleClass>
@@ -118,7 +117,7 @@
                               </VBox>
                               <VBox GridPane.rowIndex="5">
                                  <children>
-                                    <Label focusTraversable="false" text="Cuenta Predial" />
+                                    <Label focusTraversable="false" styleClass="normal-header" text="Cuenta Predial" />
                                     <TextField fx:id="txtCPredial" styleClass="textfield" />
                                  </children>
                                  <styleClass>
@@ -129,7 +128,7 @@
                               </VBox>
                               <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <children>
-                                    <Label text="Clave de producto ó servicio" />
+                                    <Label styleClass="normal-header" text="Clave de producto ó servicio" />
                                     <ComboBox fx:id="cbxCProduct" maxWidth="1.7976931348623157E308" onMouseClicked="#loadCodes" styleClass="combobox" />
                                  </children>
                                  <styleClass>
@@ -140,7 +139,7 @@
                               </VBox>
                               <VBox GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <children>
-                                    <Label text="Unidad" />
+                                    <Label styleClass="normal-header" text="Unidad" />
                                     <ComboBox fx:id="cbxUnit" maxWidth="1.7976931348623157E308" onMouseClicked="#loadUnits" styleClass="combobox" />
                                  </children>
                                  <styleClass>
@@ -151,12 +150,12 @@
                               </VBox>
                               <VBox styleClass="padding-1" GridPane.columnSpan="2" GridPane.rowIndex="7">
                                  <children>
-                                    <Label styleClass="header" text="Impuestos (Selecciona los necesarios)" wrapText="true" />
+                                    <Label styleClass="big-header" text="Impuestos (Selecciona los necesarios)" />
                                  </children>
                               </VBox>
                               <VBox GridPane.columnIndex="1" GridPane.rowIndex="8">
                                  <children>
-                                    <Label text="IVA RET" />
+                                    <Label styleClass="normal-header" text="IVA RET" />
                                     <ComboBox fx:id="cbxIvaRet" prefWidth="170.0" styleClass="combobox" />
                                  </children>
                                  <styleClass>
@@ -169,7 +168,7 @@
                                  <children>
                                     <HBox>
                                        <children>
-                                          <Label styleClass="padding-r-1" text="IEPS" />
+                                          <Label styleClass="normal-header" text="IEPS" />
                                           <RadioButton mnemonicParsing="false" text="Tasa" />
                                           <RadioButton mnemonicParsing="false" text="Cuota" />
                                        </children>
@@ -187,7 +186,7 @@
                               </VBox>
                               <VBox GridPane.columnIndex="1" GridPane.rowIndex="9">
                                  <children>
-                                    <Label styleClass="padding-y-1" text="ISR" />
+                                    <Label styleClass="normal-header" text="ISR" />
                                     <ComboBox fx:id="cbxIsr" prefWidth="170.0" styleClass="combobox" />
                                  </children>
                                  <styleClass>
@@ -197,7 +196,7 @@
                               </VBox>
                               <VBox GridPane.rowIndex="8">
                                  <children>
-                                    <Label text="IVA" />
+                                    <Label styleClass="normal-header" text="IVA" />
                                     <ComboBox fx:id="cbxIva" prefWidth="170.0" styleClass="combobox" />
                                  </children>
                                  <styleClass>
@@ -225,39 +224,42 @@
                                              </styleClass>
                                           </FontAwesomeIconView>
                                        </right>
-                                       <padding>
-                                          <Insets right="6.0" />
-                                       </padding>
                                     </BorderPane>
                                  </children>
                               </VBox>
                               <VBox styleClass="padding-1">
                                  <children>
+<<<<<<< HEAD
                                     <Label styleClass="header" text="Datos del producto" wrapText="true" />
+=======
+                                    <Label styleClass="big-header" text="Datos del producto" />
+>>>>>>> branch 'Ariel' of https://github.com/ArielGuillen/CenterTimbrado
                                  </children>
                               </VBox>
                               <VBox styleClass="padding-1" GridPane.columnIndex="1">
                                  <children>
+<<<<<<< HEAD
                                     <Label styleClass="header" text="Campos obligatorios CFDI 3.3 SAT" wrapText="true" />
+=======
+                                    <Label styleClass="big-header" text="Campos obligatorios CFDI 3.3 SAT" />
+>>>>>>> branch 'Ariel' of https://github.com/ArielGuillen/CenterTimbrado
                                  </children>
                               </VBox>
                               <VBox GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <children>
-                                    <HBox>
-                                       <children>
-                                          <TextField fx:id="txtKeywordUnit" maxWidth="1.7976931348623157E308" promptText="Ingrese una palabara clave" styleClass="textfield-search" />
-                                          <FontAwesomeIconView fx:id="iconWarningUnit" glyphName="EXCLAMATION_CIRCLE" visible="false">
+                                    <BorderPane styleClass="hbox-search">
+                                       <center>
+                                          <TextField fx:id="txtKeywordUnit" promptText="Ingrese una palabra clave" styleClass="textfield-search" BorderPane.alignment="CENTER" />
+                                       </center>
+                                       <right>
+                                          <FontAwesomeIconView fx:id="iconWarningUnit" glyphName="EXCLAMATION_CIRCLE" visible="false" BorderPane.alignment="CENTER">
                                              <styleClass>
                                                 <String fx:value="icon-warning" />
                                                 <String fx:value="alignment-center-right" />
                                              </styleClass>
                                           </FontAwesomeIconView>
-                                       </children>
-                                       <styleClass>
-                                          <String fx:value="hbox-search" />
-                                          <String fx:value="alignment-center-left" />
-                                       </styleClass>
-                                    </HBox>
+                                       </right>
+                                    </BorderPane>
                                  </children>
                                  <styleClass>
                                     <String fx:value="alignment-bottom-right" />
@@ -268,8 +270,7 @@
                         </GridPane>
                      </center>
                      <styleClass>
-                        <String fx:value="borderpane" />
-                        <String fx:value="form" />
+                        <String fx:value="borderpane-form" />
                         <String fx:value="padding-1" />
                      </styleClass>
                   </BorderPane>
@@ -282,12 +283,12 @@
          <top>
             <HBox minWidth="100.0" styleClass="padding-bottom-1" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="lblTitle" focusTraversable="false" styleClass="title" text="Agregar Producto" />
+                  <Label fx:id="lblTitle" focusTraversable="false" styleClass="big-title" text="Agregar Producto" />
                </children>
             </HBox>
          </top>
          <styleClass>
-            <String fx:value="borderpane" />
+            <String fx:value="borderpane-background" />
             <String fx:value="padding-1" />
          </styleClass>
       </BorderPane>
@@ -300,5 +301,9 @@
       <URL value="@../stylesheets/grid-pane.css" />
       <URL value="@../stylesheets/addClient.css" />
       <URL value="@../stylesheets/fuentes.css" />
+      <URL value="@../stylesheets/titles.css" />
+      <URL value="@../stylesheets/borderpane.css" />
+      <URL value="@../stylesheets/button.css" />
+      <URL value="@../stylesheets/text-field.css" />
    </stylesheets>
 </StackPane>
