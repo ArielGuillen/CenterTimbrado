@@ -1,0 +1,12 @@
+.date-picker{
+	-fx-effect: dropshadow( gaussian, #00000033, 12,0, 0, 5);
+}
+
+.date-picker .date-picker-popup{
+	 -fx-background-color: gray;
+}
+
+.date-picker .combo-box-base:focused {
+	
+	 -fx-background-color: red;
+}

@@ -12,7 +12,7 @@ import com.Facturama.sdk_java.Models.Exception.FacturamaException;
 import com.Facturama.sdk_java.Models.Request.ProductTax;
 import com.Facturama.sdk_java.Models.Response.Catalogs.Catalog;
 import com.Facturama.sdk_java.Models.Response.Catalogs.Cfdi.Currency;
-import com.timbrado.center_timbrado.pojos.Producto;
+import com.timbrado.center_timbrado.pojos.ProductInvoice;
 import com.timbrado.center_timbrado.services.Facturama;
 
 import javafx.application.Platform;
@@ -60,25 +60,25 @@ public class CreateInvoiceController implements Initializable{
 	
 	//--TableView--
 	@FXML
-	public TableView<Producto> tabProducts;
+	public TableView<ProductInvoice> tabProducts;
 	@FXML
-	TableColumn<Producto, Integer> colQuantity;
+	TableColumn<ProductInvoice, Integer> colQuantity;
 	@FXML
-	TableColumn<Producto, String> colName;
+	TableColumn<ProductInvoice, String> colName;
 	@FXML
-	TableColumn<Producto, String> colKeys;
+	TableColumn<ProductInvoice, String> colKeys;
 	@FXML
-	TableColumn<Producto, String> colDescription;
+	TableColumn<ProductInvoice, String> colDescription;
 	@FXML
-	TableColumn<Producto, Float> colPrice;
+	TableColumn<ProductInvoice, Float> colPrice;
 	@FXML
-	TableColumn<Producto, Float> colSubtotal;
+	TableColumn<ProductInvoice, Float> colSubtotal;
 	@FXML
-	TableColumn<Producto, Float> colDiscount;
+	TableColumn<ProductInvoice, Float> colDiscount;
 	@FXML
-	TableColumn<Producto, String> colTaxes;
+	TableColumn<ProductInvoice, String> colTaxes;
 	@FXML
-	TableColumn<Producto, Float> colTotal;
+	TableColumn<ProductInvoice, Float> colTotal;
 	
 	
 	
@@ -87,7 +87,7 @@ public class CreateInvoiceController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		try {
-			initialiseComboboxConverters();
+			initializeComboboxConverters();
 			initializateDate();
 			initializeTableView();
 			initializatePaymentForms();
@@ -103,7 +103,7 @@ public class CreateInvoiceController implements Initializable{
 	
 	//--Initialize Methods--
 	
-	public void initialiseComboboxConverters(){
+	public void initializeComboboxConverters(){
 		
 		//--Clients ComboBox--
 		cbxShowClients.setConverter(new StringConverter<Client>() {
@@ -162,8 +162,8 @@ public class CreateInvoiceController implements Initializable{
 	        		Product product = cbxShowProducts.getSelectionModel().getSelectedItem();	
 					int index = searchProduct( product );
 					if( index == -1 ) {
-						Producto producto = new Producto( product );
-						tabProducts.getItems().add( producto );
+						ProductInvoice ProductInvoice = new ProductInvoice( product );
+						tabProducts.getItems().add( ProductInvoice );
 					}
 					else {
 						tabProducts.getItems().get(index).increaseQuantity( );
@@ -178,7 +178,7 @@ public class CreateInvoiceController implements Initializable{
 	}
 	public int searchProduct( Product product ) {				
 		int index = -1;
-		Producto productAux;
+		ProductInvoice productAux;
 		for( int i = 0; i < tabProducts.getItems().size(); i++ ) {
 			productAux = tabProducts.getItems().get( i );
 			if( productAux.getProduct().getId().equals( product.getId() ) ) {
@@ -200,7 +200,7 @@ public class CreateInvoiceController implements Initializable{
 		
 		
 		//--Editable Column--
-		colQuantity.setCellValueFactory(new PropertyValueFactory<Producto, Integer> ("Quantity") );
+		colQuantity.setCellValueFactory(new PropertyValueFactory<ProductInvoice, Integer> ("Quantity") );
 		colQuantity.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
 		colQuantity.setOnEditCommit(data -> {
 			
@@ -216,19 +216,19 @@ public class CreateInvoiceController implements Initializable{
 		});
 		
 		//--Regular Columns--
-		colName.setCellValueFactory( new PropertyValueFactory<Producto, String >("Name") );
-		colDescription.setCellValueFactory(new PropertyValueFactory<Producto, String>("Description"));
-		colPrice.setCellValueFactory(new PropertyValueFactory<Producto, Float>("Price"));
-		colSubtotal.setCellValueFactory(new PropertyValueFactory<Producto, Float>("subtotal"));
-		colDiscount.setCellValueFactory(new PropertyValueFactory<Producto, Float>("discount"));
-		colTotal.setCellValueFactory(new PropertyValueFactory<Producto, Float>("total"));
+		colName.setCellValueFactory( new PropertyValueFactory<ProductInvoice, String >("Name") );
+		colDescription.setCellValueFactory(new PropertyValueFactory<ProductInvoice, String>("Description"));
+		colPrice.setCellValueFactory(new PropertyValueFactory<ProductInvoice, Float>("Price"));
+		colSubtotal.setCellValueFactory(new PropertyValueFactory<ProductInvoice, Float>("subtotal"));
+		colDiscount.setCellValueFactory(new PropertyValueFactory<ProductInvoice, Float>("discount"));
+		colTotal.setCellValueFactory(new PropertyValueFactory<ProductInvoice, Float>("total"));
 	}
 	
 
 	private void createCellFactoryTaxes() {
-		Callback<TableColumn<Producto, String>, TableCell<Producto, String>> 
+		Callback<TableColumn<ProductInvoice, String>, TableCell<ProductInvoice, String>> 
 			cellFactoryTaxes = param -> {
-			   final TableCell<Producto, String> cell = new TableCell<Producto, String>() {
+			   final TableCell<ProductInvoice, String> cell = new TableCell<ProductInvoice, String>() {
 				   Label labelTax = new Label();
 				   VBox pane = new VBox(labelTax);
 			    
@@ -241,7 +241,7 @@ public class CreateInvoiceController implements Initializable{
 						   setText(null); 
 				       } 
 					   else {
-				    	 	Producto product = getTableView().getItems().get(getIndex());
+				    	 	ProductInvoice product = getTableView().getItems().get(getIndex());
 				    	 	String showTaxes = "";
 				    	 	
 				    	 	List<ProductTax> listTax = product.getProduct().getTaxes();		    	 	
@@ -262,12 +262,12 @@ public class CreateInvoiceController implements Initializable{
 	}
 
 	private void createCellFactoryKeys() {
-		Callback<TableColumn<Producto, String>, TableCell<Producto, String>> 
+		Callback<TableColumn<ProductInvoice, String>, TableCell<ProductInvoice, String>> 
 			cellFactory = param -> {
-			   final TableCell<Producto, String> cell = new TableCell<Producto, String>() { 
+			   final TableCell<ProductInvoice, String> cell = new TableCell<ProductInvoice, String>() { 
 	
 				   Label labelProduct = new Label();
-				   Label labelTitleProduct = new Label("Código de producto");
+				   Label labelTitleProduct = new Label("Código de ProductInvoice");
 				   Label labelUnit = new Label();
 				   Label labelTitleUnit = new Label("Código de unidad");
 				   VBox pane = new VBox( labelTitleProduct, labelProduct, labelTitleUnit, labelUnit);
@@ -283,7 +283,7 @@ public class CreateInvoiceController implements Initializable{
 					    	setText(null); 
 					   } 
 					   else {
-						   Producto product = getTableView().getItems().get(getIndex());
+						   ProductInvoice product = getTableView().getItems().get(getIndex());
 						   labelProduct.setText( product.getCodeProdServ() );
 						   labelUnit.setText( product.getUnitCode() );
 								
@@ -390,6 +390,7 @@ public class CreateInvoiceController implements Initializable{
 		stage.showAndWait();
 	}
 	
+	/* --------- Methods to Add and Edit Clients -------*/
 	@FXML
 	public void editClient() throws IOException, FacturamaException, Exception { 
 		Client client = cbxShowClients.getSelectionModel().getSelectedItem();
@@ -399,7 +400,7 @@ public class CreateInvoiceController implements Initializable{
 			Parent parent = loader.load();				
 			EditClientController controller = loader.getController();
 	
-			controller.setContact( client );
+			controller.setClient( client );
 			controller.loadData();
 			
 			Scene scene = new Scene( parent );
@@ -412,7 +413,40 @@ public class CreateInvoiceController implements Initializable{
 		
 	}
 	
+	/* --------- Methods to Add and Edit Products -------*/
+	@FXML
+	public void newProduct() throws IOException {
+		FXMLLoader loader = new FXMLLoader( this.getClass().getResource("/fxml/addProduct.fxml"));			
+		Parent parent = loader.load();		
+		
+		Scene scene = new Scene( parent );
+		Stage stage = new Stage();
+		stage.initModality( Modality.APPLICATION_MODAL );
+		stage.setTitle("Nuevo Producto");
+		stage.setScene( scene );
+		stage.showAndWait();
+	}
 
+	@FXML
+	public void editProduct() throws IOException, FacturamaException, Exception { 
+		Product product = cbxShowProducts.getSelectionModel().getSelectedItem();
+		
+		if(product != null) {
+			FXMLLoader loader = new FXMLLoader( this.getClass().getResource("/fxml/addProduct.fxml"));			
+			Parent parent = loader.load();				
+			EditProductController controller = loader.getController();
 	
+			controller.setProduct( product );
+			controller.loadData();
+			
+			Scene scene = new Scene( parent );
+			Stage stage = new Stage();
+			stage.initModality( Modality.APPLICATION_MODAL );
+			stage.setTitle("Editar Producto");
+			stage.setScene( scene );
+			stage.showAndWait();			
+		}
+		
+	}
 
 }

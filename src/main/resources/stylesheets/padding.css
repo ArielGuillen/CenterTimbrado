@@ -127,14 +127,6 @@
 	-fx-padding: 6px 0;
 }
 
-.padding-top-1 {
-	-fx-padding: 12px 0 0 0;
-}
-
-.padding-bottom-1 {
-	-fx-padding: 0 0 12px 0;
-}
-
 /* --------------------Corner Padding ----------------*/
 
 .padding-t-r-4{

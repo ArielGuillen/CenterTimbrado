@@ -3,7 +3,7 @@ package com.timbrado.center_timbrado.pojos;
 import com.Facturama.sdk_java.Models.Product;
 import com.Facturama.sdk_java.Models.Request.ProductTax;
 
-public class Producto {
+public class ProductInvoice {
 	private int quantity;
 	private Product product;
 
@@ -20,11 +20,11 @@ public class Producto {
 	
 	//----------------Constructors-----------------
 
-	public Producto() {
+	public ProductInvoice() {
 		super();
 	}
 	
-	public Producto( Product product ) {
+	public ProductInvoice( Product product ) {
 		super();
 		this.quantity = 1;
 		this.product = product;
