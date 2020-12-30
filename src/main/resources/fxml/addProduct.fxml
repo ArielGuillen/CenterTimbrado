@@ -303,9 +303,9 @@
       <URL value="@../stylesheets/addClient.css" />
       <URL value="@../stylesheets/fuentes.css" />
       <URL value="@../stylesheets/titles.css" />
-      <URL value="@../stylesheets/borderpane.css" />
       <URL value="@../stylesheets/button.css" />
       <URL value="@../stylesheets/text-field.css" />
       <URL value="@../stylesheets/combobox.css" />
+      <URL value="@../stylesheets/borderpane.css" />
    </stylesheets>
 </StackPane>
