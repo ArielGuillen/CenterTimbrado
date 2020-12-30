@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="lib" path="C:/Users/ariel/Documentos/Alora/facturama-java-sdk-dev/dist/FacturamaAPISDK-0.2.4.jar"/>
 	<classpathentry kind="src" output="target/classes" path="src/main/java">
 		<attributes>
 			<attribute name="optional" value="true"/>
@@ -29,5 +28,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/ariel/Documentos/Alora/facturama-java-sdk-dev/dist/FacturamaAPISDK-0.2.4.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

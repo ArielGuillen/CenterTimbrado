@@ -226,6 +226,7 @@ public class EditClientController implements Initializable{
 		if( client == null ) {
 			
 			client = new Client();
+			this.clientAddress = new Address();
 			saveDataClient();
 					
 			client = Facturama.facturama.Clients().Create(client);

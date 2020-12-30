@@ -25,6 +25,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
@@ -56,7 +57,11 @@ public class EditProductController  implements Initializable{
 	@FXML
 	public TextField txtKeywordProduct;
 	@FXML
+	public BorderPane brdrPnKeywordProduct;
+	@FXML
 	public TextField txtKeywordUnit;
+	@FXML
+	public BorderPane brdrPnKeywordUnit;
 	@FXML
 	public TextField txtIeps;
 	//--TextArea--
@@ -203,6 +208,7 @@ public class EditProductController  implements Initializable{
 			initializeTaxesIvaRet();
 			initializeTaxesIsr();
 			initializateIeps();
+			initializeTextFields();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -434,6 +440,35 @@ public class EditProductController  implements Initializable{
 			this.txtIeps.setVisible( true );
 		}
 		);
+	}
+	
+	
+	public void initializeTextFields() {
+		
+		this.txtKeywordProduct.focusedProperty().addListener( (observable, oldValue, newValue) -> {
+			
+			if(newValue == true) {
+				this.brdrPnKeywordProduct.getStyleClass().removeAll("border-pane-icon");
+				this.brdrPnKeywordProduct.getStyleClass().add("border-pane-icon-focused");
+			} else {
+				this.brdrPnKeywordProduct.getStyleClass().removeAll("border-pane-icon-focused");
+				this.brdrPnKeywordProduct.getStyleClass().add("border-pane-icon");
+			}
+			
+		});
+		
+		this.txtKeywordUnit.focusedProperty().addListener( (observable, oldValue, newValue) -> {
+			
+			if(newValue == true) {
+				this.brdrPnKeywordUnit.getStyleClass().removeAll("border-pane-icon");
+				this.brdrPnKeywordUnit.getStyleClass().add("border-pane-icon-focused");
+			} else {
+				this.brdrPnKeywordUnit.getStyleClass().removeAll("border-pane-icon-focused");
+				this.brdrPnKeywordUnit.getStyleClass().add("border-pane-icon");
+			}
+			
+		});
+		
 	}
 	
 	
