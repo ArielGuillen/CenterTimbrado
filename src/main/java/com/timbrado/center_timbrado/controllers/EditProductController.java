@@ -1,5 +1,6 @@
 package com.timbrado.center_timbrado.controllers;
 
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import com.timbrado.center_timbrado.exceptions.EmptyFieldException;
 import com.timbrado.center_timbrado.services.Facturama;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -186,7 +188,14 @@ public class EditProductController  implements Initializable{
 			if( this.cbxIsr.getSelectionModel().getSelectedItem() != null )
 				taxes.add( this.cbxIsr.getSelectionModel().getSelectedItem() );
 			//Checar ieps si se usa por tasa o cuota
-			
+			if( this.cbxIeps.getSelectionModel().getSelectedItem() != null)
+				taxes.add( this.cbxIeps.getSelectionModel().getSelectedItem() );
+			if( !this.txtIeps.getText().isEmpty()) {
+				//Si se ha digitado algo en el txtIeps se necesita crear un impuesto con ese valor y agregarlo
+				//a los impuestos del producto
+				//-Investigar cuál es la manera correcta de tratar por Cuota o qué significa exactamente
+			}
+				
 			this.product.setTaxes( taxes );			
 	        
 		}catch(EmptyFieldException e ) {			
@@ -198,6 +207,43 @@ public class EditProductController  implements Initializable{
 		}
 		
 	}
+	
+	public void checkIfIEPSIsSelected() {
+		rdbtnTasa.selectedProperty().addListener(( observableT, oldvalueT, newvalueT ) -> {
+			txtIeps.clear();
+			cbxIeps.getSelectionModel().selectedIndexProperty().addListener(( observable, oldvalue, newvalue) -> {	
+				if(cbxIeps.getSelectionModel().getSelectedIndex()!= -1) {
+					cbxIsr.getSelectionModel().clearSelection();;
+					cbxIvaRet.getSelectionModel().clearSelection();
+					cbxIsr.setDisable( true );
+					cbxIvaRet.setDisable( true );
+				}
+				if(cbxIeps.getSelectionModel().isSelected( 0 )){
+					cbxIsr.setDisable( false );
+					cbxIvaRet.setDisable( false );
+					
+				}
+			});
+		});
+		
+		rdbtnCuota.selectedProperty().addListener((observable, oldvalue, newvalue ) ->{
+			cbxIeps.getSelectionModel().clearSelection();
+			cbxIsr.setDisable( false );
+			cbxIvaRet.setDisable( false );
+			txtIeps.setOnKeyReleased( key -> {
+				if(!txtIeps.getText().isEmpty()) {
+					cbxIsr.getSelectionModel().clearSelection();;
+					cbxIvaRet.getSelectionModel().clearSelection();
+					cbxIsr.setDisable( true );
+					cbxIvaRet.setDisable( true );
+				}
+				else {
+					cbxIsr.setDisable( false );
+					cbxIvaRet.setDisable( false );	
+				}
+			});	
+		});
+	}	
 
 	//--Initialize Methods--
 	@Override
@@ -209,6 +255,7 @@ public class EditProductController  implements Initializable{
 			initializeTaxesIsr();
 			initializateIeps();
 			initializeTextFields();
+			checkIfIEPSIsSelected();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -350,8 +397,8 @@ public class EditProductController  implements Initializable{
 	}
 	
 	//-----------------Initialize Taxes Methods----------------------
-	public void initializeTaxesIva() {
-		
+	public void initializeTaxesIva() {		
+		setEmptyTax("Ninguno", false, 0, true, cbxIva);
 		
 		this.createTax( "IVA" , false, 0.16, false, cbxIva );
 		this.createTax( "IVA" , false, 0.08, false, cbxIva );
@@ -360,6 +407,7 @@ public class EditProductController  implements Initializable{
 	}
 
 	private void initializeTaxesIvaRet() {
+		setEmptyTax("Ninguno", false, 0, true, cbxIvaRet);
 		
 		this.createTax( "IVA Ret" , false, 0.16, true, cbxIvaRet );
 		this.createTax( "IVA Ret" , false, 0.106668, true, cbxIvaRet );
@@ -385,6 +433,8 @@ public class EditProductController  implements Initializable{
 	}
 		
 	public void initializeTaxesIsr() {
+		setEmptyTax("Ninguno", false, 0, true, cbxIsr);
+		
 		this.createTax("ISR", false, .2, true, cbxIsr);
 		this.createTax("ISR", false, .10666, true, cbxIsr);
 		this.createTax("ISR", false, .10, true, cbxIsr);
@@ -400,7 +450,9 @@ public class EditProductController  implements Initializable{
 		
 	}
 	
-	public void initializateTaxesIeps() {
+	public void initializateTaxesIeps() {	
+		setEmptyTax("Ninguno", false, 0, true, cbxIeps);
+	    
 		this.createTax("IEPS", false, 3.00, true, cbxIeps);
 		this.createTax("IEPS", false, 1.60, true, cbxIeps);
 		this.createTax("IEPS", false, .53, true, cbxIeps);
@@ -481,6 +533,15 @@ public class EditProductController  implements Initializable{
 	    tax.setIsRetention( retention );
 	    comboBox.getItems().add( tax );
 	    
+	}
+	
+	public void setEmptyTax( String name, boolean quota, double rate, boolean retention, ComboBox<ProductTax> comboBox ) {
+		ProductTax taxnull = new ProductTax();	    
+	    taxnull.setName( name );
+	    taxnull.setIsQuota( quota );
+	    taxnull.setRate( rate );
+	    taxnull.setIsRetention( retention );
+	    comboBox.getItems().add( taxnull );
 	}
 	
 	//-----------------------------Exception Methods-------------------------//

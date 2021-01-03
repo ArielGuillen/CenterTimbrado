@@ -31,9 +31,9 @@
                      <center>
                         <GridPane BorderPane.alignment="CENTER">
                            <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" />
-                              <ColumnConstraints hgrow="SOMETIMES" />
-                              <ColumnConstraints hgrow="SOMETIMES" />
+                              <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints vgrow="SOMETIMES" />
@@ -43,17 +43,28 @@
                               <VBox styleClass="alignment-center-left">
                                  <children>
                                     <Label styleClass="normal-header" text="Cliente:" />
-                                    <HBox>
+                                    <GridPane styleClass="grid-pane">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="35.0" minWidth="10.0" prefWidth="35.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
                                        <children>
-                                          <ComboBox fx:id="cbxShowClients" onMouseClicked="#updateComboboxClients" prefWidth="150.0" styleClass="combobox" />
-                                          <FontAwesomeIconView glyphName="PENCIL" onMouseClicked="#editClient" styleClass="icon-dark" />
-                                          <FontAwesomeIconView glyphName="PLUS" onMouseClicked="#newClient" styleClass="icon-dark" />
+                                          <ComboBox fx:id="cbxShowClients" maxWidth="1.7976931348623157E308" onMouseClicked="#updateComboboxClients" styleClass="combobox" />
+                                          <HBox GridPane.columnIndex="1">
+                                             <children>
+                                                <FontAwesomeIconView glyphName="PENCIL" onMouseClicked="#editClient" styleClass="icon-dark" />
+                                                <FontAwesomeIconView glyphName="PLUS" onMouseClicked="#newClient" styleClass="icon-dark" />
+                                             </children>
+                                             <styleClass>
+                                                <String fx:value="spacing-1" />
+                                                <String fx:value="alignment-center-right" />
+                                             </styleClass>
+                                          </HBox>
                                        </children>
-                                       <styleClass>
-                                          <String fx:value="spacing-1" />
-                                          <String fx:value="alignment-center-left" />
-                                       </styleClass>
-                                    </HBox>
+                                    </GridPane>
                                  </children>
                               </VBox>
                               <VBox styleClass="alignment-center-left" GridPane.rowIndex="1">
@@ -84,17 +95,28 @@
                               <VBox styleClass="alignment-center-left" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <children>
                                     <Label styleClass="normal-header" text="Producto:" />
-                                    <HBox>
+                                    <GridPane styleClass="grid-pane">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="35.0" minWidth="10.0" prefWidth="35.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
                                        <children>
                                           <ComboBox fx:id="cbxShowProducts" maxWidth="1.7976931348623157E308" onMouseClicked="#showProducts" prefWidth="150.0" styleClass="combobox" />
-                                          <FontAwesomeIconView glyphName="PENCIL" onMouseClicked="#editProduct" styleClass="icon-dark" />
-                                          <FontAwesomeIconView glyphName="PLUS" onMouseClicked="#newProduct" styleClass="icon-dark" />
+                                          <HBox GridPane.columnIndex="1">
+                                             <children>
+                                                <FontAwesomeIconView glyphName="PENCIL" onMouseClicked="#editProduct" styleClass="icon-dark" />
+                                                <FontAwesomeIconView glyphName="PLUS" onMouseClicked="#newProduct" styleClass="icon-dark" />
+                                             </children>
+                                             <styleClass>
+                                                <String fx:value="spacing-1" />
+                                                <String fx:value="alignment-center-right" />
+                                             </styleClass>
+                                          </HBox>
                                        </children>
-                                       <styleClass>
-                                          <String fx:value="spacing-1" />
-                                          <String fx:value="alignment-center-left" />
-                                       </styleClass>
-                                    </HBox>
+                                    </GridPane>
                                  </children>
                               </VBox>
                            </children>
