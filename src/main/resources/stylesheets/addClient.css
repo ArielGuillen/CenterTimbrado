@@ -43,7 +43,7 @@
 	-fx-background-radius: 0.4em;		
 	-fx-border-radius: 0.4em;
 }
-/* -----Hbox button ------*/
+/* -----Hbox button ------
 
 .hbox-button {
 	-fx-background-color: -fx-primary-dark;
@@ -76,15 +76,4 @@
 .hbox-button:pressed > .icon {
 	-fx-fill: white;
 }
-
-/* Icons------------------------------- */
-.icon-dark{
-	-fx-fill: -fx-primary-dark;
-}
-.icon-dark:hover{
-	-fx-font-size:14px;
-}
-.icon-warning{
-	-fx-fill: red;
-}
-
+*/

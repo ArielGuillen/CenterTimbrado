@@ -5,3 +5,9 @@
 	-fx-border-radius: 0.3em;
 	-fx-effect: dropshadow( gaussian, #00000033, 12,0, 0, 5);
 }
+
+.combobox:hover{
+	-fx-border-color: #eee;
+	-fx-background-color: #eee;
+	-fx-effect: dropshadow( gaussian, #00000028, 12,0, 0, 5);
+}

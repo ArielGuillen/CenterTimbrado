@@ -24,10 +24,6 @@
 	-fx-text-fill: white;
 }
 
-.button .glyph {
-	-fx-fill: white;
-}
-
 .button-primary:hover{
 	-fx-background-color: #328fd7;
 	-fx-text-fill: white;

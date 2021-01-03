@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
@@ -17,7 +18,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.timbrado.center_timbrado.controllers.CreateInvoiceController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.timbrado.center_timbrado.controllers.CreateInvoiceController">
    <children>
       <BorderPane>
          <center>
@@ -36,11 +37,11 @@
                               <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
                            </columnConstraints>
                            <rowConstraints>
-                              <RowConstraints vgrow="SOMETIMES" />
-                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="54.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="54.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <VBox styleClass="alignment-center-left">
+                              <VBox>
                                  <children>
                                     <Label styleClass="normal-header" text="Cliente:" />
                                     <GridPane styleClass="grid-pane">
@@ -66,33 +67,53 @@
                                        </children>
                                     </GridPane>
                                  </children>
+                                 <styleClass>
+                                    <String fx:value="alignment-center-left" />
+                                    <String fx:value="spacing-min" />
+                                 </styleClass>
                               </VBox>
-                              <VBox styleClass="alignment-center-left" GridPane.rowIndex="1">
-                                 <children>
-                                    <Label styleClass="normal-header" text="Moneda:" />
-                                    <ComboBox fx:id="cbxShowCurrencies" maxWidth="1.7976931348623157E308" styleClass="combobox" />
-                                 </children>
-                              </VBox>
-                              <VBox styleClass="alignment-center-left" GridPane.columnIndex="1">
+                              <VBox GridPane.columnIndex="1">
                                  <children>
                                     <Label styleClass="normal-header" text="Forma de pago:" />
                                     <ComboBox fx:id="cbxShowPaymentsForms" maxWidth="1.7976931348623157E308" styleClass="combobox" />
                                  </children>
+                                 <styleClass>
+                                    <String fx:value="alignment-center-left" />
+                                    <String fx:value="spacing-min" />
+                                 </styleClass>
                               </VBox>
-                              <VBox styleClass="alignment-center-left" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                 <children>
-                                    <Label styleClass="normal-header" text="Fecha de Emisión:" />
-
-                                          <DatePicker fx:id="date" maxWidth="1.7976931348623157E308" />
-                                 </children>
-                              </VBox>
-                              <VBox styleClass="alignment-center-left" GridPane.columnIndex="2">
+                              <VBox GridPane.columnIndex="2">
                                  <children>
                                     <Label styleClass="normal-header" text="Método de pago:" />
                                     <ComboBox fx:id="cbxShowPaymentsMethods" maxWidth="1.7976931348623157E308" styleClass="combobox" />
                                  </children>
+                                 <styleClass>
+                                    <String fx:value="alignment-center-left" />
+                                    <String fx:value="spacing-min" />
+                                 </styleClass>
                               </VBox>
-                              <VBox styleClass="alignment-center-left" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <VBox GridPane.rowIndex="1">
+                                 <children>
+                                    <Label styleClass="normal-header" text="Moneda:" />
+                                    <ComboBox fx:id="cbxShowCurrencies" maxWidth="1.7976931348623157E308" styleClass="combobox" />
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="alignment-center-left" />
+                                    <String fx:value="spacing-min" />
+                                 </styleClass>
+                              </VBox>
+                              <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <children>
+                                    <Label maxHeight="19.0" styleClass="normal-header" text="Fecha de Emisión:" />
+
+                                          <DatePicker fx:id="date" maxWidth="1.7976931348623157E308" />
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="alignment-center-left" />
+                                    <String fx:value="spacing-min" />
+                                 </styleClass>
+                              </VBox>
+                              <VBox GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <children>
                                     <Label styleClass="normal-header" text="Producto:" />
                                     <GridPane styleClass="grid-pane">
@@ -118,6 +139,10 @@
                                        </children>
                                     </GridPane>
                                  </children>
+                                 <styleClass>
+                                    <String fx:value="alignment-center-left" />
+                                    <String fx:value="spacing-min" />
+                                 </styleClass>
                               </VBox>
                            </children>
                            <styleClass>
@@ -131,7 +156,7 @@
                <center>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="padding-x-1" BorderPane.alignment="CENTER">
                      <center>
-                        <VBox styleClass="padding-t-1" BorderPane.alignment="CENTER">
+                        <VBox BorderPane.alignment="CENTER">
                            <children>
                               <TableView fx:id="tabProducts">
                                 <columns>
@@ -149,32 +174,54 @@
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                  </columnResizePolicy>
                               </TableView>
-                              <HBox maxHeight="-Infinity" prefHeight="20.0">
-                                 <children>
-                                    <Label text="Subtotal" />
-                                    <Label text="\$$$" />
-                                 </children>
-                                 <styleClass>
-                                    <String fx:value="alignment-center-right" />
-                                    <String fx:value="padding-r-1" />
-                                 </styleClass>
-                              </HBox>
-                              <HBox maxHeight="-Infinity" prefHeight="20.0">
-                                 <children>
-                                    <Label text="Total" />
-                                    <Label text="\$$$" />
-                                 </children>
-                                 <styleClass>
-                                    <String fx:value="alignment-center-right" />
-                                    <String fx:value="padding-r-1" />
-                                 </styleClass>
-                              </HBox>
                               <HBox maxHeight="-Infinity" prefHeight="100.0">
                                  <children>
-                                    <Button maxHeight="-Infinity" mnemonicParsing="false" styleClass="button-primary" text="Crear factura" />
+                                    <HBox>
+                                       <children>
+                                          <VBox>
+                                             <children>
+                                                <Label maxWidth="1.7976931348623157E308" styleClass="normal-header" text="Subtotal" />
+                                                <Label fx:id="txtSubtotal" styleClass="normal-header" text="\$$$" />
+                                             </children>
+                                             <styleClass>
+                                                <String fx:value="spacing-min" />
+                                                <String fx:value="alignment-center-center" />
+                                             </styleClass>
+                                          </VBox>
+                                          <VBox>
+                                             <children>
+                                                <Label maxWidth="1.7976931348623157E308" styleClass="normal-header" text="IVA" />
+                                                <Label fx:id="txtIva" styleClass="normal-header" text="\$$$" />
+                                             </children>
+                                             <styleClass>
+                                                <String fx:value="spacing-min" />
+                                                <String fx:value="alignment-center-center" />
+                                             </styleClass>
+                                          </VBox>
+                                          <VBox>
+                                             <children>
+                                                <Label maxWidth="1.7976931348623157E308" styleClass="normal-header" text="Total" />
+                                                <Label fx:id="txtTotal" styleClass="normal-header" text="\$$$" />
+                                             </children>
+                                             <styleClass>
+                                                <String fx:value="spacing-min" />
+                                                <String fx:value="alignment-center-center" />
+                                             </styleClass>
+                                          </VBox>
+                                       </children>
+                                       <styleClass>
+                                          <String fx:value="alignment-center-left" />
+                                          <String fx:value="spacing-4" />
+                                          <String fx:value="padding-r-4" />
+                                       </styleClass>
+                                    </HBox>
+                                    <Button mnemonicParsing="false" prefHeight="30.0" styleClass="button-primary" text="Crear factura">
+                                       <graphic>
+                                          <MaterialDesignIconView glyphName="CHECK" size="16" styleClass="icon-light" />
+                                       </graphic></Button>
                                  </children>
                                  <styleClass>
-                                    <String fx:value="alignment-center-center" />
+                                    <String fx:value="alignment-center-right" />
                                     <String fx:value="padding-y-1" />
                                  </styleClass>
                               </HBox>
@@ -190,14 +237,10 @@
             <String fx:value="borderpane-background" />
          </styleClass>
          <top>
-            <HBox BorderPane.alignment="CENTER">
+            <HBox styleClass="padding-b-1" BorderPane.alignment="CENTER">
                <children>
                   <Label styleClass="big-title" text="Datos de la Factura" />
                </children>
-               <styleClass>
-                  <String fx:value="hbox" />
-                  <String fx:value="padding-2" />
-               </styleClass>
             </HBox>
          </top>
       </BorderPane>
@@ -216,5 +259,6 @@
       <URL value="@../stylesheets/tableview.css" />
       <URL value="@../stylesheets/fuentes.css" />
       <URL value="@../stylesheets/datepicker.css" />
+      <URL value="@../stylesheets/icons.css" />
    </stylesheets>
 </StackPane>

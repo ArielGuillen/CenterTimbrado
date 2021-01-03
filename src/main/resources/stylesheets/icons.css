@@ -1,0 +1,13 @@
+.icon-light {
+	-fx-fill: white;
+}
+
+.icon-dark{
+	-fx-fill: -fx-primary-dark;
+}
+.icon-dark:hover{
+	-fx-font-size:14px;
+}
+.icon-warning{
+	-fx-fill: red;
+}

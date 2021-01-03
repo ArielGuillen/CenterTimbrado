@@ -6,7 +6,14 @@
 	 -fx-background-color: gray;
 }
 
-.date-picker .combo-box-base:focused {
+.date-picker:hover .text-field{
+	-fx-border-color: #eee;
+	-fx-background-color: #eee;
 	
-	 -fx-background-color: red;
+}
+
+.date-picker .text-field:focused{
+	-fx-border-width: 2.5px;
+	-fx-border-color: -fx-primary-light;
+	-fx-background-color: white;
 }

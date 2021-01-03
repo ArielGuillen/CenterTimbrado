@@ -20,7 +20,7 @@
    <children>
       <BorderPane>
          <center>
-            <StackPane styleClass="stackpane" BorderPane.alignment="CENTER">
+            <StackPane BorderPane.alignment="CENTER">
                <children>
                   <BorderPane>
                      <bottom>
@@ -37,11 +37,11 @@
                                        <children>
                                           <Button focusTraversable="false" mnemonicParsing="false" onAction="#cancelViewClient" styleClass="button-cancel" text="Cancelar">
                                              <graphic>
-                                                <MaterialDesignIconView glyphName="CLOSE" size="16" styleClass="glyph" />
+                                                <MaterialDesignIconView glyphName="CLOSE" size="16" styleClass="icon-light" />
                                              </graphic></Button>
                                           <Button fx:id="btnConfirmar" focusTraversable="false" mnemonicParsing="false" onAction="#saveData" styleClass="button-primary" text="Confirmar">
                                              <graphic>
-                                                <MaterialDesignIconView glyphName="CHECK" size="16" styleClass="glyph" />
+                                                <MaterialDesignIconView glyphName="CHECK" size="16" styleClass="icon-light" />
                                              </graphic></Button>
                                        </children>
                                        <styleClass>
@@ -58,11 +58,11 @@
                         <GridPane styleClass="grid-pane" BorderPane.alignment="CENTER">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="75.0" minWidth="10.0" prefWidth="75.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="10.0" prefWidth="141.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" prefWidth="150.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="38.0" prefWidth="60.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="10.0" prefWidth="149.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" prefWidth="150.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="106.0" minWidth="10.0" prefWidth="82.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="212.0" minWidth="10.0" prefWidth="165.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" prefWidth="150.0" />
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
@@ -75,36 +75,62 @@
                               <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <HBox styleClass="hbox" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                 <children>
-                                    <TextField fx:id="txtName" styleClass="textfield" />
-                                 </children>
-                              </HBox>
-                              <HBox styleClass="hbox" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                                 <children>
-                                    <TextField fx:id="txtEmail" styleClass="textfield" />
-                                 </children>
-                              </HBox>
-                              <HBox styleClass="alignment-center-right" GridPane.rowIndex="1">
-                                 <children>
-                                    <Label focusTraversable="false" styleClass="normal-header" text="Nombre" />
-                                 </children>
-                              </HBox>
-                              <HBox styleClass="alignment-center-right" GridPane.rowIndex="2">
-                                 <children>
-                                    <Label focusTraversable="false" styleClass="normal-header" text="RFC" />
-                                 </children>
-                              </HBox>
-                              <HBox styleClass="alignment-center-right" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                 <children>
-                                    <Label focusTraversable="false" styleClass="normal-header" text="Email" />
-                                 </children>
-                              </HBox>
                               <Label text="Datos Generales" GridPane.columnSpan="2">
                                  <styleClass>
                                     <String fx:value="padding-l-1" />
                                     <String fx:value="big-header" />
                                  </styleClass></Label>
+                              <HBox styleClass="alignment-center-right" GridPane.rowIndex="1">
+                                 <children>
+                                    <Label focusTraversable="false" styleClass="normal-header" text="Nombre" />
+                                 </children>
+                              </HBox>
+                              <VBox styleClass="alignment-center-center" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <children>
+                                    <TextField fx:id="txtName" maxWidth="1.7976931348623157E308" styleClass="textfield" />
+                                 </children>
+                              </VBox>
+                              <HBox styleClass="alignment-center-right" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <children>
+                                    <Label styleClass="normal-header" text="Uso" />
+                                 </children>
+                              </HBox>
+                              <VBox styleClass="alignment-center-center" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                 <children>
+                                    <ComboBox fx:id="cbxUInvoice" maxWidth="1.7976931348623157E308" onMouseClicked="#loadUsesCfdi" styleClass="combobox" />
+                                 </children>
+                              </VBox>
+                              <HBox styleClass="alignment-center-right" GridPane.rowIndex="2">
+                                 <children>
+                                    <Label focusTraversable="false" styleClass="normal-header" text="RFC" />
+                                 </children>
+                              </HBox>
+                              <VBox styleClass="alignment-center-center" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <children>
+                                    <BorderPane minHeight="31.0" prefHeight="31.0" styleClass="border-pane-icon">
+                                       <center>
+                                          <TextField fx:id="txtRFC" maxWidth="1.7976931348623157E308" styleClass="text-field-icon" BorderPane.alignment="CENTER" />
+                                       </center>
+                                       <right>
+                                          <FontAwesomeIconView fx:id="iconWarning" glyphName="EXCLAMATION_CIRCLE" visible="false" BorderPane.alignment="CENTER">
+                                             <styleClass>
+                                                <String fx:value="icon-warning" />
+                                                <String fx:value="alignment-center-right" />
+                                             </styleClass></FontAwesomeIconView>
+                                       </right>
+                                    </BorderPane>
+                                 </children>
+                              </VBox>
+                              <HBox styleClass="alignment-center-right" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                 <children>
+                                    <Label focusTraversable="false" styleClass="normal-header" text="Email" />
+                                 </children>
+                              </HBox>
+                              <VBox styleClass="alignment-center-center" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                 <children>
+                                    <TextField fx:id="txtEmail" maxWidth="1.7976931348623157E308" styleClass="textfield" />
+                                 </children>
+                              </VBox>
                               <Label text="Datos Opcionales" GridPane.columnSpan="2" GridPane.rowIndex="3">
                                  <styleClass>
                                     <String fx:value="padding-l-1" />
@@ -116,113 +142,89 @@
                                     <Label styleClass="normal-header" text="País" />
                                  </children>
                               </HBox>
-                              <HBox styleClass="hbox" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                              <VBox styleClass="alignment-center-center" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <children>
-                                    <TextField fx:id="txtCountry" styleClass="textfield" />
+                                    <TextField fx:id="txtCountry" maxWidth="1.7976931348623157E308" styleClass="textfield" />
                                  </children>
-                              </HBox>
+                              </VBox>
                               <HBox styleClass="alignment-center-right" GridPane.columnIndex="2" GridPane.rowIndex="4">
                                  <children>
                                     <Label styleClass="normal-header" text="Estado" />
                                  </children>
                               </HBox>
-                              <HBox styleClass="hbox" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                              <VBox styleClass="alignment-center-center" GridPane.columnIndex="3" GridPane.rowIndex="4">
                                  <children>
-                                    <TextField fx:id="txtState" styleClass="textfield" />
+                                    <TextField fx:id="txtState" maxWidth="1.7976931348623157E308" styleClass="textfield" />
                                  </children>
-                              </HBox>
+                              </VBox>
                               <HBox styleClass="alignment-center-right" GridPane.columnIndex="4" GridPane.rowIndex="4">
                                  <children>
                                     <Label styleClass="normal-header" text="Municipio" />
                                  </children>
                               </HBox>
-                              <HBox styleClass="hbox" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                              <VBox styleClass="alignment-center-center" GridPane.columnIndex="5" GridPane.rowIndex="4">
                                  <children>
-                                    <TextField fx:id="txtLocality" styleClass="textfield" />
+                                    <TextField fx:id="txtMunicipality" maxWidth="1.7976931348623157E308" />
                                  </children>
-                              </HBox>
+                              </VBox>
                               <HBox styleClass="alignment-center-right" GridPane.rowIndex="5">
                                  <children>
                                     <Label styleClass="normal-header" text="Localidad" />
                                  </children>
                               </HBox>
-                              <HBox styleClass="hbox" GridPane.columnIndex="5" GridPane.rowIndex="4">
+                              <VBox styleClass="alignment-center-center" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                  <children>
-                                    <TextField fx:id="txtMunicipality" styleClass="textfield" />
+                                    <TextField fx:id="txtLocality" maxWidth="1.7976931348623157E308" styleClass="textfield" />
                                  </children>
-                              </HBox>
+                              </VBox>
                               <HBox styleClass="alignment-center-right" GridPane.columnIndex="2" GridPane.rowIndex="5">
                                  <children>
                                     <Label styleClass="normal-header" text="CP" />
                                  </children>
                               </HBox>
-                              <HBox styleClass="alignment-center-right" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                              <VBox styleClass="alignment-center-center" GridPane.columnIndex="3" GridPane.rowIndex="5">
                                  <children>
-                                    <Label prefHeight="16.0" prefWidth="45.0" styleClass="normal-header" text="No. Ext" />
+                                    <TextField fx:id="txtZipCode" maxWidth="1.7976931348623157E308" styleClass="textfield" />
                                  </children>
-                              </HBox>
-                              <HBox styleClass="hbox" GridPane.columnIndex="3" GridPane.rowIndex="5">
-                                 <children>
-                                    <TextField fx:id="txtZipCode" styleClass="textfield" />
-                                 </children>
-                              </HBox>
-                              <HBox styleClass="hbox" GridPane.columnIndex="3" GridPane.rowIndex="6">
-                                 <children>
-                                    <TextField fx:id="txtExteriorNumber" styleClass="textfield" />
-                                 </children>
-                              </HBox>
-                              <HBox styleClass="hbox" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                                 <children>
-                                    <TextField fx:id="txtStreet" styleClass="textfield" />
-                                 </children>
-                              </HBox>
+                              </VBox>
                               <HBox styleClass="alignment-center-right" GridPane.rowIndex="6">
                                  <children>
                                     <Label styleClass="normal-header" text="Calle" />
                                  </children>
                               </HBox>
+                              <VBox styleClass="alignment-center-center" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                 <children>
+                                    <TextField fx:id="txtStreet" maxWidth="1.7976931348623157E308" styleClass="textfield" />
+                                 </children>
+                              </VBox>
+                              <HBox styleClass="alignment-center-right" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                                 <children>
+                                    <Label prefHeight="16.0" prefWidth="45.0" styleClass="normal-header" text="No. Ext" />
+                                 </children>
+                              </HBox>
+                              <VBox styleClass="alignment-center-center" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                                 <children>
+                                    <TextField fx:id="txtExteriorNumber" maxWidth="1.7976931348623157E308" styleClass="textfield" />
+                                 </children>
+                              </VBox>
                               <HBox styleClass="alignment-center-right" GridPane.columnIndex="4" GridPane.rowIndex="6">
                                  <children>
                                     <Label styleClass="normal-header" text="No. Int" />
                                  </children>
                               </HBox>
-                              <HBox styleClass="hbox" GridPane.columnIndex="5" GridPane.rowIndex="6">
+                              <VBox styleClass="alignment-center-center" GridPane.columnIndex="5" GridPane.rowIndex="6">
                                  <children>
-                                    <TextField fx:id="txtInteriorNumber" styleClass="textfield" />
+                                    <TextField fx:id="txtInteriorNumber" maxWidth="1.7976931348623157E308" styleClass="textfield" />
                                  </children>
-                              </HBox>
+                              </VBox>
                               <HBox styleClass="alignment-center-right" GridPane.rowIndex="7">
                                  <children>
                                     <Label styleClass="normal-header" text="Colonia" />
                                  </children>
                               </HBox>
-                              <HBox styleClass="hbox" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                              <VBox styleClass="alignment-center-center" GridPane.columnIndex="1" GridPane.rowIndex="7">
                                  <children>
-                                    <TextField fx:id="txtNeighborhood" styleClass="textfield" />
-                                 </children>
-                              </HBox>
-                              <HBox styleClass="hbox" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                                 <children>
-                                    <ComboBox fx:id="cbxUInvoice" onMouseClicked="#loadUsesCfdi" prefWidth="150.0" styleClass="combobox" />
-                                 </children>
-                              </HBox>
-                              <HBox styleClass="alignment-center-right" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                 <children>
-                                    <Label styleClass="normal-header" text="Uso" />
-                                 </children>
-                              </HBox>
-                              <VBox minHeight="25.0" prefHeight="25.0" prefWidth="146.0" styleClass="alignment-center-left" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                 <children>
-                                    <HBox>
-                                       <children>
-                                          <TextField fx:id="txtRFC" styleClass="text-field" />
-                                          <FontAwesomeIconView fx:id="iconWarning" glyphName="EXCLAMATION_CIRCLE" styleClass="icon-warning" visible="false" />
-                                       </children>
-                                       <styleClass>
-                                          <String fx:value="hbox-search" />
-                                          <String fx:value="alignment-center-left" />
-                                       </styleClass>
-                                    </HBox>
+                                    <TextField fx:id="txtNeighborhood" maxWidth="1.7976931348623157E308" styleClass="textfield" />
                                  </children>
                               </VBox>
                            </children>
@@ -236,11 +238,8 @@
                </children>
             </StackPane>
          </center>
-         <left>
-            <StackPane BorderPane.alignment="CENTER" />
-         </left>
          <top>
-            <HBox minWidth="100.0" styleClass="padding-y-1" BorderPane.alignment="CENTER">
+            <HBox styleClass="padding-b-1" BorderPane.alignment="CENTER">
                <children>
                   <Label fx:id="lblTitle" focusTraversable="false" styleClass="big-title" text="Agregar Cliente" />
                </children>
@@ -264,5 +263,6 @@
       <URL value="@../stylesheets/button.css" />
       <URL value="@../stylesheets/combobox.css" />
       <URL value="@../stylesheets/spacing.css" />
+      <URL value="@../stylesheets/icons.css" />
    </stylesheets>
 </StackPane>
